@@ -1,3 +1,6 @@
+**h0 - Alkutesti**
+
+***Sieppaa ja analysoi verkkoliikennettä*** //edit klo 12:07
 Tässä olisi alkutesti. Alkuvaikeuksien jälkeen sain wiresharkilla kaapattua oman läppärini liikennettä.
 Tein googleen haun hakusanoilla "Ethical hacking". Tässä sitten kuvakaappaus:
 
