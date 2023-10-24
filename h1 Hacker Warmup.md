@@ -17,7 +17,8 @@ Alkuun piti *tehdä tiivistelmä* kahdesta aiheesta. Molemmat lähteet olivat en
       - network vulnerability scanners: OpenVAS, Nessus, Nexpose, Qualys, Nmap
       - web vulnerability scanners: Nikto, WPScan, SQLMap, Burp Suite, Zed Attack Proxy
 
- **<a href="https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf">Intrusion Kill Chain</a>**
+ **<a href="https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf">Intrusion Kill Chain</a>**:
+ 
 U.S.military defines kill chain as following: find adversary targets suitable for engagement -> fix their location -> track and observe -> target with suitable weapon/asset to create desired effects -> engage adversary -> assess effects.
 Applied in cybersecurity on intrusion, the kill chain (*intrusion kill chain*) goes as following:
 1. Reconnaissance: research, identify and select the targets
