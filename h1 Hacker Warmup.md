@@ -2,7 +2,7 @@
 
 Tällä viikolla päästään alkuun matkalla hakkeroinnin maailmaan.
 
-Alkuun piti *tehdä tiivistelmä* kahdesta aiheesta:
+Alkuun piti *tehdä tiivistelmä* kahdesta aiheesta. Molemmat lähteet olivat englanniksi, joten koin helpommaksi kirjoittaa myös tiivistelmät englanniksi:
 
 **<a href="https://learning.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_00/">Active reconnaissance</a>**:
 - in passive reconnaissance no packets/data is being sent directly towards target environment ***passive recon is invisible to logs***
@@ -18,3 +18,12 @@ Alkuun piti *tehdä tiivistelmä* kahdesta aiheesta:
       - web vulnerability scanners: Nikto, WPScan, SQLMap, Burp Suite, Zed Attack Proxy
 
  **<a href="https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf">Intrusion Kill Chain</a>**
+U.S.military defines kill chain as following: find adversary targets suitable for engagement -> fix their location -> track and observe -> target with suitable weapon/asset to create desired effects -> engage adversary -> assess effects.
+Applied in cybersecurity on intrusion, the kill chain (*intrusion kill chain*) goes as following:
+1. Reconnaissance: research, identify and select the targets
+2. Weaponization: combile a remote access trojan with an exploit to get a deliverable payload
+3. Delivery: delivering the weapon to the target environment
+4. Exploitation: trigger the code
+5. Installation: to gain remote access or backdoor on the victim system
+6. Command and control (C2): to set up a communication channel (C2), compromised hosts must send signals out to an Internet controller server
+7. Actions on Objectives: all first six phases have to pass through so that intruder can proceed and achieve their goal
