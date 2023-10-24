@@ -28,3 +28,12 @@ Applied in cybersecurity on intrusion, the kill chain (*intrusion kill chain*) g
 5. Installation: to gain remote access or backdoor on the victim system
 6. Command and control (C2): to set up a communication channel (C2), compromised hosts must send signals out to an Internet controller server
 7. Actions on Objectives: all first six phases have to pass through so that intruder can proceed and achieve their goal
+
+
+
+
+
+***Lähteet:***
+https://learning.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_00/ 
+https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf 
+
