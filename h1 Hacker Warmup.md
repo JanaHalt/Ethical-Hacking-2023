@@ -1,6 +1,6 @@
 ***h1 Hacker Warmup - viikon 43 läksyt***
 
-Tällä viikolla päästään alkuun matkalla hakkeroinnin maailmaan.
+Tällä viikolla päästään alkuun matkalla hakkeroinnin maailmaan. Tässä linkki alkuperäiseen tehtävänantoon <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h1-hacker-warmup">Ethical Hacking 2023 - h1</a>.
 
 Alkuun piti *tehdä tiivistelmä* kahdesta aiheesta. Molemmat lähteet olivat englanniksi, joten koin helpommaksi kirjoittaa myös tiivistelmät englanniksi:
 
