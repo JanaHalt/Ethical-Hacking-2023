@@ -7,5 +7,9 @@ Alkuun piti *lukea tai katsoa ja tiivistää* <a href="https://learning.oreilly.
   - information/data being sent to the target environment
   - important to make clear picture of all details in target environment - to avoid being overwhelmed and to save time
     - port scanning (what ports/services found in passive recon are actually listening)
-    - web service review (which web apps are available?)
+      - Nmap, Masscan, Udpprotoscanner
+    - web service review (which web apps are available? which ones to focus on first?)
+      - EyeWitness
     - vulnerability scanning
+      - network vulnerability scanners: OpenVAS, Nessus, Nexpose, Qualys, Nmap
+      - web vulnerability scanners: Nikto, WPScan, SQLMap, Burp Suite, Zed Attack Proxy
