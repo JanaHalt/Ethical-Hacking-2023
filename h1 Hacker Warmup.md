@@ -1,7 +1,10 @@
 ***h1 Hacker Warmup - viikon 43 läksyt***
 
-Tällä viikolla päästään alkuun matkalla hakkeroinnin maailmaan. 
-Alkuun piti *lukea tai katsoa ja tiivistää* <a href="https://learning.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_00/">Active reconnaissance</a>. Tässä siis tiivistelmä:
+Tällä viikolla päästään alkuun matkalla hakkeroinnin maailmaan.
+
+Alkuun piti *tehdä tiivistelmä* kahdesta aiheesta:
+
+**<a href="https://learning.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_00/">Active reconnaissance</a>**:
 - in passive reconnaissance no packets/data is being sent directly towards target environment ***passive recon is invisible to logs***
 - active reconnaissance follows after passive recon ***active recon "sets alarms" - visible to logs***
   - information/data being sent to the target environment
@@ -13,3 +16,5 @@ Alkuun piti *lukea tai katsoa ja tiivistää* <a href="https://learning.oreilly.
     - vulnerability scanning
       - network vulnerability scanners: OpenVAS, Nessus, Nexpose, Qualys, Nmap
       - web vulnerability scanners: Nikto, WPScan, SQLMap, Burp Suite, Zed Attack Proxy
+
+ **<a href="https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf">Intrusion Kill Chain</a>**
