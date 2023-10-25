@@ -29,20 +29,43 @@ Applied in cybersecurity on intrusion, the kill chain (*intrusion kill chain*) g
 6. Command and control (C2): to set up a communication channel (C2), compromised hosts must send signals out to an Internet controller server
 7. Actions on Objectives: all first six phases have to pass through so that intruder can proceed and achieve their goal
 
+______________________________________________________________
+
+Tehtävät teen kannettavallani:
+- Acer Swift 3
+- AMD Ryzen 7 4700U with Radeon Graphics, 2000 Mhz, 8 ydin(tä)
+- RAM 16 GB
+- Windows 11 Home
+
+Varsinainen toteutus VirtualBoxissa virtuaalikoneella, johon on asennettu Fedora 23 desktop.
+
 **a) Ratkaise <a href="https://overthewire.org/wargames/bandit/">Over The Wire: Bandit</a> kome ensimmäistä tasoa (0-2):**
 
 Eli <a href="https://overthewire.org/wargames/bandit/bandit0.html">Bandit Level 0</a> oli selkeä ohje miten menetellä. Avasin virtuaalikoneellani komentorivin ja kirjauduin peliin:
 ![1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/fcfb0ad8-dae8-46c2-af07-f865dc75f5f0)
 
-Kirjautuminen onnistui, josta todisteena seuraava:
+Kirjautuminen onnistui, eli taso suoritettu onnistuneesti:
 
 ![2](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/5f8a261a-121e-4240-8819-4cc457846ce6)
 
+Alkutekstissä luki muutamia ohjeita miten alustalla toimitaan, esimerkiksi mistä löytyy tasot ja mistä salasanat yms. 
 
+Tästä sitten jatkoin tasolle *Level 1*. Suoritettu onnistuneesti:
+
+![3](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/ad69bb3a-9911-401c-b54f-93da855e3072)
+
+Taso 2 suoritettu onnistuneesti:
+
+![4](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/58afaa16-edab-450a-ae69-80bfd4ed33c3)
+
+Tämän tason suorituksessa piti opetella miten avataan/luetaan tiedostoja, jotka alkavat "-":lla. Apu löytyi googlen avulla täältä <a href="https://stackoverflow.com/questions/42187323/how-to-open-a-dashed-filename-using-terminal">How to open a dashed filename using terminal</a>.
 
 
 ***Lähteet:***
 
 https://learning.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_00/ 
 https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf 
+https://stackoverflow.com/questions/42187323/how-to-open-a-dashed-filename-using-terminal
+
+
 
