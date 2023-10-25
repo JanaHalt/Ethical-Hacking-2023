@@ -34,6 +34,7 @@ Applied in cybersecurity on intrusion, the kill chain (*intrusion kill chain*) g
 
 
 ***Lähteet:***
+
 https://learning.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_00/ 
 https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf 
 
