@@ -29,6 +29,14 @@ Applied in cybersecurity on intrusion, the kill chain (*intrusion kill chain*) g
 6. Command and control (C2): to set up a communication channel (C2), compromised hosts must send signals out to an Internet controller server
 7. Actions on Objectives: all first six phases have to pass through so that intruder can proceed and achieve their goal
 
+**a) Ratkaise <a href="https://overthewire.org/wargames/bandit/">Over The Wire: Bandit</a> kome ensimmäistä tasoa (0-2):**
+
+Eli <a href="https://overthewire.org/wargames/bandit/bandit0.html">Bandit Level 0</a> oli selkeä ohje miten menetellä. Avasin virtuaalikoneellani komentorivin ja kirjauduin peliin:
+![1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/fcfb0ad8-dae8-46c2-af07-f865dc75f5f0)
+
+Kirjautuminen onnistui, josta todisteena seuraava:
+
+![2](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/5f8a261a-121e-4240-8819-4cc457846ce6)
 
 
 
