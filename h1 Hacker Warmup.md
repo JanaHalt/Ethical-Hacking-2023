@@ -60,12 +60,21 @@ Taso 2 suoritettu onnistuneesti:
 
 Tämän tason suorituksessa piti opetella miten avataan/luetaan tiedostoja, jotka alkavat "-":lla. Apu löytyi googlen avulla täältä <a href="https://stackoverflow.com/questions/42187323/how-to-open-a-dashed-filename-using-terminal">How to open a dashed filename using terminal</a>.
 
+**b) Ratkaise <a href="https://challenge.fi/">Challenge.fi:sta</a> yksi tehtävä.**
+
+Piti ratkaista yksi tehtävä, mutta kun oli niin mukavaa ja pääsin vauhtiin, niin ratkaisin kaksi. Ensimmäistä mietin aika pitkään ja kun en millään meinannut päästä eteenpäin, turvauduin yhteen vinkkiin. Sitä kautta pääsin kärryille, millaisen salakirjoitussäännön (cipher) mukaan oli kirjaimia vaihdettu toisiin. Hankaluutta tuotti se, kun ensin yritin vaihtaa kirjaimia suomalaisten aakkosten mukaan. Se ei tuottanut järkevää tulosta, sillä lopputuloksena oli mitään sanomaton rivi kirjaimia. Vasta kun vaihdon kirjaimet pelkästään perusaakkosten mukaan (eli jätin å, ä, ö pois), sain oikean lopputuloksen.
+
+Toinen tehtävä oli myös mielenkiintoinen. Avasin kuvan ja ajattelin, että tämähän on helppoa - siinä oli sen verran tutun näköinen paikka. Väärässä olin :D Yritin kirjoittaa paikan nimen monessa eri muodossa, mutta yksikään ei ollut oikein. Lopulta tutkin vielä kuvan ominaisuuksia (properties, kuten milloin otettu, gps, millä kameralla, jne) ja sitä kautta pääsin oikeaan lopputulokseen.
+
+![16a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3f379bce-7c56-446a-85e6-3b059dadc306)
+
 
 ***Lähteet:***
 
 https://learning.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_00/ 
 https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf 
 https://stackoverflow.com/questions/42187323/how-to-open-a-dashed-filename-using-terminal
-
+https://en.wikipedia.org/wiki/ROT13 
+https://www.gps-coordinates.net/gps-coordinates-converter/
 
 
