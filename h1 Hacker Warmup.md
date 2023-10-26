@@ -41,10 +41,10 @@ Varsinainen toteutus VirtualBoxissa virtuaalikoneella, johon on asennettu Fedora
 
 **a) Ratkaise <a href="https://overthewire.org/wargames/bandit/">Over The Wire: Bandit</a> kome ensimmäistä tasoa (0-2):**
 
-Eli <a href="https://overthewire.org/wargames/bandit/bandit0.html">Bandit Level 0</a> oli selkeä ohje miten menetellä. Avasin virtuaalikoneellani komentorivin ja kirjauduin peliin:
+Sivulla <a href="https://overthewire.org/wargames/bandit/bandit0.html">Bandit Level 0</a> oli selkeä ohje miten menetellä. Avasin virtuaalikoneellani komentorivin ja kirjauduin peliin:
 ![1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/fcfb0ad8-dae8-46c2-af07-f865dc75f5f0)
 
-Kirjautuminen onnistui, eli taso suoritettu onnistuneesti:
+Kirjautuminen onnistui, eli taso 0 suoritettu onnistuneesti:
 
 ![2](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/5f8a261a-121e-4240-8819-4cc457846ce6)
 
@@ -75,11 +75,35 @@ Muistan, että SQL injektioita käsiteltiin Tietoturvan perusteet kurssilla viim
 
 ![17a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/0ae4e2e1-38da-4c14-af2c-c9513caf3d32)
 
-Kertausmateriaalista oli apua. Lisäksi luin aiheesta myös <a href="https://www.hakatemia.fi/courses/sql-injektio/mita-ovat-sql-injektiot">Hakatemia - Mitä ovat SQL-injektiot?</a>. Eli käytännössä SQL-injektio tarkoittaa, että hyökkääjä pääsee muokkaamaan SQL-kyselyn rakennetta ja pääsee siten näkemään ja/tai muokkaamaan sellaisiakin osia tietokannasta, joihin hänellä tavallisesti ei olisi pääsyä. Laittamalla ehdon "OR 1=1" (eli aina totta), saisimme näkyviin kaikki kategorian tuotteet - ja sehän oli haasteen tavoite. Ongelma tuli siinä, että ei tuota ehtoa tietenkään voinut laittaa sellaisenaan internetselaimen osoiteriville. Aikani tätä pohtiessani ja googlea ahkerasti käytettyäni, laitoin sen kommentin sisälle ' + OR 1=1-- ja sain näkyviin julkaisemattomatkin tuotteet: *Lab Solved*.
+Kertausmateriaalista oli apua. Lisäksi luin aiheesta myös <a href="https://www.hakatemia.fi/courses/sql-injektio/mita-ovat-sql-injektiot">Hakatemia - Mitä ovat SQL-injektiot?</a>. Eli käytännössä SQL-injektio tarkoittaa, että hyökkääjä pääsee muokkaamaan SQL-kyselyn rakennetta ja pääsee siten näkemään ja/tai muokkaamaan sellaisiakin osia tietokannasta, joihin hänellä tavallisesti ei olisi pääsyä. Laittamalla ehdon "OR 1=1" (eli aina totta), saisimme näkyviin kaikki kategorian tuotteet - ja sehän oli haasteen tavoite. Ongelma tuli siinä, että ei tuota ehtoa tietenkään voinut laittaa sellaisenaan internetselaimen osoiteriville. Aikani tätä pohtiessani ja googlea ahkerasti käytettyäni, laitoin sen kommentin sisälle ```--``` (kommentin indikaattori SQL:ssä) ja sain näkyviin julkaisemattomatkin tuotteet: *Lab Solved*.
 
 **d) Asenna Linux virtuaalikoneeseen. Kali (viimeisin) tai Debian 12-Bookworm.**:
 
 Päädyin Kaliin. Sen sai näppärästi valmiiksi säädettynä virtuaalikonepakettina <a href="https://www.kali.org/get-kali/#kali-virtual-machines">Get Kali - Pre-built virtual machines</a>. 
+
+![18kaliA](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3012bf92-b410-47e5-96e1-57aafcea17f2)
+
+_________________________________
+
+**e) Porttiskannaa 1000 tavallisinta tcp-porttia omasta koneestasi (localhost). Analysoi tulokset.**
+
+**f) Porttiskannaa kaikki koneesi (localhost) tcp-portit. Analysoi tulokset.**
+
+**g) Tee laaja porttiskanaus (nmap -A) omalle koneellesi (localhost), kaikki portit. Selitä, mitä -A tekee. Analysoi tulokset.**
+
+En tiennyt mitä parametreja laittaisin nmapille, jotta se skannaisi 1000 tavallisinta tcp-porttia, joten kurkkasin ```man nmap``` ja <a href="https://www.redhat.com/sysadmin/nmap-info">Nmap info</a>, joista selvisi, että etsimäni parametri on ```--top-ports <number>```. Lisäksi, jotta skannaisin tcp-portteja, niin parametriksi pitää laittaa myös ```-sT```.
+
+Kali-virtuaalikoneella sain kaikilla skannaustavoilla käytännössä samat tulokset:
+
+
+![kali2nmap](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/90e89954-405f-4a42-9cba-d9d1100527b2)
+
+
+![kali3nmap](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e5be7ca6-b266-4a2f-b95f-ecb9fdc6b71d)
+
+
+Tuloksissa näkyy, että host (eli oma kone/kali) on päällä. Kaikki 1000 tavallisinta tcp porttia on kiinni ja *ignored state(conn-refused)*. Tämä tarkoittaa, että vaikka nmap pystyi toteuttamaan TCP handshaken skannatun kohteen kanssa (tässä tapauksessa localhost), niin kohde aktiivisesti kieltäytyi muodostamasta yhteyttä. Sen taustalla voi olla joko se, että yhdelläkään portilla ei olisi mikään palvelu "kuuntelemassa" tai sitten järjestelmän palomuuri estää yhteyden porttiin.
+Laaja skannaus ```nmap -A``` tarkoittaa ```-A: Enable OS detection, version detection, script scanning, and traceroute```. Sen osalta skannaustuloksessa todetaan, että OS (käyttöjärjestelmä) ja palveluiden tunnistus suoritettiin, mutta ei voitu tunnistaa OS tarkasti.
 
 
 ***Lähteet:***
@@ -91,4 +115,7 @@ https://en.wikipedia.org/wiki/ROT13
 https://www.gps-coordinates.net/gps-coordinates-converter/
 https://portswigger.net/web-security/sql-injection#retrieving-hidden-data
 https://en.wikipedia.org/wiki/SQL_injection
+NMAP man-sivut
 https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet/
+https://www.redhat.com/sysadmin/nmap-info
+
