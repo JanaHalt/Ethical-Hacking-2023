@@ -33,11 +33,11 @@ ______________________________________________________________
 
 Tehtävät teen kannettavallani:
 - Acer Swift 3
-- AMD Ryzen 7 4700U with Radeon Graphics, 2000 Mhz, 8 ydin(tä)
+- AMD Ryzen 7 4700U with Radeon Graphics, 2000 Mhz, 8 ydin
 - RAM 16 GB
 - Windows 11 Home
 
-Varsinainen toteutus VirtualBoxissa virtuaalikoneella, johon on asennettu Fedora 23 desktop.
+Varsinainen toteutus VirtualBoxissa virtuaalikoneella, johon on asennettu Fedora 38 desktop.
 
 **a) Ratkaise <a href="https://overthewire.org/wargames/bandit/">Over The Wire: Bandit</a> kome ensimmäistä tasoa (0-2):**
 
@@ -68,6 +68,15 @@ Toinen tehtävä oli myös mielenkiintoinen. Avasin kuvan ja ajattelin, että t�
 
 ![16a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3f379bce-7c56-446a-85e6-3b059dadc306)
 
+**c) Ratkaise PortSwigger Labs: <a href="https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data">Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data.</a>**
+
+Muistan, että SQL injektioita käsiteltiin Tietoturvan perusteet kurssilla viime keväänä. Muistin virkistämiseksi tutustuin kertausmateriaaliin <a href="https://portswigger.net/web-security/sql-injection">SQL injection</a>. 
+
+
+![17a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/0ae4e2e1-38da-4c14-af2c-c9513caf3d32)
+
+Kertausmateriaalista oli apua. Lisäksi luin aiheesta myös <a href="https://www.hakatemia.fi/courses/sql-injektio/mita-ovat-sql-injektiot">Hakatemia - Mitä ovat SQL-injektiot?</a>. Eli käytännössä SQL-injektio tarkoittaa, että hyökkääjä pääsee muokkaamaan SQL-kyselyn rakennetta ja pääsee siten näkemään ja/tai muokkaamaan sellaisiakin osia tietokannasta, joihin hänellä tavallisesti ei olisi pääsyä. Laittamalla ehdon "OR 1=1" (eli aina totta), saisimme näkyviin kaikki kategorian tuotteet - ja sehän oli haasteen tavoite. Ongelma tuli siinä, että ei tuota ehtoa tietenkään voinut laittaa sellaisenaan internetselaimen osoiteriville. Aikani tätä pohtiessani ja googlea ahkerasti käytettyäni, laitoin sen kommentin sisälle ' + OR 1=1-- ja sain näkyviin julkaisemattomatkin tuotteet: *Lab Solved*.
+
 
 ***Lähteet:***
 
@@ -76,5 +85,6 @@ https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-Wh
 https://stackoverflow.com/questions/42187323/how-to-open-a-dashed-filename-using-terminal
 https://en.wikipedia.org/wiki/ROT13 
 https://www.gps-coordinates.net/gps-coordinates-converter/
-
-
+https://portswigger.net/web-security/sql-injection#retrieving-hidden-data
+https://en.wikipedia.org/wiki/SQL_injection
+https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet/
