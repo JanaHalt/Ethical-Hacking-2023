@@ -77,6 +77,10 @@ Muistan, että SQL injektioita käsiteltiin Tietoturvan perusteet kurssilla viim
 
 Kertausmateriaalista oli apua. Lisäksi luin aiheesta myös <a href="https://www.hakatemia.fi/courses/sql-injektio/mita-ovat-sql-injektiot">Hakatemia - Mitä ovat SQL-injektiot?</a>. Eli käytännössä SQL-injektio tarkoittaa, että hyökkääjä pääsee muokkaamaan SQL-kyselyn rakennetta ja pääsee siten näkemään ja/tai muokkaamaan sellaisiakin osia tietokannasta, joihin hänellä tavallisesti ei olisi pääsyä. Laittamalla ehdon "OR 1=1" (eli aina totta), saisimme näkyviin kaikki kategorian tuotteet - ja sehän oli haasteen tavoite. Ongelma tuli siinä, että ei tuota ehtoa tietenkään voinut laittaa sellaisenaan internetselaimen osoiteriville. Aikani tätä pohtiessani ja googlea ahkerasti käytettyäni, laitoin sen kommentin sisälle ' + OR 1=1-- ja sain näkyviin julkaisemattomatkin tuotteet: *Lab Solved*.
 
+**d) Asenna Linux virtuaalikoneeseen. Kali (viimeisin) tai Debian 12-Bookworm.**:
+
+Päädyin Kaliin. Sen sai näppärästi valmiiksi säädettynä virtuaalikonepakettina <a href="https://www.kali.org/get-kali/#kali-virtual-machines">Get Kali - Pre-built virtual machines</a>. 
+
 
 ***Lähteet:***
 
