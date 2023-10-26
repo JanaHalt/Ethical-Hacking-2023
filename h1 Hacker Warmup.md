@@ -109,13 +109,22 @@ Laaja skannaus ```nmap -A``` tarkoittaa ```-A: Enable OS detection, version dete
 ***Lähteet:***
 
 https://learning.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_00/ 
+
 https://lockheedmartin.com/content/dam/lockheed-martin/rms/documents/cyber/LM-White-Paper-Intel-Driven-Defense.pdf 
+
 https://stackoverflow.com/questions/42187323/how-to-open-a-dashed-filename-using-terminal
+
 https://en.wikipedia.org/wiki/ROT13 
+
 https://www.gps-coordinates.net/gps-coordinates-converter/
+
 https://portswigger.net/web-security/sql-injection#retrieving-hidden-data
+
 https://en.wikipedia.org/wiki/SQL_injection
+
 NMAP man-sivut
+
 https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet/
+
 https://www.redhat.com/sysadmin/nmap-info
 
