@@ -91,6 +91,8 @@ _________________________________
 
 ### g) Tee laaja porttiskanaus (nmap -A) omalle koneellesi (localhost), kaikki portit. Selitä, mitä -A tekee. Analysoi tulokset.
 
+Edit. klo 18:25// Tässä alla tehty kohdat e, f ja g! Otsikot vain tuolla ylempänä niputettu yhteen :)
+
 En tiennyt mitä parametreja laittaisin nmapille, jotta se skannaisi 1000 tavallisinta tcp-porttia, joten kurkkasin ```man nmap``` ja <a href="https://www.redhat.com/sysadmin/nmap-info">Nmap info</a>, joista selvisi, että etsimäni parametri on ```--top-ports <number>```. Lisäksi, jotta skannaisin tcp-portteja, niin parametriksi pitää laittaa myös ```-sT```.
 
 Kali-virtuaalikoneella sain kaikilla skannaustavoilla käytännössä samat tulokset:
