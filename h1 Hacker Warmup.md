@@ -114,6 +114,24 @@ Laaja skannaus (*nmap -A localhost*) palautti aiemmin mainittujen lisäksi sen, 
 
 ![fedoraBnmap](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e8639830-4169-42c5-8cd2-0f71aa7f8ae8)
 
+Sitten tein vielä kaikki kolme skannausta myös omalla kannettavallani (Windows 11 Home). Asensin sitä varten erillisen sovelluksen <a href="https://nmap.org/download">Nmap - download</a>. 
+```nmap -sT --top-ports 1000 localhost``` tuloksena sain tiedon, että kaksi tcp porttia on auki:
+- 135, palvelu *msrpc*
+- 445, palvelu *microsoft-ds*
+
+**msrpc** - protokolla. Käyttää client-server mallia, joka mahdollistaa ohjelman pyytää palvelua toisella tietokoneella olevalta ohjelmalta, tarvitsematta tietoja toisen koneen verkosta.
+
+**microsoft-ds** - "nimi", joka on annettu SMB:n (*Server Message Block*) käyttämälle portille 445. SMB on verkkoprotokolla, jota käytetään yleensä Windows-verkoissa resurssien (esim. tiedostot ja tulostimet) jakamiseen verkon kautta. Sen kautta on mahdollistaa suorittaa komentoja etänä. Windows 7:lla / Windows Server 2008:lla hyökkääjät saattoivat hyödyntää tätä väylää käyttääkseen ransonware WannaCrypt:ä (mato; tunnettu myös nimillä WannaCry tai WCRY). Haavoittuvuus korjattiin tietoturvatiedotteessa *MS17-010*, joka julkaistiin vuonna 2017. Tämä ei enää vaikuta Windows 10 ja sitä tuorempiin tietokoneisiin.
+
+![windowsAnmap](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/59b0e897-37ef-4d61-9042-b82b181e1229)
+
+Seuraavaksi kokeilin ```nmap -sT localhost```, mutta odotettuani yli 5 minuuttia, jolloin vieläkään ei ollut tapahtunut mitään, keskeytin skannauksen ja siirryin seuraavaan.
+
+Sitten oli vuorossa ```nmap -A localhost``` laaja skannaus. Se tuotti seuraavanlaisen tuloksen:
+
+![windowsBnmap](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/62c17835-44e8-40b7-b834-7cc42c32faab)
+
+Eli samansuuntainen tulos kuin edellinen. Lisäksi saatiin tietää *msrpc*-palvelun versio, käyttöjärjestelmän versio sekä kohdejärjestelmässä (tässä siis oma kannettavani) suoritettavien skriptien tulokset. Tuloksissa oli virheellisesti tunnistettu kannettavani käyttöjärjestelmä - minulla ei ole Windows 10, vaan Windows 11 Home.
 
 ***Lähteet:***
 
@@ -137,7 +155,6 @@ https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet/
 
 https://www.redhat.com/sysadmin/nmap-info
 
-
 https://en.wikipedia.org/wiki/Internet_Printing_Protocol
 
 https://www.scaler.com/topics/linux-cups/
@@ -145,3 +162,11 @@ https://www.scaler.com/topics/linux-cups/
 http://www.robotstxt.org/robotstxt.html
 
 https://developers.google.com/search/docs/crawling-indexing/robots/intro
+
+https://www.extrahop.com/resources/protocols/msrpc/
+
+https://security.stackexchange.com/questions/229820/microsoft-ds-vulnerability
+
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/smb-sharing-not-accessible-when-tcp-port-445-listen#cause
+
+https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Ransom%3AWin32%2FWannaCrypt
