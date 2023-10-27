@@ -1,4 +1,4 @@
-***h1 Hacker Warmup - viikon 43 läksyt***
+# h1 Hacker Warmup - viikon 43 läksyt
 
 Tällä viikolla päästään alkuun matkalla hakkeroinnin maailmaan. Tässä linkki alkuperäiseen tehtävänantoon <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h1-hacker-warmup">Ethical Hacking 2023 - h1</a>.
 
@@ -37,9 +37,9 @@ Tehtävät teen kannettavallani:
 - RAM 16 GB
 - Windows 11 Home
 
-Varsinainen toteutus VirtualBoxissa virtuaalikoneella, johon on asennettu Fedora 38 desktop.
+Varsinainen toteutus VirtualBoxissa virtuaalikoneella, johon on asennettu Fedora 38 desktop sekä toinen virtuaalikone, johon on asennettu Kali.
 
-**a) Ratkaise <a href="https://overthewire.org/wargames/bandit/">Over The Wire: Bandit</a> kome ensimmäistä tasoa (0-2):**
+### a) Ratkaise <a href="https://overthewire.org/wargames/bandit/">Over The Wire: Bandit</a> kome ensimmäistä tasoa (0-2):
 
 Sivulla <a href="https://overthewire.org/wargames/bandit/bandit0.html">Bandit Level 0</a> oli selkeä ohje miten menetellä. Avasin virtuaalikoneellani komentorivin ja kirjauduin peliin:
 ![1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/fcfb0ad8-dae8-46c2-af07-f865dc75f5f0)
@@ -60,7 +60,7 @@ Taso 2 suoritettu onnistuneesti:
 
 Tämän tason suorituksessa piti opetella miten avataan/luetaan tiedostoja, jotka alkavat "-":lla. Apu löytyi googlen avulla täältä <a href="https://stackoverflow.com/questions/42187323/how-to-open-a-dashed-filename-using-terminal">How to open a dashed filename using terminal</a>.
 
-**b) Ratkaise <a href="https://challenge.fi/">Challenge.fi:sta</a> yksi tehtävä.**
+## b) Ratkaise <a href="https://challenge.fi/">Challenge.fi:sta</a> yksi tehtävä.
 
 Piti ratkaista yksi tehtävä, mutta kun oli niin mukavaa ja pääsin vauhtiin, niin ratkaisin kaksi. Ensimmäistä mietin aika pitkään ja kun en millään meinannut päästä eteenpäin, turvauduin yhteen vinkkiin. Sitä kautta pääsin kärryille, millaisen salakirjoitussäännön (cipher) mukaan oli kirjaimia vaihdettu toisiin. Hankaluutta tuotti se, kun ensin yritin vaihtaa kirjaimia suomalaisten aakkosten mukaan. Se ei tuottanut järkevää tulosta, sillä lopputuloksena oli mitään sanomaton rivi kirjaimia. Vasta kun vaihdon kirjaimet pelkästään perusaakkosten mukaan (eli jätin å, ä, ö pois), sain oikean lopputuloksen.
 
@@ -68,7 +68,7 @@ Toinen tehtävä oli myös mielenkiintoinen. Avasin kuvan ja ajattelin, että t�
 
 ![16a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3f379bce-7c56-446a-85e6-3b059dadc306)
 
-**c) Ratkaise PortSwigger Labs: <a href="https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data">Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data.</a>**
+## c) Ratkaise PortSwigger Labs: <a href="https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data">Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data.</a>
 
 Muistan, että SQL injektioita käsiteltiin Tietoturvan perusteet kurssilla viime keväänä. Muistin virkistämiseksi tutustuin kertausmateriaaliin <a href="https://portswigger.net/web-security/sql-injection">SQL injection</a>. 
 
@@ -77,7 +77,7 @@ Muistan, että SQL injektioita käsiteltiin Tietoturvan perusteet kurssilla viim
 
 Kertausmateriaalista oli apua. Lisäksi luin aiheesta myös <a href="https://www.hakatemia.fi/courses/sql-injektio/mita-ovat-sql-injektiot">Hakatemia - Mitä ovat SQL-injektiot?</a>. Eli käytännössä SQL-injektio tarkoittaa, että hyökkääjä pääsee muokkaamaan SQL-kyselyn rakennetta ja pääsee siten näkemään ja/tai muokkaamaan sellaisiakin osia tietokannasta, joihin hänellä tavallisesti ei olisi pääsyä. Laittamalla ehdon "OR 1=1" (eli aina totta), saisimme näkyviin kaikki kategorian tuotteet - ja sehän oli haasteen tavoite. Ongelma tuli siinä, että ei tuota ehtoa tietenkään voinut laittaa sellaisenaan internetselaimen osoiteriville. Aikani tätä pohtiessani ja googlea ahkerasti käytettyäni, laitoin sen kommentin sisälle ```--``` (kommentin indikaattori SQL:ssä) ja sain näkyviin julkaisemattomatkin tuotteet: *Lab Solved*.
 
-**d) Asenna Linux virtuaalikoneeseen. Kali (viimeisin) tai Debian 12-Bookworm.**:
+## d) Asenna Linux virtuaalikoneeseen. Kali (viimeisin) tai Debian 12-Bookworm.:
 
 Päädyin Kaliin. Sen sai näppärästi valmiiksi säädettynä virtuaalikonepakettina <a href="https://www.kali.org/get-kali/#kali-virtual-machines">Get Kali - Pre-built virtual machines</a>. 
 
@@ -85,11 +85,11 @@ Päädyin Kaliin. Sen sai näppärästi valmiiksi säädettynä virtuaalikonepak
 
 _________________________________
 
-**e) Porttiskannaa 1000 tavallisinta tcp-porttia omasta koneestasi (localhost). Analysoi tulokset.**
+### e) Porttiskannaa 1000 tavallisinta tcp-porttia omasta koneestasi (localhost). Analysoi tulokset.
 
-**f) Porttiskannaa kaikki koneesi (localhost) tcp-portit. Analysoi tulokset.**
+### f) Porttiskannaa kaikki koneesi (localhost) tcp-portit. Analysoi tulokset.
 
-**g) Tee laaja porttiskanaus (nmap -A) omalle koneellesi (localhost), kaikki portit. Selitä, mitä -A tekee. Analysoi tulokset.**
+### g) Tee laaja porttiskanaus (nmap -A) omalle koneellesi (localhost), kaikki portit. Selitä, mitä -A tekee. Analysoi tulokset.
 
 En tiennyt mitä parametreja laittaisin nmapille, jotta se skannaisi 1000 tavallisinta tcp-porttia, joten kurkkasin ```man nmap``` ja <a href="https://www.redhat.com/sysadmin/nmap-info">Nmap info</a>, joista selvisi, että etsimäni parametri on ```--top-ports <number>```. Lisäksi, jotta skannaisin tcp-portteja, niin parametriksi pitää laittaa myös ```-sT```.
 
@@ -133,7 +133,26 @@ Sitten oli vuorossa ```nmap -A localhost``` laaja skannaus. Se tuotti seuraavanl
 
 Eli samansuuntainen tulos kuin edellinen. Lisäksi saatiin tietää *msrpc*-palvelun versio, käyttöjärjestelmän versio sekä kohdejärjestelmässä (tässä siis oma kannettavani) suoritettavien skriptien tulokset. Tuloksissa oli virheellisesti tunnistettu kannettavani käyttöjärjestelmä - minulla ei ole Windows 10, vaan Windows 11 Home.
 
-***Lähteet:***
+## h) Asenna ja käynnistä jokin palvelin (apache, ssh...) koneellesi. Vertaile, miten porttiskannauksen tulos eroaa.
+
+Kalissa on apache palvelin jo valmiiksi asennettuna, mutta *disabled* tilassa. Joten käynnistin sen komennolla ```sudo systemctl start apache2.service``` ja tarkistin tilan komennolla ```systemctl status apache2``` - tila oli *active*. Sitten tein kaikki nmap-skannaukset kuten aikaisemmin. Tulokset:
+- ```sudo nmap -sT --top-ports 1000 localhost```: portti 80 auki, palvelu http
+- ```sudo nmap -sT localhost```: kuten edellinen
+- ```sudo nmap -A localhost```: kuten edellinen. *Plus* http palvelun versio Apache httpd 2.4.57 (Debian), kernel versio linux 2.6.32
+
+![kaliapache3](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/9df91cdf-2d44-4cfd-a34e-3471481fc3d2)
+
+## i) Kokeile ja esittele jokin avointen lähteiden tiedusteluun sopiva weppisivu tai työkalu.
+
+Valitsin verkkosivuston <a href="https://www.shodan.io">Shodan</a>. Tällä sivustolla voi hakea ja/tai selailla verkkoon kytkettyjä laitteita, kuten kamerajärjestelmiä tai IoT-laitteita (esim. lämpösensorit?). Hakua voi muokata esimerkiksi avoimien porttien tai protokollien mukaan. Sivustoa voi siis hyödyntää osana verkon haavoittuvuuksien kartoittamista. Googlasin hakusanaa *shodan queries*, sillä halusin vinkkejä mitä kaikkea yleensä ko. sivun kautta haetaan. Hakutuloksissa tuli vastaan <a href="https://github.com/jakejarvis/awesome-shodan-queries">Jake Jarvis - Awesome Shodan Search Queries</a> sivu. Webkamerat-kategoria vaikutti mielenkiintoiselta, joten kurkkasin sinne. Otin heti ensimmäisen haun listalta ```"Server: yawcam" "Mime-Type: text/html"``` ja laittoin sen hakukenttään shodan.io-sivulla. Tuloksena sain listan webkameroita, jotka ovat avoinna suoraan nettiin. 
+
+![shodankamera](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/2a6e50f4-4686-431b-9f3e-fc6e8433bd59)
+
+#### Lähteet:
+
+https://terokarvinen.com/2023/eettinen-hakkerointi-2023/
+
+NMAP man-sivut
 
 https://learning.oreilly.com/videos/the-art-of/9780135767849/9780135767849-SPTT_04_00/ 
 
@@ -149,8 +168,6 @@ https://portswigger.net/web-security/sql-injection#retrieving-hidden-data
 
 https://en.wikipedia.org/wiki/SQL_injection
 
-NMAP man-sivut
-
 https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet/
 
 https://www.redhat.com/sysadmin/nmap-info
@@ -163,6 +180,8 @@ http://www.robotstxt.org/robotstxt.html
 
 https://developers.google.com/search/docs/crawling-indexing/robots/intro
 
+https://nmap.org/book/inst-windows.html
+
 https://www.extrahop.com/resources/protocols/msrpc/
 
 https://security.stackexchange.com/questions/229820/microsoft-ds-vulnerability
@@ -170,3 +189,5 @@ https://security.stackexchange.com/questions/229820/microsoft-ds-vulnerability
 https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/smb-sharing-not-accessible-when-tcp-port-445-listen#cause
 
 https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Ransom%3AWin32%2FWannaCrypt
+
+https://subscription.packtpub.com/book/security/9781785888427/1/ch01lvl1sec14/network-services-in-kali-linux
