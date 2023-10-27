@@ -105,6 +105,15 @@ Kali-virtuaalikoneella sain kaikilla skannaustavoilla käytännössä samat tulo
 Tuloksissa näkyy, että host (eli oma kone/kali) on päällä. Kaikki 1000 tavallisinta tcp porttia on kiinni ja *ignored state(conn-refused)*. Tämä tarkoittaa, että vaikka nmap pystyi toteuttamaan TCP handshaken skannatun kohteen kanssa (tässä tapauksessa localhost), niin kohde aktiivisesti kieltäytyi muodostamasta yhteyttä. Sen taustalla voi olla joko se, että yhdelläkään portilla ei olisi mikään palvelu "kuuntelemassa" tai sitten järjestelmän palomuuri estää yhteyden porttiin.
 Laaja skannaus ```nmap -A``` tarkoittaa ```-A: Enable OS detection, version detection, script scanning, and traceroute```. Sen osalta skannaustuloksessa todetaan, että OS (käyttöjärjestelmä) ja palveluiden tunnistus suoritettiin, mutta ei voitu tunnistaa OS tarkasti.
 
+Tein samat skannaukset myös Fedora-virtuaalikoneellani ja tulokset olivat samansuuntaiset. Sillä erolla Kaliin, että Fedoralla skannaus (*nmap -sT --top-ports 1000 localhost* ja *nmap -sT localhost*) palautti myös tiedon, että yksi portti on auki ```portti 631```, palvelu ```ipp - internet printing protocol``` kuuntelemassa. 
+
+![fedoraAnmap](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/caf828cc-5ad9-48a7-9bc2-0bd33ca9eb0e)
+
+
+Laaja skannaus (*nmap -A localhost*) palautti aiemmin mainittujen lisäksi sen, että portilla 631 aktiivisena olleen palvelun (ipp) versio on ```CUP 2.4```. <a href="https://www.scaler.com/topics/linux-cups/">CUPS</a> lyhenne tulee sanoista *Common Unix Printing System*. Se on open-source järjestelmä, joka mahdollistaa tulostamisen Linux ja Unix ympäristöissä. Kohta ```http-robots.txt: 1 disallowed entry``` viittaa robots.txt-rajausstandardiin. Ko. standardi kertoo hakukoneille (esim. google tai bing), mitkä kansiot/URLit sivustolla ne voivat käyttää.
+
+![fedoraBnmap](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e8639830-4169-42c5-8cd2-0f71aa7f8ae8)
+
 
 ***Lähteet:***
 
@@ -128,3 +137,11 @@ https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet/
 
 https://www.redhat.com/sysadmin/nmap-info
 
+
+https://en.wikipedia.org/wiki/Internet_Printing_Protocol
+
+https://www.scaler.com/topics/linux-cups/
+
+http://www.robotstxt.org/robotstxt.html
+
+https://developers.google.com/search/docs/crawling-indexing/robots/intro
