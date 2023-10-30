@@ -62,11 +62,25 @@ Tämän tason suorituksessa piti opetella miten avataan/luetaan tiedostoja, jotk
 
 ## b) Ratkaise <a href="https://challenge.fi/">Challenge.fi:sta</a> yksi tehtävä.
 
-Piti ratkaista yksi tehtävä, mutta kun oli niin mukavaa ja pääsin vauhtiin, niin ratkaisin kaksi. Ensimmäistä mietin aika pitkään ja kun en millään meinannut päästä eteenpäin, turvauduin yhteen vinkkiin. Sitä kautta pääsin kärryille, millaisen salakirjoitussäännön (cipher) mukaan oli kirjaimia vaihdettu toisiin. Hankaluutta tuotti se, kun ensin yritin vaihtaa kirjaimia suomalaisten aakkosten mukaan. Se ei tuottanut järkevää tulosta, sillä lopputuloksena oli mitään sanomaton rivi kirjaimia. Vasta kun vaihdon kirjaimet pelkästään perusaakkosten mukaan (eli jätin å, ä, ö pois), sain oikean lopputuloksen.
-
-Toinen tehtävä oli myös mielenkiintoinen. Avasin kuvan ja ajattelin, että tämähän on helppoa - siinä oli sen verran tutun näköinen paikka. Väärässä olin :D Yritin kirjoittaa paikan nimen monessa eri muodossa, mutta yksikään ei ollut oikein. Lopulta tutkin vielä kuvan ominaisuuksia (properties, kuten milloin otettu, gps, millä kameralla, jne) ja sitä kautta pääsin oikeaan lopputulokseen.
+Piti ratkaista yksi tehtävä, mutta kun oli niin mukavaa ja pääsin vauhtiin, niin ratkaisin kaksi. 
 
 ![16a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3f379bce-7c56-446a-85e6-3b059dadc306)
+
+**Ensimmäistä tehtävää** mietin aika pitkään ja kun en millään meinannut päästä eteenpäin, turvauduin yhteen vinkkiin. 
+
+![11c](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/898ddce1-164b-4f84-b76d-f3eac933bebf)
+
+![10b](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3eda43cb-a2f9-4281-80f7-e62a66e6afab)
+
+Mietin, että jos kerran lyhenne on jokin koodisana, jossa yksittäiset kirjaimet vaihdetaan toisiin, niin pakkohan siinä on olla jokin sääntö. Laskin, monesko kirjain alkaen F:stä J on. Tulokseksi sain 13. Tuon saman säännön/numeron mukaan vaihdoin myös muut kirjaimet, mutta viestissähän ei ollut sitten mitään järkeä - **wahh tdes wås aåsy** :D  Päätin laittaa googleen hakusanat "cipher 13" ja Wikipediasta löytyi <a href="https://en.wikipedia.org/wiki/ROT13">ROT13</a>. Sieltä selvisi, että kirjaimia kuten ä, å tai ö ei tämän menetelmän mukaan muuteta, joten tein kirjainvaihdokset uudestaan. Tällä kertaa käyttäen vain perusaakkosia (26 kpl). Ja hurraa, sain haasteen suoritettua.
+
+![12](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/66a8a62b-512a-437e-8dd0-ac5eacc62bb4)
+
+**Toinen tehtävä** oli myös mielenkiintoinen. Avasin kuvan ja ajattelin, että tämähän on helppoa - siinä oli sen verran tutun näköinen paikka. Väärässä olin :D Yritin kirjoittaa paikan nimen monessa eri muodossa, mutta yksikään ei ollut oikein. Lopulta tutkin vielä kuvan ominaisuuksia (properties, kuten milloin otettu, gps, millä kameralla, jne) ja sitä kautta pääsin eteenpäin. Oikea lopputulos ei kuitenkaan ollut paikan koko nimi, vaan vain "Las Vegas". 
+
+![14](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/8849f646-5971-4ba7-93c7-49151f3bda83)
+
+![15a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/2fce0829-b7d6-43a9-aca6-44d07e9c6995)
 
 ## c) Ratkaise PortSwigger Labs: <a href="https://portswigger.net/web-security/sql-injection/lab-retrieve-hidden-data">Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data.</a>
 
