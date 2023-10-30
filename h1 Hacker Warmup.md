@@ -97,6 +97,10 @@ Päädyin Kaliin. Sen sai näppärästi valmiiksi säädettynä virtuaalikonepak
 
 ![18kaliA](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3012bf92-b410-47e5-96e1-57aafcea17f2)
 
+Edit. 30.10.: Lisätty yksi kuvakaappaus.
+
+![kaliasennusA](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/c2d0466e-2e63-421e-89e0-e6a297735a07)
+
 _________________________________
 
 ### e) Porttiskannaa 1000 tavallisinta tcp-porttia omasta koneestasi (localhost). Analysoi tulokset.
