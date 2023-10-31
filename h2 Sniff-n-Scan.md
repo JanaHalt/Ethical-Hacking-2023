@@ -45,7 +45,7 @@ Joona puhui videolla luomastaan <a href="https://github.com/ffuf/ffuf">FFUF - fa
 
 ### a) Fuff. Ratkaise <a href="https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/?fromSearch=ffuf#your-turn---challenge">Teron ffuf-haastebinääri</a>. Artikkelista <a href="https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/">Find Hidden Web Directories - Fuzz URLs with ffuf</a> voi olla apua.
 
-Aloitin kopioimalla **dirfuzt-1** linkin täältä <a href="https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/?fromSearch=ffuf#your-turn---challenge">Teron ffuf-haastebinääri dirfuzt-1</a>. Sitten menin virtuaalikoneeni komentoriville, latasin ko. binäärin ```wget``` komennolla ja aiemmin kopioidulla url:lla. Sitten muutin sen käyttöoikeudet siten, että sitä on mahdollista suorittaa ```chmod u+x dirfuzt-1``` (eli lisättiin sillä hetkellä kirjautuneelle käyttäjälle oikeus suorittaa ko. tiedosto).
+Tavoitteena on löytää kaksi URLiä: admin sivu ja versionhallintaan liittyvä sivu. Aloitin kopioimalla **dirfuzt-1** linkin täältä <a href="https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/?fromSearch=ffuf#your-turn---challenge">Teron ffuf-haastebinääri dirfuzt-1</a>. Sitten menin virtuaalikoneeni komentoriville, latasin ko. binäärin ```wget``` komennolla ja aiemmin kopioidulla url:lla. Sitten muutin sen käyttöoikeudet siten, että sitä on mahdollista suorittaa ```chmod u+x dirfuzt-1``` (eli lisättiin sillä hetkellä kirjautuneelle käyttäjälle oikeus suorittaa ko. tiedosto).
 
 ![teronbinaari1a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/6843f079-2cf4-49af-bdaa-3f55ec791a32)
 
@@ -53,8 +53,51 @@ Avasin näytölle tulleen linkin, jee:
 
 ![teronbinaari2a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/9c34f8b0-3086-4cda-ba99-55ec2b4a8658)
 
+Seuraavaksi Teron <a href="https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/">artikkelista</a> oppia ottaen, asensin **ffuf:n**. 
 
-  
+Tiedoston lataus:  ```wget https://github.com/ffuf/ffuf/releases/download/v2.0.0/ffuf_2.0.0_linux_amd64.tar.gz```
+
+Purku: ```tar -xf ffuf_2.0.0_linux_amd64.tar.gz```
+
+Sitten vielä: ```./ffuf```, tämä näyttää kaikki mahdolliset parametrit, joita voidaan ffufin kanssa käyttää.
+
+ ![ffufinstal1a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e47aa8d8-a7b2-4719-8051-8f7f15304086)
+
+ Jotta voisin käyttää **ffufia**, tarvitsin vielä listan/sanakirjan. Ja jotta sitä ei tarvinnut kirjoittaa käsin (mikä sekin on mahdollista!), niin latasin Daniel Miesslerin luoman <a href="https://github.com/danielmiessler/SecLists">SecLists</a> sanakirjan.
+
+![ffufinstal2a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/72efcfc1-9c7c-4742-a23f-2935bc8de876)
+
+Ja sitten ei kun etsimään piilotettuja linkkejä! Ensin kokeilin ```./ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ -c```
+
+```-w``` tarkoittaa "wordlist"
+
+```-u``` taas tarkoittaa URLiä, josta halutaan etsiä
+
+```-c```:n avulla saadaan tulokset värikoodatuiksi
+
+Tämä ei vielä tuottanut toivottua tulosta. Tai no luulenpa, että se mitä etsitään on tuolla jossain tuhansien vastausten joukossa. Sen etsimiseen menisi varmaan sata vuotta! 
+
+![fuffB](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3993d87f-8510-4ad4-871d-8a0dbf80cbf9)
+
+Sitten kokeilin lisätä parametrin ```-fc 200``` (filter out vastauskoodia/http 200) ja sain kaksi tulosta:
+
+![fuffD](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/f28b0872-412a-4fd9-9f86-f92312629cdf)
+
+Niistä ```.git``` liittyy versionhallintaan, joten kokeilin sitä. Laitoin **.git** selaimen osoiteriville ja siinä se oli. Eka kohde löydetty!
+
+![ffufEKAb](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/ae69ad89-83fb-4e01-a026-e51708724cf5)
+
+Nyt sitten etsimään toista kohdetta, admin sivua. Kokeeksi laitoin ```-fc``` parametrin arvoksi ***301***, eli juuri toisin kuin edeltävässä kohdassa. Siellä laitoin arvoksi ***200*** ja kaksi tulosta, jotka sain, olivat koodia ***301***. Päädyin tekemään näin, koska en ollut täysin varma miten lähtisin tätä toista kohdetta etsimään. Arvata saattaa, että tuloksia oli taas miljoonaa. Tässä vaiheessa mieleeni tuli, että mitä jos lähettäisin nämä tulokset tekstitiedostoon ja sieltä etsisin vaikkapa ```grep``` komennolla sanaa ***admin***. Eli pistin komentoriville komennon ```./ffuf -c -w common.txt -u http://127.0.0.2:8000/FUZZ -fc 301./ffuf -c -w common.txt -u http://127.0.0.2:8000/FUZZ -fc 301 > aarre.txt``` ja sitten ```grep "admin" aarre.txt```. 
+
+Tuloksena oli edelleen pitkähkö lista (121 riviä). Ajattelin, että se on kuitenkin ihan kohtuullinen, joten skrollasin sitä alhaalta ylöspäin ja kokeilin pari kohtaa selaimen osoiteriville. Kunnes sitten osui SE OIKEA kohdalle! ```wp-admin```. 
+
+
+
+![grepadminA](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/2f98c998-cf10-4eb6-b585-5f0e0ce536e1)
+
+![grepadminB](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/2a8de96f-6d66-41d2-9199-d9f6b2e9fe7f)
+
+![ffufTOKAb](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/a4d06156-0774-484c-9ed3-d92323c76700)
 
 ## Lähteet
 
@@ -73,3 +116,7 @@ https://nmap.org/misc/split-handshake.pdf
 https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/?fromSearch=ffuf#your-turn---challenge
 
 https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301
+
+
