@@ -67,19 +67,24 @@ Sitten vielä: ```./ffuf```, tämä näyttää kaikki mahdolliset parametrit, jo
 
 ![ffufinstal2a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/72efcfc1-9c7c-4742-a23f-2935bc8de876)
 
+Tässä vaiheessa otin virtuaalikoneeni nettiyhteyden pois päältä - ennen kuin aloin **ffufilla** luomaan tuhansia ja tuhansia pyyntöjä palvelimelle. Näin myös Tero neuvoi aiemmin mainitsemassasi artikkelissa.
+
+![nettipoikki1a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/7b5a85a9-98cb-4823-b7c4-63b42ecb0ea8)
+
+
 Ja sitten ei kun etsimään piilotettuja linkkejä! Ensin kokeilin ```./ffuf -w common.txt -u http://127.0.0.2:8000/FUZZ -c```
 
 ```-w``` tarkoittaa "wordlist"
 
 ```-u``` taas tarkoittaa URLiä, josta halutaan etsiä
 
-```-c```:n avulla saadaan tulokset värikoodatuiksi
+```-c```:n avulla saadaan tulokset värikoodatuiksi. Kuvassa alempana sen voi huomata vihreistä riveistä.
 
 Tämä ei vielä tuottanut toivottua tulosta. Tai no luulenpa, että se mitä etsitään on tuolla jossain tuhansien vastausten joukossa. Sen etsimiseen menisi varmaan sata vuotta! 
 
 ![fuffB](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3993d87f-8510-4ad4-871d-8a0dbf80cbf9)
 
-Sitten kokeilin lisätä parametrin ```-fc 200``` (filter out vastauskoodia/http 200) ja sain kaksi tulosta:
+Sitten kokeilin lisätä parametrin ```-fc 200``` (filter out vastauskoodia/http 200). Koodi 200 tarkoittaa, että pyyntö on suoritettu onnistuneesti, eli halusin saada esille ne palvelimen vastaukset, joiden kohdalla selaimeni palvelupyyntöä ei saatu suoritettua. Sain kaksi tulosta:
 
 ![fuffD](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/f28b0872-412a-4fd9-9f86-f92312629cdf)
 
@@ -117,6 +122,6 @@ https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/?fromSearch=ffuf
 
 https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/
 
-https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301
+https://wheregoes.com/http-status-codes/
 
 
