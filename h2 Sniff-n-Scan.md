@@ -104,6 +104,91 @@ Tuloksena oli edelleen pitkähkö lista (121 riviä). Ajattelin, että se on kui
 
 ![ffufTOKAb](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/a4d06156-0774-484c-9ed3-d92323c76700)
 
+### b) Fuffme. Asenna <a href="https://terokarvinen.com/2023/fuffme-web-fuzzing-target-debian/">Ffufme harjoitusmaali</a> paikallisesti omalle koneellesi. Ratkaise tehtävät (kaikki, paitsi ei "Content Discovery - Pipes")
+
+Otsikossa linkitetyssä artikkelissa asennetaan **Fuffme** harjoitusmaali Debianille. Koska Kali on Debian pohjainen distro, lähden kokeilemaan ohjetta sellaisenaan.
+
+Eli päivitys käyttöjärjestelmän päivitys ja edellytysten/riippuvuuksien asennus:
+
+```sudo apt-get update``` Tämä sujui ongelmitta.
+
+```sudo apt-get install docker.io git ffuf``` Tässä tuli vastaan pieni ongelma. Sen ratkaisu oli helppo, se vain kesti hetken... :)
+
+![targetinstall1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d88ce3e8-c9ba-46e3-82b8-e4373cabd33d)
+
+Sen jälkeen kuitenkin pystyin jatkamaan, eli ei kun ```sudo apt-get install docker.io git ffuf``` uudestaan. Tällä kertaa se sujui ongelmitta:
+
+![targetinstall2](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/5d6efab1-73d8-4ce6-a24d-42ec49fb9151)
+
+Harjoitusmaalin Docker kontainerin pystyyn:
+
+```git clone https://github.com/adamtlangley/ffufme```
+
+```cd ffufme/```
+
+```sudo docker build -t ffufme```
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/130e1ec5-ff67-4a7f-8f88-a55acb70df76)
+
+![targetinstall3a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3c1d4d7e-3121-476c-8b77-18cc093acce2)
+
+Ja sama vielä selaimessa testattuna:
+
+![targetinstalled1a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e9d33095-8ea9-49f7-9f30-5b3215fd585c)
+
+Ennen varsinaisten haasteiden suorittamista piti toki asentaa sanakirjat/wordlists. Joten:
+
+```cd ~``` - jotta olen varmasti kotikansiossa
+
+```mkdir wordlists``` kansion luominen
+
+```wget http://ffuf.me/wordlist/common.txt``` sanakirjan lataaminen. Kaksi muuta latasin samalla komennolla, paitsi ***common.txt*** tilalla oli ***parameters.txt*** ja ***subdomains.txt***.
+
+![wordlists2](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d7e4f8f2-fc57-4d76-b4a1-0fbac4dd9edd)
+
+Seuraavaksi haasteet:
+#### Basic Content Discovery
+  
+***FFUF.me*** sivulta ohjeena komento ```ffuf -w ~/wordlists/common.txt -u https://localhost/cd/basic/FUZZ``` tuotti juuri toivotun tuloksen:
+
+![basicfuzz](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/be31d729-1b52-4d53-beee-adbccfd882d7)
+
+#### Content Discovery - Recursion
+  
+Tässä käytetään parametria ***-recursion***, joka kertoo ffufille, että jos se löytää kansion, niin sen tulee jatkaa skannaamista sen kansion sisällä jne jne, kunnes se ei löydä mitään tuloksia. Tällä kertaa ohjekomento oli ```ffuf -w ~/wordlists/common.txt -recursion -u http://localhost/cd/recursion/FUZZ``` ja jälleen kerran saatiin toivottu lopputulos. Kuten kuvasta näkyy, ensin ffuf löysi kansion **/admin**, sitten kansion **/users** ja lopulta kansion **96**.
+
+![recursion1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e3956632-3783-4412-8273-6a73cd79c1e5)
+
+#### Content Discovery - File Extensions
+
+Tässä käytetään parametria ***-e***, jonka avulla voidaan määrittää millaisen tiedostopäätteen ffuf lisää jokaisen sanakirjasta löytyvän sanan loppuun ja näin pyritään löytämään oikea lokitiedosto (log-file). Nyt komentona oli ```ffuf -w ~/wordlists/common.txt -e .log -u http://localhost/cd/ext/logs/FUZZ``` ja lopputulos odotusten mukainen.
+
+![fileextensions1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/4a595108-b1ca-4888-9f08-dc61a0555d8b)
+
+#### Content Discovery - No 404 Status
+
+Nyt harjoitellaan ***-fs*** parametrin käyttöä, jonka avulla voidaan suodattaa pois kaikki tulokset, joilla on tietty, määrittämämme, koko. Tässä tapauksessa halutaan suodattaa pois tulokset, joiden koko on 669 bittiä. Kuten alempana ensimmäisestä kuvasta näkyy, niin "Page Cannot Be Found" sivu on aina kooltaa 669 bittiä. Komentoina käytetään ensin ```ffuf -w ~/wordlists/common.txt -u http://localhost/cd/no404/FUZZ``` ja sitten ```ffuf -w ~/wordlists/common.txt -u http://localhost/cd/no404/FUZZ -fs 669```. Jälkimmäinen komento tuottaa ainoastaan yhden tuloksen, tiedoston ***secret***.
+
+![no404a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/abaafc5c-6982-4f50-b71a-0ac5edef6aac)
+
+![no404b](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/28107762-b4b2-490a-b8e7-9d9e71bb90d2)
+
+#### Content Discovery - Param Mining
+
+Nyt etsitään puuttuvaa parametria! Ohjeen mukaisesti avasin sivun ```/cd/param/data``` (kuva alempana), jossa näin viestin *Required Parameter Missing* ja sivun HTTP status koodi oli 400 - Bad Request. Tämän komennon ```ffuf -w ~/wordlists/parameters.txt -u http://localhost/cd/param/data?FUZZ=1``` avulla lähdettiin etsimään puuttuvaa parametria. Alempana näkyy myös tulos, joka se mitä etsinkin :)
+
+![missingpar1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/ac9a4e87-cfd0-4fe4-9ae7-1af6f125c56e)
+
+![missingpar2](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3779ab81-4075-43a4-97fe-d5b32c74e13d)
+
+#### Content Discovery - Rate Limited
+
+Seuraavana käytetään parametria ***-mc***, jonka avulla rajataan, mitkä http statukset skannaaminen tuottaa. Parametri ***-p*** tekee sen, että ffuf pitää taukoa 0,1 sekuntia (tässä tapauksessa) pyyntöjen välissä ja parametri ***-t*** luo ffufista 5 versiota - siten luodaan max 50 pyyntöä sekunnissa.
+
+
+  
+  
+
 ## Lähteet
 
 https://www.youtube.com/watch?v=mbmsT3AhwWU 
