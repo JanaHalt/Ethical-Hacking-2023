@@ -185,9 +185,32 @@ Nyt etsitään puuttuvaa parametria! Ohjeen mukaisesti avasin sivun ```/cd/param
 
 Seuraavana käytetään parametria ***-mc***, jonka avulla rajataan, mitkä http statukset skannaaminen tuottaa. Parametri ***-p*** tekee sen, että ffuf pitää taukoa 0,1 sekuntia (tässä tapauksessa) pyyntöjen välissä ja parametri ***-t*** luo ffufista 5 versiota - siten luodaan max 50 pyyntöä sekunnissa.
 
+Ekana piti laittaa komentoa ```ffuf -w ~/wordlists/common.txt -u http://ffuf.test/cd/rate/FUZZ -mc 200,429```, josta tuloksena olisi pitänyt olla paljon 429 virheitä. En saanut tulosta, joka olisi ollut edes sinne päinkään. Ajattelin, että no jokin ihme juttuhan tässä on, kokeillaan sitä seuraavaa komentoa, joka ohjeessa oli, eli ```ffuf -w ~/wordlists/common.txt -t -p 0.1 -u http://ffuf.test/cd/rate/FUZZ -mc 200,429```. En ole tälläkään kertaa saanut toivottua tulosta. Nyt aloin jo miettimään, että mikä tässä mättää. 
 
-  
-  
+![rate1a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/9512b35d-99ce-4b4f-843a-802f39d83801)
+
+![rate2a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/86c53354-2881-42eb-8e74-5430a2417677)
+
+
+Testasin yhteyttä ***ffuf.test***iin:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/6dca85a2-e7d0-4d34-aad6-cb169246e36a)
+
+Ei pelita, ei. Sitten vaihdoin ***ffuf.test*** siihen, mitä oli edellisissä tehtävissä: ***localhost***. Ja hurraa hurraa, nyt alkoi Lyyti kirjoittaa!
+
+```ffuf -w ~/wordlists/common.txt -u http://localhost/cd/rate/FUZZ -mc 200,429```
+
+![rate3a1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/cf469a36-1b6e-4ee6-8f3f-313f5c877c76)
+
+```ffuf -w ~/wordlists/common.txt -t -p 0.1 -u http://localhost/cd/rate/FUZZ -mc 200.429```
+
+![rateoracle1a](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/b1a591d9-1210-42c8-9e0f-0c544bb1f8c7)
+
+
+
+
+
+
 
 ## Lähteet
 
