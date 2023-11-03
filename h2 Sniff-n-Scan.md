@@ -120,13 +120,15 @@ Sen jälkeen kuitenkin pystyin jatkamaan, eli ei kun ```sudo apt-get install doc
 
 ![targetinstall2](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/5d6efab1-73d8-4ce6-a24d-42ec49fb9151)
 
-Harjoitusmaalin Docker kontainerin pystyyn:
+Harjoitusmaalin Docker kontainerin pystyyn ja käyntiin:
 
 ```git clone https://github.com/adamtlangley/ffufme```
 
 ```cd ffufme/```
 
 ```sudo docker build -t ffufme```
+
+```sudo docker run -d -p 80:80 ffufme```
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/130e1ec5-ff67-4a7f-8f88-a55acb70df76)
 
