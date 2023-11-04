@@ -230,24 +230,30 @@ Virtuaalikoneellani, jossa on Kali Linux ovat oletuksena kaikki portit kiinni. T
 
 #### c) nmap TCP connect scan -sT
 
-![nmapst1A](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/8fd73336-f1a5-4c2d-b831-1198c637e2db)
+![nmapst1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/1e23c664-aa4b-422c-9b06-20a1de523e71)
+
 
 #### d) nmap TCP SYN "used to be stealth" scan, -sS (tätä käytetään skannatessa useimmin)
 
-![nmapss1A](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/7c5bf5c2-c9c9-4ad6-b2fb-702cece08ac0)
+![nmapss1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d7e1f868-f560-4b99-a455-ac0ff07a541d)
+
 
 #### e) nmap ping sweep -sn
 
+![nmapsn1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/52ecbc03-cc99-4c0a-9234-61fe5ec1b99c)
+
+
+![nmapsn2](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d7bd1fe4-b236-48f8-bbf5-553ed4060d05)
 
 
 #### f) nmap don't ping -Pn
 
-![nmapPn1A](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e517da7c-96b1-4798-94b2-024b796a101a)
+![nmapPn1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/21848cb9-99fd-4780-a51c-209eb4187e0b)
 
 
 #### g) nmap version detection -sV (esimerkki yhdestä palvelusta yhdessä portissa riittää)
 
-![nmapsV1A](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/830873b2-c4c9-4cfd-8591-b703661fad03)
+![nmapsV1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/7cebc900-86cd-4cf4-9f61-5ef79c131805)
 
 
 #### h) nmap output files -oA foo. Miltä tiedostot näyttävät? Mihin kukin tiedostotyyppi sopii?
@@ -277,5 +283,7 @@ https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/?fromSearch=ffuf
 https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/
 
 https://wheregoes.com/http-status-codes/
+
+https://www.loggly.com/ultimate-guide/apache-logging-basics/
 
 
