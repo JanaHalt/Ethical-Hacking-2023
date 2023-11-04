@@ -230,23 +230,43 @@ Virtuaalikoneellani, jossa on Kali Linux ovat oletuksena kaikki portit kiinni. T
 
 #### c) nmap TCP connect scan -sT
 
-![nmapst1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/1e23c664-aa4b-422c-9b06-20a1de523e71)
+**-sT** on "TCP connect scan", eli se muodostaa yhteyden skannattavan kohteen kanssa. Kuvassa alla näkyy oikealla alhaalla, Wiresharkin ikkunassa, "Conversation completeness: Complete, NO_DATA". Tämä tarkoittaa, että yhteys muodostettiin (TCP handshake), mutta lähetetyissä ja vastaanotetuissa paketeissa ei ollut mitään dataa. 
 
+```SYN``` Wiresharkin ikkunassa ylhäällä tarkoittaa synkronointisekvenssin (synchronize sequence) numeroa. Vain ensimmäisillä paketeilla, jotka lähetettiin kultakin yhteyden puolelta, pitäisi olla tämä määritettynä.
+
+```ACK```samassa kohdassa osoittaa, että paketti on vastaanotettu/hyväksytty. Paketeilla, jotka lähetetään SYN paketin jälkeen, tulisi olla tämä numero/tunnus määritettynä.
+
+```RST```, joka näkyy Wiresharkin ikkunassa punaisella korostettuna, tarkoittaa "reset the connection".
+
+Virtuaalikoneen komentokehotteessa puolestaan näkyy, että kohdejärjestelmä on "päällä" ja sen portti 80 on auki ja siinä on http-palvelu kuuntelemassa.
+
+![nmapst1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/1e23c664-aa4b-422c-9b06-20a1de523e71)
 
 #### d) nmap TCP SYN "used to be stealth" scan, -sS (tätä käytetään skannatessa useimmin)
 
-![nmapss1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d7e1f868-f560-4b99-a455-ac0ff07a541d)
+Tämä skannaustekniikka on nopeampi kuin **-sT**. Se ei muodosta yhteyttä skannattavaan kohteeseen "loppuun asti", vaan se *katkaisee* yhteyden. Kts <a href="https://nmap.org/misc/split-handshake.pdf">TCP - Split handshake</a>. Tämä ilmenee myös Wiresharkin kaapatuista paketeista. Ekana lähti TCP paketti kohti kohteen porttia 80 (SYN, "heei, haluan jutella"). Kohde vastasi TCP paketilla (SYN, ACK; "minäkin haluan jutella, sopii"). Sitten ensimmäinen osapuoli katkaisi yhteyden (RST).
 
+Virtuaalikoneen komentokehotteessa näkyy samat asiat kuin edeltävässä kohdassa - kohde "päällä" ja portti 80 auki, http-palvelu kuuntelemassa.
+
+![nmapss1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d7e1f868-f560-4b99-a455-ac0ff07a541d)
 
 #### e) nmap ping sweep -sn
 
+Tämä skannaustekniikka "skannaa" *ping*in avulla, portteja ei skannata. Virtuaalikoneen komentokehotteessa jälleen näkyy, että kohde on "päällä". Wireshark ei jostain syystä kaapannut mitään paketteja. En ole varma miksi näin. Olisiko minun kenties pitänyt muuttaa jotain asetuksia Wiresharkissa.
+
 ![nmapsn1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/52ecbc03-cc99-4c0a-9234-61fe5ec1b99c)
+
+Kun virtuaalikoneen skannaus ei tuottanut sellaista tulosta kuin olisin toivonut, ajattelin kokeilla vastaavaa oman kannettavani Windowsissa ja skannasin omassa verkossani sijaitsevaa toista Windows kannettavaa. Tulokset alla. ```192.168.100.14```on kannettava, jota skannasin. Nmapin skannaus totesi sen olevan "päällä. Wireshark (tässä kuvassa vasemmalla) kysyy rivillä *85*, ARP kyselyllä "missä on *192.168.100.14? Kertokaa 192.168.100.15:lle". Rivillä *90* näkyy vastaus, jossa on *192.168.100.14*n MAC-osoite. Tämän kahden rivin välissä ja niiden jälkeen näkyy mm. TCP ja DNS kyselyjä/paketteja, jossa kannettavani keskustelee esim. osoitteiden *13.33.243.37* (kts kuva alla) ja *192.168.100.1* (verkkoni reititin) kanssa. 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/4dbd5fe7-0b76-4573-b253-633398ae685f)
 
 
 ![nmapsn2](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d7bd1fe4-b236-48f8-bbf5-553ed4060d05)
 
 
 #### f) nmap don't ping -Pn
+
+Tässä skannaustekniikassa nmap kohtelee kaikkia kohteita (hosts) kuin ne olisi päällä, eikä suorita *etsintää* (host discovery). Kuvassa näkyy, että komentokehotteessa skannasin oman virtuaalikoneeni portit 80, 23, 443 ja 8080. Niistä vain portti 80 oli auki, http-palvelu kuuntelemassa. 
 
 ![nmapPn1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/21848cb9-99fd-4780-a51c-209eb4187e0b)
 
@@ -286,4 +306,4 @@ https://wheregoes.com/http-status-codes/
 
 https://www.loggly.com/ultimate-guide/apache-logging-basics/
 
-
+https://en.wikipedia.org/wiki/Transmission_Control_Protocol 
