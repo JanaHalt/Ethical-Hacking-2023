@@ -345,7 +345,7 @@ Viimeisenä UDP-skannaus, komennolla ```sudo nmap -sU localhost```. Komentokehot
 
 ### l) Miksi UDP-skannaus on hankalaa ja epäluotettavaa? Miksi UDP-skannauksen kanssa kannattaa käyttää --reason flagia ja snifferiä?
 
-UDP-skannaus on huomattavasti hitaampaa ja epäluotettavaa TCP-skannaukseen verrattuna. Tämmä siksi, että UDP on **yhteydetön** protokolla. Se tarkoittaa, ettei nmap pysty toteamaan onko portti auki/kiinni/missä tilassa yhtä helposti kuin TCP-skannauksessa. Reason flagien käyttö voi nopeuttaa skannausta, tehden siitä myös tarkemman ja luotettavamman. Skannauksen nopeuttamiseen voi käyttää esimerkiksi ```--max-rtt-timeout``` parametria, joka kertoo nmapille, kauanko sen tulisi odottaa vastauksia.
+UDP-skannaus on huomattavasti hitaampaa ja epäluotettavaa TCP-skannaukseen verrattuna. Tämä siksi, että UDP on **yhteydetön** protokolla. Se tarkoittaa, ettei nmap pysty toteamaan onko portti auki/kiinni/missä tilassa yhtä helposti kuin TCP-skannauksessa. Reason flagien käyttö voi nopeuttaa skannausta, tehden siitä myös tarkemman ja luotettavamman. Skannauksen nopeuttamiseen voi käyttää esimerkiksi ```--max-rtt-timeout``` parametria, joka kertoo nmapille, kauanko sen tulisi odottaa vastauksia.
 
 Snifferin (esim. Wireshark) käyttö on hyödyllistä, sillä siellä voidaan nähdä mitä yksittäisiä portteja on kokeiltu. Snifferi seuraa myös skannauksen aikana lähetettyjä paketteja ja voi havaita onko paketteja hukkunut tai onko ne lähetetty jotenkin epäjärjestyksessä - mikä voisi kertoa verkon ongelmista.
 
