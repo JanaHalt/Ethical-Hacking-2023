@@ -210,7 +210,7 @@ Ei pelita, ei. Sitten vaihdoin ***ffuf.test*** siihen, mitä oli edellisissä te
 
 #### Subdomains - Virtual Host Enumeration
 
-Tässä harjoituksessa etsitään alasivuja / subdomains käyttämällä virtuaalisia host-koneita ja muttamalla niiden host-ostikkoja.
+Tässä harjoituksessa etsitään alasivuja / subdomains käyttämällä virtuaalisia host-koneita ja muttamalla niiden host-otsikkoja.
 
 Ensin käytetään komentoa ```ffuf -w ~/wordlists/subdomains.txt -H "Host: FUZZ.ffuf.me" -u http://127.0.0.1``` . Tulokset olivat samat kuin harjoituksen tehtävänannossa: eli jokainen tulos oli kooltaan 1495 bittiä.
 
@@ -219,6 +219,8 @@ Ensin käytetään komentoa ```ffuf -w ~/wordlists/subdomains.txt -H "Host: FUZZ
 Seuraavaksi piti käyttää seuraavanlaista komentoa: ```ffuf -w ~/wordlists/subdomains.txt -H "Host: FUZZ.ffuf.me" -u https://127.0.0.1 -fs 1495```
 
 ***-fs 1495*** rajaa pois kaikki tulokset, jotka ovat kooltaan 1495 bittiä. Tulos oli jälleen toivotunlainen - löydettiin subdomain ***redhat***.
+
+![subdomains2](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/80661935-1b79-426d-89cf-4e18d5a3d316)
 
 
 
