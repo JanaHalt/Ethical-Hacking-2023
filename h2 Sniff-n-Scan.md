@@ -335,7 +335,7 @@ Sitten vielä piti tutkia näkyykö niissä jälkiä nmap-skannauksesta. Heti ek
 
 #### k) UDP-skannaus. UDP-skannaa paikkalinen kone (-sU). "Mulla olis vitsi UDP:sta, mutta en tiedä menisikö se perille".
 
-Viimeisenä UDP-skannaus, komennolla ```sudo nmap -sU localhost```. Komentokehotteessa nähdään, että portit ovat ```ignored``` tilassa - tällainen tila nähdään, kun portit ovat tarkoituksella jätetty pois skannauksesta ```—exclude-ports``` parametrilla tai kohdejärjestelmän palomuuri estää yhteyden niihin. Wiresharkissa näkyy tuloksia kahkdella eri protokollalla:
+Viimeisenä UDP-skannaus, komennolla ```sudo nmap -sU localhost```. Komentokehotteessa nähdään, että portit ovat ```ignored``` tilassa - tällainen tila nähdään, kun portit ovat tarkoituksella jätetty pois skannauksesta ```—exclude-ports``` parametrilla tai kohdejärjestelmän palomuuri estää yhteyden niihin. Wiresharkissa näkyy tuloksia kahdella eri protokollalla:
 
 ```UDP``` riveillä nähdään, että on yritetty ottaa yhteyttä portteihin
 
