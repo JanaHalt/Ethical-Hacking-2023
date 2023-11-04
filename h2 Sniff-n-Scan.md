@@ -279,7 +279,7 @@ Tämä skannaustekniikka kertoo auki olevien porttien ja niissä kuuntelevien pa
 
 #### h) nmap output files -oA foo. Miltä tiedostot näyttävät? Mihin kukin tiedostotyyppi sopii?
 
-Kuvassa näkyy, että nmap output-tiedostot ovat (alemmassa kuvassa *results.gnmap/.nmap/.xml*):
+Kuvassa näkyy, että nmap output-tiedostot ovat (alemmassa kuvassa *results.gnmap/.nmap/.xml*). Wiresharkissa näkyy, että nmap yritti muodostaa yhteyttä portteihin, mutta kaikki olivat kiinni (SYN -> RST, ACK), paitsi portti 80, joka tosin jäi kuvan ulkopuolelle.
 
 ![nmapoA1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/7f6c568f-6b43-4043-b9ef-a8d31f1232f3)
 
@@ -296,8 +296,59 @@ Kuvassa näkyy, että nmap output-tiedostot ovat (alemmassa kuvassa *results.gnm
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/edf4bbef-05d8-489f-bee9-e5047f09acba)
 
 
-#### i) nmap ajonaikaiset toiminnot (man nmap: runtime interaction): verbosity v/v, help ?, packet tracing p/P, status s (ja moni muu nappi)
+#### i) nmap ajonaikaiset toiminnot (man nmap: runtime interaction): verbosity v/V, help ?, packet tracing p/P, status s (ja moni muu nappi)
+
+Alla olevassa kuvassa olen nmap skannauksen ajon aikana painanu ```v``` kirjainta. Sen seurauksena tulos on laajemmin selitetty. Jokainen ```v``` skannauksen ajon aikana lisää/laajentaa kuinka "monin sanoin" nmap selittää tuloksia. ```V``` painamisella skannauksen ajon aikana on päinvastainen vaikutus. Eli jokainen ```V``` painaminen aiheuttaa sen, että tulosten selitys on yhden pykälän suppeampaa.
+
+![nmapAv1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/a0a40b1c-8763-4777-b5e4-d4ae6d8da1d3)
+
+```s``` painaminen skannauksen ajon aikana kertoo **statuksen**, eli missä vaiheessa skannausta ko. kirjaimen painamisen hetkellä mennään. Alla olevassa kuvassa näkyy, että skannausta oli takana ```s``` painamisen hetkellä 0,06 sekuntia. Lisäksi saatiin tiedon, paljonko skannausta on jo tehty (tässä 0%) ja että 1 kohteen skannaus on meneillään.
+
+![nmapAs1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/8239047d-ca09-4df5-af73-05b9ab34e61e)
+
+```p```:n painaminen laittaa päälle paketin seurannan (ylempi kuva) ja ```P``` puolestaan ottaa sen pois päältä (alempi kuva).
+
+![nmapAp](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/64eb3970-4e79-4b57-a3e2-0fbe4641937b)
+
+![nmapAP1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/f269b9f1-8b7f-4f06-b720-9d24cd5e0e83)
+
+```?``` eli "help" painaminen skannauksen ajon aikana tulostaa komentokehotteeseen tiedon millaisia ajon aikaisia toimintoja on mahdollista käyttää. Kuten tässä kuvassa näkyy, niin esimerkiksi ***?, v/V, d/D, p/P***.
+
+![nmapAhelp1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3d9b3df6-6249-424c-a2a8-6e45bd62fe69)
+
+```d```:n painamisella saadaan tuloksiin "debuggaustietoa". ```d``` lisää kuinka paljon ja ```D``` puolestaan vähentää debuggaustiedon määrää tuloksissa. 
+
+![nmapAd1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/101efc9f-4667-4644-908a-3eb82f495087)
+
 #### j) Ninjojen tapaan. Piiloutuuko nmap-skannaus hyvin palvelimelta? 
+
+Tässä tehtävässä testataan näkyykö nmap-skannaus skannattavan palvelimen log tiedostoissa.
+
+En muistanut ulkoa, missä apache2:n log tiedostot ovat, joten annoin komennon ```whereis apache2```. Log tiedostot olivat ```/var/log/apache2```, joten siirryin sinne komennolla ```cd /var/log/apache"2```.
+
+![apachelog1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/9602ebb2-611b-442a-8bda-df394f0350b1)
+
+Sitten vielä piti tutkia näkyykö niissä jälkiä nmap-skannauksesta. Heti ekassa ***access.log*** tiedostosta näkyikin:
+
+![apachelog2](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/4bba188a-0a90-47ce-9fcd-2da92fc89612)
+
+
+#### k) UDP-skannaus. UDP-skannaa paikkalinen kone (-sU). "Mulla olis vitsi UDP:sta, mutta en tiedä menisikö se perille".
+
+Viimeisenä UDP-skannaus, komennolla ```sudo nmap -sU localhost```. Komentokehotteessa nähdään, että portit ovat ```ignored``` tilassa - tällainen tila nähdään, kun portit ovat tarkoituksella jätetty pois skannauksesta ```—exclude-ports``` parametrilla tai kohdejärjestelmän palomuuri estää yhteyden niihin. Wiresharkissa näkyy tuloksia kahkdella eri protokollalla:
+
+```UDP``` riveillä nähdään, että on yritetty ottaa yhteyttä portteihin
+
+```ICMP``` (internet control message protokol) riveillä nähdään, että kohde/portti on tavoittamaton (destination/port unreachable).
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/037e34e7-e4fa-473b-868f-a9970f6483bf)
+
+### l) Miksi UDP-skannaus on hankalaa ja epäluotettavaa? Miksi UDP-skannauksen kanssa kannattaa käyttää --reason flagia ja snifferiä?
+
+UDP-skannaus on huomattavasti hitaampaa ja epäluotettavaa TCP-skannaukseen verrattuna. Tämmä siksi, että UDP on **yhteydetön** protokolla. Se tarkoittaa, ettei nmap pysty toteamaan onko portti auki/kiinni/missä tilassa yhtä helposti kuin TCP-skannauksessa. Reason flagien käyttö voi nopeuttaa skannausta, tehden siitä myös tarkemman ja luotettavamman. Skannauksen nopeuttamiseen voi käyttää esimerkiksi ```--max-rtt-timeout``` parametria, joka kertoo nmapille, kauanko sen tulisi odottaa vastauksia.
+
+Snifferin (esim. Wireshark) käyttö on hyödyllistä, sillä siellä voidaan nähdä mitä yksittäisiä portteja on kokeiltu. Snifferi seuraa myös skannauksen aikana lähetettyjä paketteja ja voi havaita onko paketteja hukkunut tai onko ne lähetetty jotenkin epäjärjestyksessä - mikä voisi kertoa verkon ongelmista.
+
 
 
 ## Lähteet
@@ -325,3 +376,9 @@ https://www.loggly.com/ultimate-guide/apache-logging-basics/
 https://en.wikipedia.org/wiki/Transmission_Control_Protocol 
 
 https://nmap.org/book/man-runtime-interaction.html
+
+https://forum.hackthebox.com/t/nmap-all-ports-are-in-ignored-state/272778
+
+https://nmap.org/book/scan-methods-udp-scan.html
+
+https://security.stackexchange.com/questions/52566/increase-speed-in-nmap-udp-scan#:~:text=There%27s%20a%20fundamental%20reason%20why%20UDP%20scans%20are,being%20lost%20in%20transit%20due%20to%20network%20congestion.
