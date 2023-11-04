@@ -37,9 +37,9 @@ Joona puhui videolla luomastaan <a href="https://github.com/ffuf/ffuf">FFUF - fa
 
    *(opettele, mitä ovat: -sS -sT -sU; muuten vain silmäily)*
 
-   *- -sS (TCP SYN scan)*: "oletusskannaus", suosituin. Nopea suorittaa, skannaa tuhansia portteja sekunnissa. Palomuurit eivät yleensä haittaa sitä. Se on melko huomaamaton, sillä se ei suorita TCP-yhteyksiä (loppuun) ja siksi sitä kutsutaan myös "puoli avoimeksi". *Kts <a href="https://nmap.org/misc/split-handshake.pdf">The TCP Split Handshake</a>*.
+   *- -sS (TCP SYN scan)*: "oletusskannaus", suosituin. Nopea suorittaa, skannaa tuhansia portteja sekunnissa. Se on melko huomaamaton, sillä se ei suorita TCP-yhteyksiä (loppuun) ja siksi sitä kutsutaan myös "puoli avoimeksi". *Kts <a href="https://nmap.org/misc/split-handshake.pdf">The TCP Split Handshake</a>*.
    
-   *- -sT (TCP connect scan)*: oletus TCP skannaus, silloin kun SYN skannaus ei ole sopiva vaihtoehto. Tämä siinä tapauksessa kun käyttäjällä ei ole "raw packet" oikeuksia. Silloin Nmap pyytää lähdekoneen käyttöjärjestelmää muodostamaan yhteyden kohdejärjestelmän koneeseen ja porttiin käyttämällä ```connect system call```. 
+   *- -sT (TCP connect scan)*: oletus TCP skannaus, silloin kun SYN skannaus ei ole sopiva vaihtoehto. Tätä tekniikkaa käyttäen Nmap pyytää lähdekoneen käyttöjärjestelmää muodostamaan yhteyden kohdejärjestelmän koneeseen ja porttiin käyttämällä ```connect system call```. **-sT** on hitaampi kuin **-sS** ja siitä todennäköisimmin jää myös merkintä skannattavan järjestelmän lokiin.
    
    *- -sU (UDP scans)*: TCP-protokollaa käyttävien palveluiden ohjella, myös UDP-palvelut ovat laajalti käytössä. Yleisimmät ovat DNS, SNMP ja DHCP (portit 53, 161/162 ja 67/68). UDP skannaus on hitaampaa, mutta sitä kannattaa silti huomioida ja hyödyntää osana tietoturvan kokonaissuunnittelua. Tämä skannaus lähettää UDP-paketin jokaiseen kohdistettuun porttiin. Jos vastauksena on ICMP portti tavoittamaton-virhe (tyyppi 3, koodi 3), portti todetaan suljetuksi, eli ```closed```. Joidenkin muiden ICMP virheiden kohdalla, portti voidaan todeta myös suodatetuksi, eli ```filtered```. Joskus palvelu vastaa UDP-paketilla, eli portti on ```open```. Mikäli vastausta ei saada uudelleenlähetyksistä huolimatta, portti todetaan olevan avoin|suodatettu ```open|filtered```. Parametrin ```-v```(versiontunnistus) avulla voidaan erottaa oikeasti avoimet portit suodatetuista.
 
@@ -222,7 +222,40 @@ Seuraavaksi piti käyttää seuraavanlaista komentoa: ```ffuf -w ~/wordlists/sub
 
 ![subdomains2](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/80661935-1b79-426d-89cf-4e18d5a3d316)
 
+### Porttiskannaa paikallinen kone (127.0.0.2 tms), sieppaa liikenne snifferillä, analysoi.
 
+Virtuaalikoneellani, jossa on Kali Linux ovat oletuksena kaikki portit kiinni. Tätä harjoitusta varten käynnistin Apache palvelimen, jotta edes yksi portti (80) olisi auki. Ennen kun aloin tehtäviä, tarkistin, että palvelin on käynnissä:
+
+![apachekäynnissä](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/cf8e1141-1be9-4a5f-a572-9955e1eb7936)
+
+#### c) nmap TCP connect scan -sT
+
+![nmapst1A](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/8fd73336-f1a5-4c2d-b831-1198c637e2db)
+
+#### d) nmap TCP SYN "used to be stealth" scan, -sS (tätä käytetään skannatessa useimmin)
+
+![nmapss1A](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/7c5bf5c2-c9c9-4ad6-b2fb-702cece08ac0)
+
+#### e) nmap ping sweep -sn
+
+
+
+#### f) nmap don't ping -Pn
+
+![nmapPn1A](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e517da7c-96b1-4798-94b2-024b796a101a)
+
+
+#### g) nmap version detection -sV (esimerkki yhdestä palvelusta yhdessä portissa riittää)
+
+![nmapsV1A](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/830873b2-c4c9-4cfd-8591-b703661fad03)
+
+
+#### h) nmap output files -oA foo. Miltä tiedostot näyttävät? Mihin kukin tiedostotyyppi sopii?
+
+
+
+#### i) nmap ajonaikaiset toiminnot (man nmap: runtime interaction): verbosity v/v, help ?, packet tracing p/P, status s (ja moni muu nappi)
+#### j) Ninjojen tapaan. Piiloutuuko nmap-skannaus hyvin palvelimelta? 
 
 
 ## Lähteet
