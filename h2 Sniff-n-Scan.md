@@ -324,7 +324,7 @@ Alla olevassa kuvassa olen nmap skannauksen ajon aikana painanu ```v``` kirjaint
 
 Tässä tehtävässä testataan näkyykö nmap-skannaus skannattavan palvelimen log tiedostoissa.
 
-En muistanut ulkoa, missä apache2:n log tiedostot ovat, joten annoin komennon ```whereis apache2```. Log tiedostot olivat ```/var/log/apache2```, joten siirryin sinne komennolla ```cd /var/log/apache"2```.
+En muistanut ulkoa, missä apache2:n log tiedostot ovat, joten annoin komennon ```whereis apache2```. Log tiedostot olivat ```/var/log/apache2```, joten siirryin sinne komennolla ```cd /var/log/apache2```.
 
 ![apachelog1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/9602ebb2-611b-442a-8bda-df394f0350b1)
 
