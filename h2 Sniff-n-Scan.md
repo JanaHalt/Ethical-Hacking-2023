@@ -273,11 +273,27 @@ Tässä skannaustekniikassa nmap kohtelee kaikkia kohteita (hosts) kuin ne olisi
 
 #### g) nmap version detection -sV (esimerkki yhdestä palvelusta yhdessä portissa riittää)
 
-![nmapsV1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/7cebc900-86cd-4cf4-9f61-5ef79c131805)
+Tämä skannaustekniikka kertoo auki olevien porttien ja niissä kuuntelevien palveluiden lisäksi myös ko. palveluiden version. Eli tässä tapauksessa portti 80 auki, siinä http-palvelu / Apache2 kuuntelemassa. Wiresharkin ikkunassa puolestaan näkyvät jo aiemmissa kohdissa mainitut ```SYN```, ```ACK``` ja ```RST```. Ne kuvaavat sen, että virtuaalikoneeni muodostaa yhteyden paikalliseen palvelimeeni portin 80 kautta. Protokollista ovat kuvakaappauksessa edustettuina TCP ja HTTP (ja siitä GET pyyntö). 
 
+![nmapsV1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/7cebc900-86cd-4cf4-9f61-5ef79c131805)
 
 #### h) nmap output files -oA foo. Miltä tiedostot näyttävät? Mihin kukin tiedostotyyppi sopii?
 
+Kuvassa näkyy, että nmap output-tiedostot ovat (alemmassa kuvassa *results.gnmap/.nmap/.xml*):
+
+![nmapoA1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/7f6c568f-6b43-4043-b9ef-a8d31f1232f3)
+
+```.gnmap``` - tämän kanssa voi käyttää **grep** komentoa, selkeä teksti.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/6d2a9797-27bc-45b6-b729-f32f6be7007b)
+
+```.nmap``` - tämä on "normaali", selkeää tekstiä tämäkin.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/c1ee6e0c-9ecb-43fb-b774-d5c106d9e95b)
+
+```.xml``` - formaattina XLS stylesheets. Toimii softan kanssa, voidaan käyttää tulosten muokkaamiseen html-muotoon. 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/edf4bbef-05d8-489f-bee9-e5047f09acba)
 
 
 #### i) nmap ajonaikaiset toiminnot (man nmap: runtime interaction): verbosity v/v, help ?, packet tracing p/P, status s (ja moni muu nappi)
@@ -307,3 +323,5 @@ https://wheregoes.com/http-status-codes/
 https://www.loggly.com/ultimate-guide/apache-logging-basics/
 
 https://en.wikipedia.org/wiki/Transmission_Control_Protocol 
+
+https://nmap.org/book/man-runtime-interaction.html
