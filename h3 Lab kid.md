@@ -24,15 +24,17 @@ Lisäksi, koska aiemmin kurssilla käytettiin tiivistämistehtävän lähteenä 
 
 Valitsin <a href="https://www.youtube.com/watch?v=XB8CbhfOczU&list=PLidcsTyj9JXJfpkDrttTdk1MNT6CDwVZF&index=40">HackTheBox - Help</a>, <a href="https://www.youtube.com/@ippsec">IppSec - YouTube kanava</a>lta.
 
-- nmapilla tutkittiin, mitkä portit ovat auki ```nmap -sC -sV -oA nmap/help 10.10.10.121```
+- tässä "boxissa" murtauduttiin helpdeskz portaaliin
 
-- <a href="https://www.kali.org/tools/gobuster/">gobuster</a> työkalua (*scans websites for directories*) hyödyntäen löydettiin **/support** sivu, jota kokeiltiin selaimessa lisäämällä **/support** sivun ip-osoitteen perään -> johti oikeannäköiseen *helpdesk/support* sivuun
+- käytettiin nmapia avoimien porttien löytämiseen
 
-- *searchsploit* -> ```searchsploit helpdeskz``` komentorivillä. Löydettiin 2 exploitia: *a file upload* ja *SQL injection*. Ekan mainitun kohdalla luki, että exploit esiintyi helpdeskz sivun versiolla 1.0.2 (joka oli myös sen hetkinen versio)
+- <a href="https://www.kali.org/tools/gobuster/">gobuster</a> työkalun (*scans websites for directories*) avulla löydettiin **/support** sivu, jota kokeiltiin selaimessa lisäämällä **/support** sivun ip-osoitteen perään -> johti oikeannäköiseen *helpdesk/support* sivuun
 
-- tutkittuaan aiemmin mainittua *a file upload* exploitia selvisi, että se tarvitsee palvelimen (jolla helpdeskz on) ajan
+- *searchsploiti*in avulla löydettiin 2 explotia: *a file upload* ja *SQL injection*. Komennon muoto ```searchsploit helpdeskz```. Hyödynnettiin ensimmäistä mainittua lataamalla sivulle luodun tiketin mukana myös muokattu PHP skripti
 
-- luotiin tiketti helpdeskz sivulla ja ladattiin sen mukana muokattu PHP skripti
+- selvitettiin Helpdeskz githubin sivulta, mihin ladatatut tiedostot tallennetaan
 
-- 
+- selvisi, että sivusto käyttää graphql. Tämä tieto hyödynnettiin sellaisen käyttäjätunnuksen ja salasanan etsimisessä, jolla sitten pystyttiin kirjautumaan helpdeskz sivulle.
+
+- Helpdeskz sivulle kirjautumisen jälkeen löytyi myös boolean sql haavoittuvuus ja 
 
