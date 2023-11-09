@@ -212,6 +212,31 @@ Skannaustulosten lopusta löytyy myös tietoja skannattavan kohteen (192.168.12.
 
 ### f) Murtaudu Metasploitablen VsFtpd-palveluun Metasploitilla (search vsftpd, use 0, set RHOSTS - varmista osoite huolella, exploit, id)
 
+Msfconsolissa ```search vsftpd```:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/5be1631d-3c98-4405-afd2-5ea2586bea28)
+
+Tehtävänannossa luki, että tulisi käyttää "0", mutta kuten tuossa alhaalla näkyy, i.ndexinumero 0:n kohdalla on vsftpd:n versiona 2.3..2. Aiemmassa Metasploitablen porttiskannauksessa kävi ilmi, että Metasploitablessa pyörii tuo palvelu versiona 2.3.4. Joten valitsen tuon jälkimmäisen. Halusin vielä lisäinfoa ko. exploitista, joten käytin komentoa ```info 1```:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/a4f88219-97e2-4b10-9ee1-1cb005a8eb36)
+
+Valitsin nr.1:n :
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/790aae79-ee73-486a-8dc0-e49599a8976a)
+
+Ja halusin vielä katsoa mitä vaihtoehtoja löytyy:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/8f24b1a2-0bcd-475b-b807-f1a2486450f6)
+
+Pakollinen kohdeportti (RPORT) oli jo määritelty (21). Itse kohde (RHOST) sen sijaan ei ollut, joten määritin sen komennolla ```set RHOST 192.168.12.3```. Sitten ei kun exploit käyntiin komennolla ```run```:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/5bff3d90-8db8-4299-b634-daa239c53799)
+
+Pääsin onnistuneesti kohteeseen. Testasin komentoa ```pwd``` ja selvisi, että olen juuressa ```/```. Komento ```ls``` sitten listasi mitä ko. kansio sisältää.
+
+
+
+
 ### g) Parempi sessio. Tee vsftpd-hyökkäyksestä saadusta sessiosta parempi. (Voit esimerkiksi päivittää sen meterpreter-sessioksi, laittaa tty:n toimimaan tai tehdä uuden käyttäjän ja ottaa yhteyden jollain tavallisella protokollalla)
 
 ### h) Etsi, tutki ja kuvaile jokin hyökkäys ExploitDB:sta. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi)
