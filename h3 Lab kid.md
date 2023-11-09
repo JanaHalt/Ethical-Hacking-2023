@@ -115,8 +115,8 @@ Alustin tietokannan komennolla ```sudo msfdb init```
 Käynnistin msfconsolin/metasploitin komennolla ```sudo msfconsole``` ja tarkistin, että se on yhdistetty postgre tietokantaan ```db_status```:
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/88217a5b-eb1e-48de-9a3b-26d1c4fc5a76)
-
-Kalin komentorivillä etsin metasploitable-virtuaalikonetta komennolla ```db_nmap -sn 192.168.12.0/24```. Tuloksissa näkyy, että löydettiin 4 hostia, jotka ovat päällä. **192.168.12.5** on kali-virtuaalikone, josta käsin tein skannausta. **192.168.12.3** on etsimäni metasploitable:
+..
+Kalin komentorivillä/msf konsolissa etsin metasploitable-virtuaalikonetta komennolla ```db_nmap -sn 192.168.12.0/24```. Tuloksissa näkyy, että löydettiin 4 hostia, jotka ovat päällä. **192.168.12.5** on kali-virtuaalikone, josta käsin tein skannausta. **192.168.12.3** on etsimäni metasploitable:
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/4b49e62b-38ec-46d2-8ef7-63d0d60eb75e)
 
@@ -124,8 +124,91 @@ Tarkistin vielä selaimessa, että löydetty IP-osoite on oikea:
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/853c9774-5cbc-4480-8a0f-7e84aee6004e)
 
-
 ### e) Porttiskannaa Metasploitable huolellisesti (db_nmap -A -p0-). Analysoi tulos. Kerro myös ammatillinen mielipiteesi (uusi, vanha, tavallinen, erikoinen), jos jokin herättää ajatuksia.
+
+Skannaus kesti noin 2,5 minuuttia. 
+
+Tuloksissa kerrottiin, että *host is up*:
+
+- **portti 21** on auki/tcp ja siinä on kuuntelemassa ftp palvelu versio *vsftpd 2.3.4*. *Anonyymi FTP login* on sallittu. FTP palvelimen status on, että se on yhdistetty hostiin 192.168.12.5 (kali-virtuaalikone). Ei kaistanleveys rajoituksia (bandwidth limit), sessio aikakatkaistaan 300 sekunnissa, hallinta- eikä datayhteys ole salattua vaan pelkkää tekstiä. 
+
+- **portti 22** on auki/tcp, ssh palvelu versio OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0) kuuntelemassa. Tuloksissa lisäksi näkyy myös ssh-hostkey.
+
+- **portti 23** on auki/tcp, telnet palvelu (Linux telnetd) kuuntelemassa
+
+- **portti 25** on auki/tcp, smtp palvelu (Postfix smtpd) kuuntelemassa:
+  
+  -  kohta "ciphers", kertoo mitkä salakirjoitusmenetelmät ovat tuettuja
+    
+  -  smtp-commands: komennot, jotka voidaan tämän palvelun kohdalla käyttää
+ 
+  -  ssl-cert: ssl sertifikaattitiedot
+
+- **portti 53** on auki/tcp, domain palvelu, ISC BIND 9.4.2 (nimipalveluohjelmisto) kuuntelemassa
+
+- **portti 80** auki/tcp, http/Apache httpd 2.2.8 palvelu kuuntelemassa:
+  - http-title: Metasploitable2 - Linux
+
+- **portti 111** on auki/tcp, rpcbind 2 (RPC #100000) kuuntelemassa:
+  - rpcbind mappaa rpc palveluita porteille, joilla ne ovat kuuntelemassa
+  - Googletellessani mikä on rpcbind selvisi, että siinä piilee haavoittuvuus ja heti ensimmäisissä googlaustuloksissa tuli vastaan <a href="https://amolblog.com/111-tcp-open-rpcbind-2-rpc-100000/">artikkeli</a>, joka antoi ohjeen sen hyödyntämiseen (exploit). Tämän portin tietojen alla on myös lista *rpcinfo*, joka ymmärtääkseni listaa mitkä rpc-ohjelmaversiot toimii tai ovat kuuntelemassa milläkin portilla, minkä protokollan alla (tcp/udp), hyödyntäen mitä palveluita (rpcbind, nfs, mountd, ...). Siitä en ole ihan varma, miksi ne on listattu tässä, eikä ym. listassa lueteltujen porttien kohdalla yksitellen. Ehkä siksi, että on selkeämpää kun kaikki rpc/rpcbind:iin liittyvät palvelutiedot ovat niputetuna yhteen paikkaan?
+
+- **portti 139** on auki/tcp, netbios-ssn/Samba smbd 3.X - 4.X (data sharing protocol) kuuntelemassa.
+
+- **portti 445** on auki/tcp, "`?tDV"/Samba smbd 3.0.20-Debian kuuntelemassa. Pitää perehtyä, mikä tuo ihme rimpsu **?tDV** tarkoittaa.
+
+- **portti 512** on auki/tcp, exec/netkit-rsh rexecd kuuntelemassa
+
+- **portti 513** on auki/tcp, login/OpenBSD or Solaris rlogind kuuntelemassa
+
+- **portti 514** on auki/tcp, shell/Netkit rshd kuuntelemassa
+
+- **portti 1099** on auki/tcp; java-rmi/GNU Classpath grmiregistry kuuntelemassa
+
+- **portti 1524** on auki/tcp, bindshell/Metasploitable root shell. Tätä lienee mahdollista hyödyntää (exploit) murtautuessaan Metasploitableen?
+
+- **portti 2049** on auki/tcp, nfs/2-4 (RPC #100003) kuuntelemassa
+
+- **portti 2121** on auki/tcp, ftp/ProFTPD 1.3.1 kuuntelemassa
+
+- **portti 3306** on auki/tcp, mysql/MySQL 5.0.51a-3ubuntu5 kuuntelemassa. Yhteys MySQL tietokantaan. "mysql-info" kohdassa on listattuna esim. "Some Capabilities: Support41Auth (liittynee autentikointiin), ..., ConnectWithDatabase (liittynee johonkin tapaan miten muodostetaan yhteys tietokantaan). Kohta "Salt" littyy käsittääkseni SaltStackiin.
+
+- **portti 3632** on auki/tcp, distccd/v1 ((GNU) 4.2.4 (Ubuntu 4.2.4-1 ubuntu4)) kuuntelemassa
+
+- **portti 5432** on auki/tcp, postgresql/DB 8.3.0 - 8.3.7 kuuntelemassa. Tässä löytyy myös tietoja tähän palveluun liittyvään ssl-sertifikaattiin.
+
+- **portti 5900** on auki/tcp, vnc (protocol 3.3) kuuntelemassa. <a href="https://fi.wikipedia.org/wiki/VNC#:~:text=VNC%20%28Virtual%20Network%20Computing%29%20on%20protokolla%20tietokoneen%20graafisen,et%C3%A4pisteell%C3%A4%20tarvitaan%20VNC-%20palvelin%20ja%20toiseen%20p%C3%A4%C3%A4h%C3%A4n%20p%C3%A4%C3%A4teohjelma.">VNC (Virtual Network Computing)</a> on protokolla tietokoneen graafisen käyttöliittymän etäkäyttöön.
+
+- **portti 6000** on auki/tcp, X11 (access denied) kuuntelemassa
+
+- **portti 6667** on auki/tcp, irc UnrealIRCd kuuntelemassa
+
+- **portti 6697** on auki/tcp, irc UnrealIRCd kuuntelemassa
+
+- **portti 8009** on auki/tcp, ajp13 Apache Jserv (Protocol v1.3) kuuntelemassa
+
+- **portti 8180** on auki/tcp, http/Apache Tomcat/Coyote JSP engline 1.1 kuuntelemassa
+
+- **portti 8787** on auki/tcp, drb/Ruby DRb RMI (Ruby 1.8) kuuntelemassa. Ymmärtääkseni Ruby ohjelmointikieleen ja sen käyttämään liittyvä. Tätä googlatessani löysin tiedon, jonka mukaan Ruby RMI 1.8 palvelimeen liittyy <a href="https://www.hackingtutorials.org/metasploit-tutorials/hacking-druby-rmi-server-1-8/">remote code execution-haavoittuvuus</a>.
+
+- **portti 8534** on auki/tcp, status/1 (RPC #100024) kuuntelemassa
+
+- **portti 51722** on auki/tcp, java-rmi/GNU Classpath grmiregistry kuuntelemassa
+
+- **portti 58418** on auki/tcp, mountd/1-3 (RPC #100005) kuuntelemassa
+
+- **portti 59712** on auki/tcp, nlockmgr/1-4 (RPC #100021) kuuntelemassa
+
+Skannaustulosten lopusta löytyy myös tietoja skannattavan kohteen (192.168.12.3/metasploitable) käyttöjärjestelmästä, sen MAC-osoitteesta, verkko-etäisyydestä (1 hop, eli heti "vieressä", ei laitteita välissä), jne. Tuloksissa oli paljon itselleni tuttuja asioita, kuten ftp, ssh, http/apache, telnet, smtp. Toisaalta vastaan tuli myös uutta, kuten rpcbind:iin liittyvät asiat.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/578e3052-9702-4099-909a-9279378b5e68)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e196fdbb-6b1e-418a-8f74-adfea2825fb0)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/03f812c6-7016-4401-9874-71ed4a6ae171)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/00fbe2eb-c515-42e8-a064-19d1e40c3953)
+
 
 ### f) Murtaudu Metasploitablen VsFtpd-palveluun Metasploitilla (search vsftpd, use 0, set RHOSTS - varmista osoite huolella, exploit, id)
 
@@ -156,3 +239,13 @@ https://kulonpaa.com/?p=87
 https://sourceforge.net/projects/metasploitable/
 
 https://subscription.packtpub.com/book/security/9781788623179/1/ch01lvl1sec19/configuring-postgresql
+
+https://fi.wikipedia.org/wiki/VNC#:~:text=VNC%20%28Virtual%20Network%20Computing%29%20on%20protokolla%20tietokoneen%20graafisen,et%C3%A4pisteell%C3%A4%20tarvitaan%20VNC-%20palvelin%20ja%20toiseen%20p%C3%A4%C3%A4h%C3%A4n%20p%C3%A4%C3%A4teohjelma.
+
+https://www.isc.org/bind/
+
+https://unix.stackexchange.com/questions/234154/exactly-what-does-rpcbind-do
+
+https://amolblog.com/111-tcp-open-rpcbind-2-rpc-100000/
+
+https://www.hackingtutorials.org/metasploit-tutorials/hacking-druby-rmi-server-1-8/
