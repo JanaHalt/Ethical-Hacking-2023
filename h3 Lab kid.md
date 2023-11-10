@@ -91,12 +91,11 @@ Tässä näkyy, että molemmat koneet ovat host-only verkossa:
 
 Tarkistetaan, mitkä ovat kalin ja metasploiten IP-osoitteet ja että ne varmasti saavat yhteyden toisiinsa:
 
-Kali 192.168.12.4/24 ja Metasploit 192.168.12.3
+Kali 192.168.12.5/24 ja Metasploit 192.168.12.3
 
-![iposoitteet1](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/ccf28fd0-d334-405b-8fe1-caa97cf33d29)
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/4f8253f8-194b-42bf-b6dc-6269ce0e8182)
 
-![kalimetasploitOK](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e96131f7-5b5b-4867-b8f0-13e621302061)
-
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/957ec739-e9bf-4655-9b86-e82a1998babd)
 
   *- Osoita eri komennoilla, että internet-yhteys katkeaa (esim. ping tai curl komennoilla)*
 
