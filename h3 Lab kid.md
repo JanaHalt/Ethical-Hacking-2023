@@ -281,6 +281,24 @@ Esimerkiksi komennolla ```mic_list``` voidaan listata kaikki kohdejärjestelmän
 
 ### h) Etsi, tutki ja kuvaile jokin hyökkäys ExploitDB:sta. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi)
 
+Löysin <a href="https://www.memuplay.com/">Memu Play</a> peliemulaattorin haavoittuvuutta hyödyntävän <a href="https://www.exploit-db.com/exploits/46437">exploitin </a>. Memu Play 6.0.7 versiossa oli haavoittuvuus - epäturvalliset tiedostokäyttöoikeudet, jonka ansiosta oli mahdollista korottaa käyttöoikeuksia.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/97638db0-9e09-4170-b95b-9596ec80556b)
+
+- exploitin hyödyntämisen edellytyksenä oli paikallinen tunnus peruskäyttöoikeuksilla, joilla sai uudelleenkäynnistää kohdekoneen
+
+- tavallisesti käyttäjällä, joka on Authenticated users-ryhmän jäsen, saa muokata ESM kansioita/tiedostoja
+
+  ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/f13293ff-1fcc-4a26-9930-c0947112281a)
+
+- peruskäyttöoikeuksia omaava käyttäjä pystyy uudelleennimeämään MemuService.exe tiedoston ja korvaamaan sen tiedostolla, joka sisältää haitallista koodia
+
+- tämän avulla hyökkääjä siten saattoi muodostaa yhteyden takaisin kohdejärjestelmästä omaan koneeseen ja hankkimaan järjestelmäylläpitäjän oikeudet (nt authority\system) kohdejärjestelmään, sillä palvelu (memuservice) toimii "paikallisesti"
+
+- vaikka peruskäyttöoikeuksia omaava käyttäjä ei pystyisi uudelleenkäynnistämään ko. palvelua, niin kohdejärjestelmän (eli tietokoneen) uudelleenkäynnistäminen käynnistää/suorittaa myös haitallisen koodin
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/63d4dce3-69e5-4069-a476-fa9ce77ca566)
+
 ### i) Etsi, tutki ja kuvaile hyökkäys 'searchsploit' -komennolla. Muista päivittää. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi. Valitse eri hyökkäys kuin edellisessä kohdassa.)
 
 ### j) Kokeile vapaavalintaista haavoittuvuusskanneria johonkin Metasploitablen palveluun. (Esim. nikto, wpscan, openvas, nessus, nucleus tai joku muu)
@@ -318,3 +336,7 @@ https://www.hackingtutorials.org/metasploit-tutorials/hacking-druby-rmi-server-1
 https://infosecwriteups.com/metasploit-upgrade-normal-shell-to-meterpreter-shell-2f09be895646
 
 https://medium.com/@JAlblas/tryhackme-metasploit-meterpreter-walkthrough-e71e36e8b280
+
+https://www.exploit-db.com/exploits/46437
+
+https://www.memuplay.com/
