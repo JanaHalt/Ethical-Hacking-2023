@@ -301,6 +301,18 @@ Löysin <a href="https://www.memuplay.com/">Memu Play</a> peliemulaattorin haavo
 
 ### i) Etsi, tutki ja kuvaile hyökkäys 'searchsploit' -komennolla. Muista päivittää. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi. Valitse eri hyökkäys kuin edellisessä kohdassa.)
 
+Etsin ```searchsploit authentication```. Tuloksena sain piiiitkän listan haavoittuvuuksista, mutta huomioni kiinnittyi tähän *ZYXEL....*. 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/c847ddb0-f47e-4253-85ca-19e71f40d591)
+
+Jatkoin siis tutkimista komennolla ```search zyxel```:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/36c7d4bc-6cb9-4598-8967-0c6a1d722407)
+
+Tällä kertaa tuloksia oli luonnollisesti vähemmän. Valitsin nr. 8, joten jatkoin komennolla ```info 8```, jotta sain lisätietoa ko. exploitista. Tämä exploiti hyödyntää useampaa haavoittuvuutta zhttpd- ja zcmd-binääreissä. Sen kohteena on "remove code execution" haavoittuvuus, joka esiintyi Zyxelin reitittimissä ja muissa CPE laitteissa (CPE - customer premises equipment, kuten puhelimet, kytkimet, reitittimet, ...). Hyökkääjät voivat hyödyntää sitä yhdistämällä sitä yhden toisen exploitin kanssa - local file disclosure, löytynee zhttpd binäärissä, joka sallii tunnistautumattoman hyökkääjän lukea reitittimen koko konfiguraatiotiedoston haavoittuvan päätelaitteen kautta. Sen ansiosta sitten hyökkääjä voi päätellä, onko reititin tavoitettavissa sshn kautta ja käyttää zcmd-binäärin toista haavoittuvuutta johtamaan "supervisor" käyttäjän salasanaa hyödyntäen laitteen sarjanumeroa käyttävän salasanan johdannaisalgoritmin heikkoa toteutusta. *Huh, olipa tekstiä. Yritin parhaani mukaan suomentaa :D.*
+
+Ko. haavoittuvuus löydettiin vuonna 2020, joten toivon mukaan nyt on kaikki kunnossa.
+
 ### j) Kokeile vapaavalintaista haavoittuvuusskanneria johonkin Metasploitablen palveluun. (Esim. nikto, wpscan, openvas, nessus, nucleus tai joku muu)
 
 ### k) Kokeile jotain itsellesi uutta työkalua, joka mainittiin x-kohdan läpikävelyohjeessa.
@@ -340,3 +352,5 @@ https://medium.com/@JAlblas/tryhackme-metasploit-meterpreter-walkthrough-e71e36e
 https://www.exploit-db.com/exploits/46437
 
 https://www.memuplay.com/
+
+https://sec-consult.com/vulnerability-lab/advisory/multiple-critical-vulnerabilities-in-multiple-zyxel-devices/
