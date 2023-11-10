@@ -22,6 +22,8 @@ Lisäksi, koska aiemmin kurssilla käytettiin tiivistämistehtävän lähteenä 
 
    *- Using public exploits*
 
+Mikäli vielä pääsen tähän kirjaan käsiksi, niin toki täydennän raporttini sen osalta.
+
 #### Vapaavalintainen läpikävely <a href="https://0xdf.gitlab.io/">0xdf</a> tai <a href="https://www.youtube.com/channel/UCa6eh7gCkpPo5XXUDfygQQA/videos">ippsec</a>.
 
 Valitsin <a href="https://www.youtube.com/watch?v=XB8CbhfOczU&list=PLidcsTyj9JXJfpkDrttTdk1MNT6CDwVZF&index=40">HackTheBox - Help</a>, <a href="https://www.youtube.com/@ippsec">IppSec - YouTube kanava</a>lta.
@@ -336,8 +338,39 @@ Nikto skannauksissa voi toki käyttää myös erilaisia parametreja, kuten:
 
 ### k) Kokeile jotain itsellesi uutta työkalua, joka mainittiin x-kohdan läpikävelyohjeessa.
 
+Valitsin <a href="https://www.kali.org/tools/gobuster/">Gobuster</a> työkalun. Gobuster löytää piilotetttuja URL-osoitteita, tiedostoja ja hakemistoja nettisivuilta.
 
+Gobuster ei ole kalissa valmiiksi asennettuna. Ja koska se on kirjoitettu go-kielellä, tarvitaan go compiler. Joten alkuun ```sudo apt update``` ja ```sudo apt install golang-go```. Sitten vielä varmistin, että go on asennettu ```go version```: 
 
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/64c9bc7c-5a21-4269-b1d4-da989757db39)
+
+Seuraavaksi ```sudo apt install gobuster```
+
+Komennolla ```gobuster -h``` saadaan tietoa gobusterin käytöstä, eli komennoista ja mahdollisista parametreista:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3f0c6a6b-9f7c-45dd-82d3-9caf0a85b1d4)
+
+Päätin kokeilla gobusteria dir-moodissa (etsii kansioita/tiedostoja):
+
+```gobuster dir -u 192.168.12.3 -w /usr/share/seclists/Discovery/Web-Content/dirsearch.txt --no-error``` 
+
+```dir``` dir moodi
+
+```-u``` mihin skannaus kohdistetaan. Tässä tapauksessa metasploitable-virtuaalikone.
+
+```-w``` wordlist
+
+```--no-error```älä näytä virheitä
+
+Ja tässä tulos:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/ab8cd199-d77a-4e4a-b140-b96212594e66)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/fb96797e-701a-421d-a21a-931f94a12af3)
+
+Löytyi aika monta kansiota :) 
+
+-------------------------------------------
 #### Lähteet:
 
 https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h3-lab-kid
@@ -377,3 +410,7 @@ https://sec-consult.com/vulnerability-lab/advisory/multiple-critical-vulnerabili
 https://hackertarget.com/nikto-website-scanner/
 
 https://www.kali.org/tools/nikto/
+
+https://www.geeksforgeeks.org/gobuster-penetration-testing-tools-in-kali-tools/
+
+
