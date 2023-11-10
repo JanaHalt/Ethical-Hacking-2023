@@ -2,6 +2,8 @@
 
 Kolmas viikko käyntiin hyökkäyslabran rakentelun merkeissä. Lisäksi edetään kybertappoketjussa tiedustelusta uusin vaiheisiin: aseistus, toimitus, exploit, asennus ja kontrollikanava. 
 
+Toteutan harjoituksen kannettavallani Acer Swift 3, Windows 11 Home ja virtualiboxissa asennetuilla virtuaalikoneilla (kali ja metasploitable).
+
 ### Lue/katso ja tiivistä:
 
 #### <a href="https://learning.oreilly.com/library/view/mastering-kali-linux/9781801819770/Text/Chapter_10.xhtml#_idParaDest-257">Velu 2022: Mastering Kali Linux for Advanced Penetration Testing 4ed: Chapter 10 - Exploitation</a>
@@ -315,6 +317,23 @@ Ko. haavoittuvuus löydettiin vuonna 2020, joten toivon mukaan nyt on kaikki kun
 
 ### j) Kokeile vapaavalintaista haavoittuvuusskanneria johonkin Metasploitablen palveluun. (Esim. nikto, wpscan, openvas, nessus, nucleus tai joku muu)
 
+Valitsin **Nikto**n. Yhtenä syynä se, että se on lukemani mukaan hyvä weppi skanneri, jolla voi etsiä haavoittuvuuksia ja virheellisiä konfiguraatioita nettisivuista, virtuaalikoneista ja weppi palvelimista. Toisena syynä se, että **"nikto"** tarkoittaa äidinkielelläni **"ei kukaan/nobody"**, eli mielestäni tällä skannerilla on hauska nimi :)
+
+Nikto löytyy jo valmiiksi Kali:sta, joten ei kun kokeilemaan. Skannasin **nikto**lla metasploitablen ```nikto -host 192.168.12.3```. Tässä tulos:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/cf3f8421-f515-4769-9932-18a446c2e293)
+
+Eli saatiin pitkähkö lista mahdollisista haavoittuvuuksista, kuten saattoi odottaakin, koska kohteena oli metasploitable-virtuaalikone. Esimerkiksi ```+ /phpMyAdmin/ChangeLog: phpMyAdmin is for managing MySQL databases, and should be protected or limited to authorized hosts.``` tai ```+ /: HTTP TRACE method is active which suggests the host is vulnerable to XST. See: https://owasp.org/www-community/attacks/Cross_Site_Tracing```. 
+
+Nikto skannauksissa voi toki käyttää myös erilaisia parametreja, kuten:
+
+- ```-nolookup``` - Disable DNS lookups
+
+- ```-port+```- Port to use (default 80)
+
+- ```-until```- Run until the specified time or duration
+
+
 ### k) Kokeile jotain itsellesi uutta työkalua, joka mainittiin x-kohdan läpikävelyohjeessa.
 
 
@@ -354,3 +373,7 @@ https://www.exploit-db.com/exploits/46437
 https://www.memuplay.com/
 
 https://sec-consult.com/vulnerability-lab/advisory/multiple-critical-vulnerabilities-in-multiple-zyxel-devices/
+
+https://hackertarget.com/nikto-website-scanner/
+
+https://www.kali.org/tools/nikto/
