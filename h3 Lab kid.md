@@ -233,10 +233,51 @@ Pakollinen kohdeportti (RPORT) oli jo määritelty (21). Itse kohde (RHOST) sen 
 
 Pääsin onnistuneesti kohteeseen. Testasin komentoa ```pwd``` ja selvisi, että olen juuressa ```/```. Komento ```ls``` sitten listasi mitä ko. kansio sisältää.
 
-
-
-
 ### g) Parempi sessio. Tee vsftpd-hyökkäyksestä saadusta sessiosta parempi. (Voit esimerkiksi päivittää sen meterpreter-sessioksi, laittaa tty:n toimimaan tai tehdä uuden käyttäjän ja ottaa yhteyden jollain tavallisella protokollalla)
+
+Päivitetään saatu sessio metterpreteriksi. Löysin selkeän näköisen <a href="infosecwriteups.com/metasploit-upgrade-normal-shell-to-meterpreter-shell-2f09be895646">ohjeen</a>:
+
+-> Background the current (normal shell) session. Eli käsittääkseni se normal shell nyt tallennetaan taustalle. :
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/91ac1990-9af1-43cd-99cf-ec40568cefa4)
+
+-> Käytä komentoa ```search shell_to_meterpreter```, joka etsii ko. moduulia:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/f7ee4a43-aab4-41a2-9e5f-be77f37e0a82)
+
+-> Käytä löydettyä moduulia komennolla ```use 0``` (tai *use post/multi/manage/shell_to_meterpreter*)
+
+-> Nyt pitää konfiguroida, mikä session shell halutaan päivittää. Tarkista komennolla ```sessions -l```. *Session ID* kannattaa muistaa, kohta sitä tarvitaan:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/ba2b09dc-3a83-4297-9f75-076f4d15e2c9)
+
+-> Varmuuden vuoksi/halutessasi voit tarkistaa, mitä vaihtoehtoja voidaan määrittää, ```show options```. Siinä myös nähdään, onko kaikki pakolliset asiat jo määritelty:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/9f5def9e-55ed-4bd7-8b5e-8348d9650b86)
+
+-> Kuten yllä olevasta kuvasta näkee, vielä pitää määrittää *session id*, ```set SESSION 1```:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/100e23da-25b8-43c1-80b5-388aed12ed59)
+
+-> Execute exploit. Eli, ```run```:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/1d7dcd6d-f94e-416f-8b75-c424ea991e67)
+
+-> Listaa shellit, jotka voidaan päivittää ```sessions -l```: 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/c9324729-8f4d-4bd2-a87b-db6dadfc1a11)
+
+-> Valitse haluamasi. Tässä tapauksessa ```session -i 2```. Ja session shell on päivitetty:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e6d27f0d-6a9c-4ca2-8a61-65a245397dfe)
+
+Käyttämällä komentoa ```help``` saadaan lista komennoista, jotka voidaan käyttää. Lista on järjestelty kategorioittain:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/08fd6fa4-032c-457d-a888-d7844b670edc)
+
+Esimerkiksi komennolla ```mic_list``` voidaan listata kaikki kohdejärjestelmän mikrofoneja:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/70aed682-bb66-40c0-9ebc-8a792a3d3dfb)
 
 ### h) Etsi, tutki ja kuvaile jokin hyökkäys ExploitDB:sta. (Tässä harjoitustehtävässä pitää hakea ja kuvailla hyökkäys, itse hyökkääminen jää vapaaehtoiseksi lisätehtäväksi)
 
@@ -273,3 +314,7 @@ https://unix.stackexchange.com/questions/234154/exactly-what-does-rpcbind-do
 https://amolblog.com/111-tcp-open-rpcbind-2-rpc-100000/
 
 https://www.hackingtutorials.org/metasploit-tutorials/hacking-druby-rmi-server-1-8/
+
+https://infosecwriteups.com/metasploit-upgrade-normal-shell-to-meterpreter-shell-2f09be895646
+
+https://medium.com/@JAlblas/tryhackme-metasploit-meterpreter-walkthrough-e71e36e8b280
