@@ -12,7 +12,7 @@ Kyseinen kirja ei löydy HH-Finnasta:
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/dd6fa373-066e-47aa-8a8e-ba7428d50d8c)
 
-Lisäksi, koska aiemmin kurssilla käytettiin tiivistämistehtävän lähteenä O-reilly:n aineistoa ja sen yhteydessä rekisteröin O-reilly:in, niin saan tämän ilahduttavan kuvan ruudulleni:
+Lisäksi, koska aiemmin tällä kurssilla käytettiin tiivistämistehtävän lähteenä O-reilly:n aineistoa ja sen yhteydessä rekisteröin O-reilly:in, niin saan tämän ilahduttavan kuvan ruudulleni:
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/8a8c7124-ee9c-4e8c-9f89-1586d1a9a773)
 
