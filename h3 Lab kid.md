@@ -38,7 +38,7 @@ Valitsin <a href="https://www.youtube.com/watch?v=XB8CbhfOczU&list=PLidcsTyj9JXJ
 
 - selvitettiin Helpdeskz githubin sivulta, mihin ladatatut tiedostot tallennetaan
 
-- selvisi, että sivusto käyttää graphql. Tämä tieto hyödynnettiin sellaisen käyttäjätunnuksen ja salasanan etsimisessä, jolla sitten pystyttiin kirjautumaan helpdeskz sivulle.
+- selvisi, että sivusto käyttää **graphql**. Tämä tieto hyödynnettiin sellaisen käyttäjätunnuksen ja salasanan etsimisessä, joilla sitten pystyttiin kirjautumaan helpdeskz sivulle.
 
 - Helpdeskz sivulle kirjautumisen jälkeen sieltä löytyi myös boolean pohjainen sql injektio (haavoittuvuus)
 
