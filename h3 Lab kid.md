@@ -313,7 +313,7 @@ Jatkoin siis tutkimista komennolla ```search zyxel```:
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/36c7d4bc-6cb9-4598-8967-0c6a1d722407)
 
-Tällä kertaa tuloksia oli luonnollisesti vähemmän. Valitsin nr. 8, joten jatkoin komennolla ```info 8```, jotta sain lisätietoa ko. exploitista. Tämä exploiti hyödyntää useampaa haavoittuvuutta zhttpd- ja zcmd-binääreissä. Sen kohteena on "remove code execution" haavoittuvuus, joka esiintyi Zyxelin reitittimissä ja muissa CPE laitteissa (CPE - customer premises equipment, kuten puhelimet, kytkimet, reitittimet, ...). Hyökkääjät voivat hyödyntää sitä yhdistämällä sitä yhden toisen exploitin kanssa - local file disclosure, löytynee zhttpd binäärissä, joka sallii tunnistautumattoman hyökkääjän lukea reitittimen koko konfiguraatiotiedoston haavoittuvan päätelaitteen kautta. Sen ansiosta sitten hyökkääjä voi päätellä, onko reititin tavoitettavissa sshn kautta ja käyttää zcmd-binäärin toista haavoittuvuutta johtamaan "supervisor" käyttäjän salasanaa hyödyntäen laitteen sarjanumeroa käyttävän salasanan johdannaisalgoritmin heikkoa toteutusta. *Huh, olipa tekstiä. Yritin parhaani mukaan suomentaa :D.*
+Tällä kertaa tuloksia oli luonnollisesti vähemmän. Valitsin nr. 8, joten jatkoin komennolla ```info 8```, jotta sain lisätietoa ko. exploitista. Tämä exploiti hyödyntää useampaa haavoittuvuutta zhttpd- ja zcmd-binääreissä. Sen kohteena on "remote code execution" haavoittuvuus, joka esiintyi Zyxelin reitittimissä ja muissa CPE laitteissa (CPE - customer premises equipment, kuten puhelimet, kytkimet, reitittimet, ...). Hyökkääjät voivat hyödyntää sitä yhdistämällä sitä yhden toisen exploitin kanssa - local file disclosure, löytynee zhttpd binääristä, joka sallii tunnistautumattoman hyökkääjän lukea reitittimen koko konfiguraatiotiedoston haavoittuvan päätelaitteen kautta. Sen ansiosta sitten hyökkääjä voi päätellä, onko reititin tavoitettavissa sshn kautta ja käyttää zcmd-binäärin toista haavoittuvuutta johtamaan "supervisor" käyttäjän salasanan hyödyntäen laitteen sarjanumeroa käyttävän salasanan johdannaisalgoritmin heikkoa toteutusta. *Huh, olipa tekstiä. Yritin parhaani mukaan suomentaa :D.*
 
 Ko. haavoittuvuus löydettiin vuonna 2020, joten toivon mukaan nyt on kaikki kunnossa.
 
@@ -368,7 +368,7 @@ Ja tässä tulos:
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/fb96797e-701a-421d-a21a-931f94a12af3)
 
-Löytyi aika monta kansiota :) 
+Löytyi aika monta kansiota ja tiedostoa :) 
 
 -------------------------------------------
 #### Lähteet:
