@@ -272,7 +272,7 @@ Constructing a **server-side template injection** attack:
 
 ### Lähteet
 
-https://owasp.org/Top10/A01_2021-Broken_Access_Control/">A01:2021 - Broken Access Control
+https://owasp.org/Top10/A01_2021-Broken_Access_Control/"
 
 https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/
 
