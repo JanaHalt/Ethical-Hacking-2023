@@ -78,13 +78,127 @@ Developers and QA (quality assurance) staff should include functional AC unit an
 
 #### <a href="https://portswigger.net/web-security/access-control">Access control vulnerabilities and privilege escalation</a> (IDOR on osa tätä)
 
+**Access control** is dependent on authentication and session management:
+
+- *authentication*: confirms indentity
+
+- *session management*: identifies which HTTP requests are made by  the same user
+
+- *AC* determines whether the user is allowed to carry out the action that they are attempting to perform
+
+**Vertical access controls** are mechanisms that restrict access to sensitive functionality to specific types of users.
+
+**Horizontal access controls** are mechanisms that restric access to resources to specific users.
+
+**Context-dependent access controls** restric access to functionality and resources based upon the state of the application or the user's interaction with it.
+
+**Broken access** control vulnerabilities exit when a user can access resources or perfomr action that they are not supposed to be able to.
+
+**Vertical privilege escalation** - if a user can gain access to functionality that  they are not permited to access (e.g. application doesn't enforce any protection for sensitive functionality).
+
+**Horizontal privilege escalation** - if a user is able to gain access  to resources belonging to another user, instead of their own resources of that type (e.g. if an employee can access the records of other employees as well as their own).
+
+Horizontal privilege escalation attack can be turned into a vertical privilege escalation by compromising a more privileged user.
+
+**Insecure direct object references** (IDORs) are subcategory of access control vulnerabilities. -> if an application uses user-supplied input to access objects directly and an attacker can modify the input to obtain unauthorized access.
+
+**AC vulnerabilities'** prevention:
+
+- deny access by default (unless resource is intented to be publicly accessible)
+
+- obfuscation alone is not sufficient for access control
+
+- use a single mechanism for enforcing access controls throughout the application whenever possible
+
+- audit and test access controls to ensure they work as designed
+
 #### <a href="https://portswigger.net/web-security/server-side-template-injection">Server-side template injection</a>
+
+- when attacker is able to use native template syntax to inject a malicious payload into a template, which is then executed server-side
+
+- server-side template injection vulnerabilities can explose websites to a variety of attacks depending on the template engine in question and how exactly the application uses it ***!!!*** at worst - an attacker can achieve remote code execution
+
+- server-side template injection vulnerabilities arise when user input is concatenated into templates rather than being passed in as data
+
+Constructing a **server-side template injection** attack:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/07718efc-8ac5-4268-9e84-0e09c928d7cf)
+
+**How to prevent?** Best way is to not allow any users to modify or submit new templates. Other ways, examples: use a "logic-less" template engine when possible; only execute users' code in a sandboxed environment; apply your own sandboxing by deploying your template environment in a locked-down Docker container
 
 #### <a href="https://portswigger.net/web-security/ssrf">Server-side request forgery (SSRF)</a>
 
-#### <a href="https://portswigger.net/web-security/cross-site-scripting">Cross-site scripting</a>
+- a web security vulnerability that allows an attacker to cause the server-side application to make requests to an unintended location
+
+- successful SSRF attack can result in unauthorized actions or access to data within organization
+
+- in SSRF attack against the server, the attacker causes the application to make an HTTP request back to the server that is hosting the application, via its loopback network interface
+
+- in some cases, the application server is able to interact with back-end systems that are not directly reachable by users
+
+- internal back-end systems often contain sensitive functionality that can be accessed without authentication by anyone who is able to interact with the systems
+
+- common **SSRF defenses** are **SSRF with blacklist-based input filters** and SSRD with whitelist-based input filter
+
+- it is sometimes possible to bypass filter-based defenses by exploiting an open redirection vulnerability
+
+- **Blind SSRF vulnerabilities** - if you can cause an application to issue a back-end HTTP reques to a supplied URL, but the response from the back-end request is not returned in  the application's front-end response
+
+- finding hidden attack surface for SSRF vulnerabilities: partial URLs in requests, URLs within data formats; SSRF via the Referer header
+
+
+#### <a href="https://portswigger.net/web-security/cross-site-scripting">Cross-site scripting (XSS)</a>
+
+- allows an attacker to compromise the interactions that user have with a vulnerable application
+
+- XSS works by manipulating a vulnerable web site so taht it returns malicious JavaScript to users -> when the malicious code executes inside a victim's browse, the attacker can fully compromise their interaction with the application
+
+- ***three main types of XSS**
+  
+  - reflexted xss
+ 
+  - stored xss (~persistent/second-order)
+ 
+  - DOM-based xss:
+ 
+- XSS use cases, attacker typically can:
+
+  - impersonate or masquerade as the victim user
+ 
+  - carry out any action that the user is able to perfrom
+ 
+  - read any data that the user is able to access
+ 
+  - capture the user's login credentials
+ 
+  - perfrom virtual defacement of the web site
+ 
+  - inject trojan functionality into the web side
+ 
+- for finding and testing XSS vulnerabilities you can use e.g. Burp Suite's web vulnerability scanner, but performing manual testing is also possible
+
+- prevention of XSS attacks
+
+  - filter input on arrival
+ 
+  - encode data on output
+ 
+  - use appropriate response headers
+ 
+  - content security policy
 
 ### <a href="https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/">Karvinen 2020: Using New Webgoat 2023.4 to Try Web Hacking</a>
+
+- article tested on Debian 12-Bookworm
+
+- first install Java and a Firewall, then download latest WebGoat JAR
+
+  - so that you can run Java archive files
+ 
+  - using firewall might be a good idea, even when not installing highly vulnerable apps
+  - most likely you can find latest WebGoat from Github
+
+- run WebGoat, in an alternative port (means other than port 8080 :) )
 
 ## a) Totally Legit Sertificate
 
@@ -146,13 +260,6 @@ Developers and QA (quality assurance) staff should include functional AC unit an
 
 ### o) (A10) Server-Side Request Forgery (WebGoat 2023.4)
 
-
-### Lähteet
-
-https://owasp.org/Top10/A01_2021-Broken_Access_Control/">A01:2021 - Broken Access Control
-
-
-
   - Server-Side Request Forgery (2)
 
 ### p) Client side (WebGoat 2023.4)
@@ -160,3 +267,15 @@ https://owasp.org/Top10/A01_2021-Broken_Access_Control/">A01:2021 - Broken Acces
 ### Vapaaehtoiset:
 
 *Ratkaise lisää WegGoat- ja/tai PortSwigger Labs-tehtäviä*
+
+### Lähteet
+
+https://owasp.org/Top10/A01_2021-Broken_Access_Control/">A01:2021 - Broken Access Control
+
+https://owasp.org/Top10/A10_2021-Server-Side_Request_Forgery_%28SSRF%29/
+
+https://portswigger.net/web-security/access-control
+
+https://portswigger.net/web-security/ssrf
+
+https://portswigger.net/web-security/cross-site-scripting
