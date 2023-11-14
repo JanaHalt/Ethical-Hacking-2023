@@ -268,6 +268,8 @@ Constructing a **server-side template injection** attack:
 
 *Ratkaise lisää WegGoat- ja/tai PortSwigger Labs-tehtäviä*
 
+
+
 ### Lähteet
 
 https://owasp.org/Top10/A01_2021-Broken_Access_Control/">A01:2021 - Broken Access Control
@@ -279,3 +281,5 @@ https://portswigger.net/web-security/access-control
 https://portswigger.net/web-security/ssrf
 
 https://portswigger.net/web-security/cross-site-scripting
+
+https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/
