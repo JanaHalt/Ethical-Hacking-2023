@@ -267,6 +267,8 @@ Hakupyynnöt nyt ilmestyvät ZAP:n käyttöliittymään:
 
 *Ratkaise tehtävät. Selitä ratkaisusi: mitä palvelimella tapahtuu, mitä eri osat tekevät, miten hyökkäys löytyi, mistä vika johtuu. (Voi käyttää ZAPia, vaikka malliratkaisut käyttävät harjoitusten tekijän maksullista ohjelmaa)*
 
+## Insecure Direct Object Reference (IDOR)
+
 ### c) <a href="https://portswigger.net/web-security/access-control/lab-insecure-direct-object-references">Insecure Direct Object Reference (IDOR)</a>
 
 ## Path traversal
