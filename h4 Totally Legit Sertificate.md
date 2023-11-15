@@ -153,7 +153,7 @@ Constructing a **server-side template injection** attack:
 
 - XSS works by manipulating a vulnerable web site so taht it returns malicious JavaScript to users -> when the malicious code executes inside a victim's browse, the attacker can fully compromise their interaction with the application
 
-- ***three main types of XSS**
+- three main types of XSS
   
   - reflexted xss
  
@@ -327,6 +327,24 @@ Tässäkin harjoituksessa etenin samalla tavalla kuin edellisessä harjoituksess
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e3b12f9e-941e-4898-8971-abec349a13ca)
 
 ### f) <a href="https://portswigger.net/web-security/file-path-traversal/lab-sequences-stripped-non-recursively">File path traversal, traversal sequences stripped non-recursively</a>
+
+Sovellus saattaa poistaa tai estää hakemistojen traversal sequences (läpikulkusekvenssit?) käyttäjän syöttämästä tiedostonimestä. Sitä saattaa olla mahdollista ohittaa käyttämällä "nested traversal sequences" (sisäkkäsiä läpikulkusekvenssejä), kuten ```....//``` tai ```....\/```, katso tarkemmin esim. <a href="https://portswigger.net/web-security/file-path-traversal">täältä</a>.
+
+Tässäkin tehtävässä yritetään päästä käsiksi ```/etc/passwd```n sisältöön. Joten kuten aikaisemmassa tehtävässä, avasin labran ja katsoin ZAPiin tulleita GET pyyntöjä. Valitsin sellaisen, joka liittyi kuvan lataamiseen palvelimelta:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/1aebacc8-9cd2-4956-a6e4-81e3be827e8a)
+
+Ensin yritin muokata *30.jpg*sta */etc/passwd*ksi. Tuloksena "No such file":
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/b218d42d-d079-440b-913c-39da7661793e)
+
+Saman tuloksen sain kokeilemalla tiedoston nimen kohdalla ```....//etc/passwd```. Joten lisäsin "yhden tason" lisää -> ```....//....//etc/passwd```, tuloksena edelleen "No such file". Lisäsin vielä yhden tason -> ```....//....//....//etc/passwd```. Vastauksena vihdoinkin 
+
+```HTTP/1.1 200 OK```
+
+```Content-Type: image/jpeg```
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/a26ba6d1-c371-48a1-8b6b-f7d3d2f2bd8f)
 
 ## Server-Side Template Injection (SSTI)
 
