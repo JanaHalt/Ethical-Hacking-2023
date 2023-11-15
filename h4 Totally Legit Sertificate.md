@@ -1,3 +1,4 @@
+
 Uusi viikko, uudet läksyt. Alkuperäiset tehtävänannot löytyvät <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h4-totally-legit-sertificate">täältä</a>. Suoritan tehtävän kannettavallani Acer Swift 3, Windows 11 Home, sekä VirtualBoxissa asennetulla virtuaalikoneella (Kali).
 
 ## Lue/katso ja tiivistä
@@ -146,7 +147,6 @@ Constructing a **server-side template injection** attack:
 
 - finding hidden attack surface for SSRF vulnerabilities: partial URLs in requests, URLs within data formats; SSRF via the Referer header
 
-
 #### <a href="https://portswigger.net/web-security/cross-site-scripting">Cross-site scripting (XSS)</a>
 
 - allows an attacker to compromise the interactions that user have with a vulnerable application
@@ -248,6 +248,21 @@ Toimivuutta testaan seuraavan osatehtävän kohdalla (b, Kettumaista; kts alla)
 
 *Asenna FoxyProxy Standard Firefox Addon, ja lisää ZAP proxy siihen.*
 
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3aaf47ea-983e-4d66-b0bd-0018e0cf6e2f)
+
+Klikkasin ***Add to Firefox*** ja pop-up ikkunassa, joka sitten pomppasi ruudulle ***Add***.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/87a3efaf-4591-4d80-8d26-14c1b329cdc3)
+
+Lisättiin vielä proxyt niin HTTP:lle kuin HTTPS:lle - kummallekin samoilla tiedoilla kuin kuvassa alla:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/ba9eadfe-02e1-4710-8eb6-8a2bbc20d17a)
+
+Hakupyynnöt nyt ilmestyvät ZAP:n käyttöliittymään:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/68cec97e-63cf-44fe-a71f-c7d511f509ea)
+
+
 ## PortSwigger Labs
 
 *Ratkaise tehtävät. Selitä ratkaisusi: mitä palvelimella tapahtuu, mitä eri osat tekevät, miten hyökkäys löytyi, mistä vika johtuu. (Voi käyttää ZAPia, vaikka malliratkaisut käyttävät harjoitusten tekijän maksullista ohjelmaa)*
@@ -258,7 +273,27 @@ Toimivuutta testaan seuraavan osatehtävän kohdalla (b, Kettumaista; kts alla)
 
 ### d) <a href="https://portswigger.net/web-security/file-path-traversal/lab-simple">File path  traversal, simple case</a>
 
+Path traversal hyökkäyksessä yritetään päästä käsiksi kansioihin/tiedostoihin, jotka sijaitsevat juurikansion ulkopuolella. Sellaisiin resursseihin lienee mahdollista päästä get pyynnön (hae -> hakupyyntö) polkua muokkaamalla. 
+
+Avasin ZAPin kirjoittamalla komentorivillä ```zaproxy``` -> File -> New session. PortSwiggerin sivuilla olin jo äsken klikannut *Access the lab* painiketta, joten minulla oli jo "verkkokaupan" sivu auki. Jotta saisin hakupyyntöjä ilmestymään ZAPin liittymään latasin kaupan sivun uudelleen. Kuten alhaalla olevassa kuvassa näkyy, ZAPiin tuli hakupyyntöjä näkyviin. Suodatin tulokset sanalla "image", jotta sain vain kuviin liittyvät pyynnöt. Kuten myös kuvassa näkyvä GET pyyntö liittyy kuvan (*/image?filename=47.jpg*) hakemiseen palvelimelta.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/455693c9-e5d7-4372-beef-ac19f5ae2b0a)
+
+En oikein ollut varma, miten pääsisin muokkaamaan hakupyynnön polkua, joten katsoin <a href="https://www.youtube.com/watch?v=XhieEh9BlGc">File Path Traversal, simple case</a> videosta vinkkiä. Vähän meinasi hämätä, kun siinä käytetään BurpSuitea, mutta hetken ihmeteltyäni löysin oikean kohdan myös ZAPissa :) Joten klikkasin sitä pyyntöä hiiren oikealla -> *Open in Requester Tab*. Ekana kokeilin muuttaa ***filename*** parametria: 47.jpg -> /etc/passwd. Sitten kokeilin mennä yhtä kansiotasoa ylemmäs: /etc/passwd -> ../etc/passwd. Tulos oli sama. Jatkoin sammalla tavalla, kunnes löytyi oikea ratkaisu (toinen kuva alempana). Muokkaamalla filename-parametria tiedostonnimestä kansiopoluksi kerrottiin selaimelle mistä ME halutaan, että se hakee vastausta get hakupyyntöön - eikä sieltä mistä "verkkokauppasivun" tekijä suunnitteli.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/da844739-18ad-4c6f-aff7-93fadde24a82)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/c499bb5b-e0b6-43b5-9f51-47bfd053a6f4)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d29cf3f9-73f7-4d16-bacf-9cb1f92f53ce)
+
 ### e) <a href="https://portswigger.net/web-security/file-path-traversal/lab-absolute-path-bypass">File path traversal, traversal sequences blocked with absolute path bypass</a>
+
+Kuten PortSwiggerin sivulla lukee, niin monessa sovelluksessa, joka vie käyttäjän syötteen osaksi tiedostopolkua, on käytössä suoja path traversal tyyppisiä hyökkäyksiä vastaan. Joskus sitä on kuitenkin mahdollista ohittaa, esimerkiksi korvaamalla tiedoston nimeä absoluuttisella polulla juurikansiosta lähtien. 
+
+Tässäkin harjoituksessa etenin samalla tavalla kuin edellisessä harjoituksessa. Klikkasin *Access the lab* painiketta ja ZAPissa suodatin sinne tulleet pyynnöt sanalla "image". Klikkasin hiiren oikealla hakupyynnön URLia ja painoin *Open in requester tab*. Kokeilin muokata get hakupyynnön URLia *filename=image8.jpg* sellaiseksi, että vaihdoin "image8.jpg"n polun tilalle ```/etc/passwd```. Ja se olikin heti oikea:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/6bdc1e10-a985-48de-a09d-16b6cb41a996)
 
 ### f) <a href="https://portswigger.net/web-security/file-path-traversal/lab-sequences-stripped-non-recursively">File path traversal, traversal sequences stripped non-recursively</a>
 
@@ -323,3 +358,9 @@ https://portswigger.net/web-security/ssrf
 https://portswigger.net/web-security/cross-site-scripting
 
 https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/
+
+https://www.zaproxy.org/docs/desktop/start/proxies/
+
+https://owasp.org/www-community/attacks/Path_Traversal
+
+https://www.youtube.com/watch?v=XhieEh9BlGc
