@@ -271,6 +271,33 @@ Hakupyynnöt nyt ilmestyvät ZAP:n käyttöliittymään:
 
 ### c) <a href="https://portswigger.net/web-security/access-control/lab-insecure-direct-object-references">Insecure Direct Object Reference (IDOR)</a>
 
+Tässä tehtävässä yritetään päästä käsiksi toisen käyttäjän chat-logiin, jotta löytäisimme hänen salasanansa. Tehtävän "verkkokauppa" säilyttää chat logeja suoraan palvelimen tiedostorakenteessa ja hakee ne käyttämällä staattisia URLeja. 
+
+Saadakseni tiedon, mikä on tiedostopolku/URL, mistä chat log löytyy, piti jutella sivuston kanssa sieltä löytyvän live chat-ominaisuuden kautta ja ladata transskripti. Sitten etsin ZAPista löytää POST pyyntö, joka viittasi siihen, että halusin ladata chatin transskriptin ja sen jälkeen tullut GET pyyntö, jonka vastauksena oli ko. transkripti/tekstitiedosto.
+
+Seuraavaksi klikkasin hiiren oikealla tuota GET pyyntöää (kuvan alalaidassa GET pyyntö, jonka ID on 11) ja valitsin *Open/Resend with Request Editor*. Toisessa kuvassa nähdään, että sen GET pyynnön vastauksena oli chatin transkripti. Niinpä niin, siinä lukee *filename="15.txt"*, kesti hetken, että tajusin homman jujun :D - mutta sentään huomasin, että sivusto tallentaa ne chat-transkriptiot nimenä nouseva numerointi.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/21b2be02-effe-47ef-8ddf-3acd424a13ab)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/303c7c61-46bd-4559-baeb-36fa30978a0a)
+
+Seuraavaksi sitten manual requestin editorissa menin request-välilehdelle ja muokkasin GET pyynnön URLin *15.txt*sta *0.txt*ksi. Vastauksena oli **No transcript**.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/522caa23-fa6e-4be2-9d7e-1dcee76deccc)
+
+Seuraavaksi muutin *0.txt*sta *1.txt*ksi. Vastauksena Carlosin (käyttäjä, jonka salasanaa etsimme) chatin transkripti.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/89e35c1d-1e13-46f7-97b1-bb6e71d8aff9)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/f639e355-6cf3-4c0a-ad6e-7e92d77cbf2d)
+
+Kopioin sieltä löydetyn salasanan **s1j84j6ipa7pyrcb58nh** ja menin kokeilemaan, onnistuuko kirjautuminen. Ja sehän onnistuikin :)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/a20d136e-89a0-4513-93f6-28306c4ead72)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d9c880e5-7f35-4c94-af51-97e2664d48da)
+
+
 ## Path traversal
 
 ### d) <a href="https://portswigger.net/web-security/file-path-traversal/lab-simple">File path  traversal, simple case</a>
