@@ -287,9 +287,6 @@ En oikein ollut varma, miten pääsisin muokkaamaan hakupyynnön polkua, joten k
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d29cf3f9-73f7-4d16-bacf-9cb1f92f53ce)
 
-![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e3b12f9e-941e-4898-8971-abec349a13ca)
-
-
 ### e) <a href="https://portswigger.net/web-security/file-path-traversal/lab-absolute-path-bypass">File path traversal, traversal sequences blocked with absolute path bypass</a>
 
 Kuten PortSwiggerin sivulla lukee, niin monessa sovelluksessa, joka vie käyttäjän syötteen osaksi tiedostopolkua, on käytössä suoja path traversal tyyppisiä hyökkäyksiä vastaan. Joskus sitä on kuitenkin mahdollista ohittaa, esimerkiksi korvaamalla tiedoston nimeä absoluuttisella polulla juurikansiosta lähtien. 
@@ -297,6 +294,8 @@ Kuten PortSwiggerin sivulla lukee, niin monessa sovelluksessa, joka vie käyttä
 Tässäkin harjoituksessa etenin samalla tavalla kuin edellisessä harjoituksessa. Klikkasin *Access the lab* painiketta ja ZAPissa suodatin sinne tulleet pyynnöt sanalla "image". Klikkasin hiiren oikealla hakupyynnön URLia ja painoin *Open in requester tab*. Kokeilin muokata get hakupyynnön URLia *filename=image8.jpg* sellaiseksi, että vaihdoin "image8.jpg"n polun tilalle ```/etc/passwd```. Ja se olikin heti oikea:
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/6bdc1e10-a985-48de-a09d-16b6cb41a996)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e3b12f9e-941e-4898-8971-abec349a13ca)
 
 ### f) <a href="https://portswigger.net/web-security/file-path-traversal/lab-sequences-stripped-non-recursively">File path traversal, traversal sequences stripped non-recursively</a>
 
