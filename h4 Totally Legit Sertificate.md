@@ -1,4 +1,4 @@
-Uusi viikko, uudet läksyt. Alkuperäiset tehtävänannot löytyvät <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h4-totally-legit-sertificate">täältä</a>.
+Uusi viikko, uudet läksyt. Alkuperäiset tehtävänannot löytyvät <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#h4-totally-legit-sertificate">täältä</a>. Suoritan tehtävän kannettavallani Acer Swift 3, Windows 11 Home, sekä VirtualBoxissa asennetulla virtuaalikoneella (Kali).
 
 ## Lue/katso ja tiivistä
 
@@ -203,6 +203,46 @@ Constructing a **server-side template injection** attack:
 ## a) Totally Legit Sertificate
 
 *Asenna OWASP ZAP, generoi CA-sertifikaatti ja asenna se selaimeesi. Laita ZAP proxyksi selaimeesi. Osoita, että hakupyynnöt ilmestyvät ZAP:n käyttöliittymään. (Ei toimi localhost:lla ilman Foxyproxya)*
+
+Aloitin päivittämällä virtuaalikonettani (Kali) ```sudo apt-get upgrade```. Sitten ```sudo apt install zaproxy```.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d43c2d3a-8c3c-4e97-af53-38d382117826)
+
+CA-sertifikaatin generointi:
+
+- ZAP:issa -> Tools -> Options -> Network -> Server Certificates -> Generate
+
+- tallensin kotikansioon:
+
+  ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e6e2faf0-1c53-46fb-9aec-78ab2ddce0ef)
+
+Sitten selaimessa:
+
+- Settings -> Privacy & Security -> Certificates -> View Certificates
+
+- Authorities -> Import
+
+...ja ruksataan "Trust this CA to identify websites/email users"
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d8c9a877-7f59-4101-9c0b-f8b04fd0cf62)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d0313c90-1b26-42c7-9812-1b93502250e0)
+
+- sertifikaatti nyt näkyy selaimeen asennettujen sertifikaattien listalla:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/89522e2a-e138-483e-9bfe-3133e105293a)
+
+Sitten vielä asetetaan zap proxyksi selaimeen:
+
+Eli *settings* -> network settings (connection settings) -> *manual proxy configuration*
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/0f611fdc-c47e-4265-80bb-cb4a06317fee)
+
+Yllä oleviin asetuksiin laitettavat arvot voi tarkistaa ZAPista, Tools -> Options -> Network -> Local Servers/Proxies: 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/4b65943e-c02b-4e3f-9e93-ec8368046abf)
+
+Toimivuutta testaan seuraavan osatehtävän kohdalla (b, Kettumaista; kts alla)
 
 ## b) Kettumaista
 
