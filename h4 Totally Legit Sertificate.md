@@ -382,8 +382,22 @@ Laitoin templateen virheellisen ```${{<%[%'"}}%\```n sijaan ```{% debug %}```. K
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3342db5a-1c0a-416e-ac7f-058e303f4317)
 
+Tuloksista klikkasin ***Django settings*** ja sitä selaillessa tulin kohtaan ***Available settings***. Joten rupesin tutkimaan, mitä siinä olisi tarjolla. Löysin kuin löysinkin ratkaisuohjeessa mainitun ```SECRET_KEY``` ominaisuuden. Jos hyökkääjä on tästä ominaisuudesta tietoinen, sitä voi hyödyntää siten, että syötetään sivulle (templaten kautta) haitallista koodia, jota sitten suoritetaan palvelimen puolella.
+
+Jatkoin ratkaisuohjeen mukaan ja poistin ```{% debug %}``` templatesta ja laitoin tilalle ```{{settings.SECRET_KEY}}```. Tuloksena se mitä etsittiin, ***secret key***!!
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/353fd8d7-8c5d-46fc-81a8-ea43a4c7b1bb)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/15e2de1a-cc15-4fac-adbc-a39632daf3ab)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/22b66164-6ff3-4d5b-8297-63c2c99593e9)
+
+YES!!! Ratkaistu :D
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/70121e5a-82af-472f-bb31-fc4d868908da)
 
 
+Siitä huolimatta, että hyödynsin tehtävän ratkaisuohjetta, niin koen, että opin todella paljon.
 
 ## Server-Side Request Forgery (SSRF)
 
@@ -471,3 +485,7 @@ https://www.youtube.com/watch?v=XhieEh9BlGc
 https://www.youtube.com/watch?v=YO8rsCMVUyY&t=1s
 
 https://portswigger.net/web-security/server-side-template-injection
+
+https://docs.djangoproject.com/en/4.2/
+
+
