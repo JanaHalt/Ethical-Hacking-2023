@@ -348,7 +348,42 @@ Saman tuloksen sain kokeilemalla tiedoston nimen kohdalla ```....//etc/passwd```
 
 ## Server-Side Template Injection (SSTI)
 
+Server-side template injection tarkoittaa, että hyökkääjä pystyy käyttämään alkuperäistä mallisyntaxia (template syntax) haitallisen hyötykuorman syöttämiseen mallisyntaxiin ja sitä sitten suoritetaan palvelimen puolella (server-side).
+
 ### g) <a href="https://portswigger.net/web-security/server-side-template-injection/exploiting/lab-server-side-template-injection-with-information-disclosure-via-user-supplied-objects">Server-side template injection with information disclosure via user-supplied object</a>
+
+Kirjauduin "kauppaan" tehtävänannossa annetuilla tunnuksilla. 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d6885a53-855d-4d0b-83d0-a9a8951e61e5)
+
+Ja koska SSTI:ssä hyökkääjä syöttää haitallista hyötykuormaansa jonkinlaisen user input kohdan kautta, sellaista sitten aloin etsimään. Toki kun kirjauduin, niin ekana siinä on kohta, jossa voi vaihtaa salasanan. Nyt kuitenkin etsittiin kohtaa, jonka kautta voisimme muokata malleja (templates). Menin katsomaan tuotesivuja ja sieltä löytyi lupaava kohta:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/c64318dd-5028-4df2-9513-ef1d1e0fe217)
+
+Aloin muokkaamaan sitä ja kuten tehtävänannon ratkaisuohjeessa ehdotettiin, lisäsin editointi-ikkunaan ```${{<%[%'"}}%\```, eli jotain mitä siinä ei kuuluisi olla. Tallensin ja odotetusti error-viestissä oli viittaus siihen, että käytössä on django framework on käytössä. 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/453ec508-e567-4f42-84e7-007138f58bd8)
+
+Syötin tuon virheilmoituksen hakuun ja ystävämme bing ai-chatti ehdotti seuraavan:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/ffdeb790-f8c8-4cc3-8233-7b75f969cb04)
+
+Tuon inspiroimana aloin tutkimaan djangon dokumentaatiota, hakusana ```template tag```:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/d286cd64-f7d0-42d1-8d64-f491e68d5a7a)
+
+Hakutuloksista huomasin, että djangossa on template tagien kaava tällainen ```{% tag %}```. Koska olin parhaillaan tutkimassa aiemmin tullutta error-viestiä hain dokumentaatiosta sanaa ```debug```:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/56ec0e5d-b679-419e-ad51-7c8ec1cae138)
+
+Laitoin templateen virheellisen ```${{<%[%'"}}%\```n sijaan ```{% debug %}```. Kuten tehtävän ratkaisuohjeessa sanottiin, tuloksena oli lista objekteja ja ominaisuuksia. Settings-sanaa sieltä löytyi myös, joten seuraavaksi tutkin sitä djangon dokumentaatiosta.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/6b7dabc8-ae3b-4d56-a954-0f46a087fbed)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3342db5a-1c0a-416e-ac7f-058e303f4317)
+
+
+
 
 ## Server-Side Request Forgery (SSRF)
 
@@ -413,7 +448,6 @@ Eli meidän kohdalla ```JSESSIONID:"zoDte3napacztrA-LEFgwqyI8b98dm6nX5tNYe8-"```
 *Ratkaise lisää WegGoat- ja/tai PortSwigger Labs-tehtäviä*
 
 
-
 ### Lähteet
 
 https://owasp.org/Top10/A01_2021-Broken_Access_Control/"
@@ -435,3 +469,5 @@ https://owasp.org/www-community/attacks/Path_Traversal
 https://www.youtube.com/watch?v=XhieEh9BlGc
 
 https://www.youtube.com/watch?v=YO8rsCMVUyY&t=1s
+
+https://portswigger.net/web-security/server-side-template-injection
