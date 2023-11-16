@@ -364,11 +364,31 @@ Saman tuloksen sain kokeilemalla tiedoston nimen kohdalla ```....//etc/passwd```
 
 *Uusi versio, jossa on eri tehtäviä kuin vanhemmissa.*
 
+WebGoatin asennuksessa seurasin <a href="https://terokarvinen.com/2023/webgoat-2023-4-ethical-web-hacking/?fromSearch=webgoat#profit">artikkelia</a>. Eli ensin päivitin virtuaalikoneeni ```sudo apt-get update```. Minun ei tarvinnut asentaa ```openjdk-17-jre```, sillä uusin versio oli jo valmiiksi asennettuna. Asensin palomuurin ```sudo apt-get install ufw``` ja enabloin sen ```sudo ufw enable```.
+
+Latasin uusimman WebGoatin version ```wget https://github.com/WebGoat/WebGoat/releases/download/v2023.4/webgoat-2023.4.jar``` ja käynnistin sen ```java -Dfile.encoding=UTF-8 -Dwebgoat.port=8888 -Dwebwolf.port=9090 -jar webgoat-2023.4.jar```. Tuossa viimeisimmässä komennossa myös säädetään, että WebGoat tulee pyörimään portissa 8888, sillä portissa 8080 jo valmiiksi pyörii OWASP ZAP. Lopussa komentoriville tuli ohje mennä osoitteeseen ```http://127.0.0.1:8888/WebGoat```. Menin sinne suoraan ZAPista löytyvän firefoxin-selainpainikkeen kautta. 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e54814d5-8847-4f46-ab3d-557ff31a0876)
+
 ## Ratkaise WebGoat 2023.4
 
 ### m) (A1) Broken Access Control (WebGoat 2023.4)
   
   - Hijack a session (1)
+
+Navigoin oikean tehtävän kohdalle:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/33366f61-11da-4e21-af56-f56696d19368)
+
+Tehtävänannossa kerrotaan, että tavoitteena on "arvata" hijack_cookien arvo. Sen avulla erotellaan autentikoidut (sisäänkirjautuneet) ja anonyymit WebGoatin käyttäjät. 
+
+Cookiet ovat istuntokohtaisia. Joten jokaisella cookiella lienee jokin istunto ID. Tarkistetaan se webdeveloper-toolista. Selaimessa painetaan ```F12``` ja siellä välilehdelle "Storage" -> "Cookies":
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/8b770878-eca5-4890-8a24-c09c4f023fe1)
+
+Eli meidän kohdalla ```JSESSIONID:"zoDte3napacztrA-LEFgwqyI8b98dm6nX5tNYe8-"```. Painoin tehtäväsivulla ***Access*** nappia ja ZAPiin ilmestyi POST pyyntö, jonka URLissa luki mm. "HijackSession", joten arvelin että jotain tällaista pitäisi nyt etsiä. Avasin sen *Manual Request Editor*issa, painoin *Send* ja Response-välilehdelle saatiin näkyviin hijack_cookien arvo:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/1fe919a3-738f-4c00-8a5e-ff5d7d671a63)
 
   - Insecure Direct Object References (4)
 
@@ -413,3 +433,5 @@ https://www.zaproxy.org/docs/desktop/start/proxies/
 https://owasp.org/www-community/attacks/Path_Traversal
 
 https://www.youtube.com/watch?v=XhieEh9BlGc
+
+https://www.youtube.com/watch?v=YO8rsCMVUyY&t=1s
