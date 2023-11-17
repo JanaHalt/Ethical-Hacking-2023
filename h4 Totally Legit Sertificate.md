@@ -571,6 +571,18 @@ Tässä tulos: Jerryn hash-arvo on ```SVtOlaa+ER+w2eoIIVE5/77umvhcsh5V8UyDLUa1It
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3793f229-4e8d-49be-a009-8d2e6d97162a)
 
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/cbe51e16-f06d-4496-8ff1-b9c00b2f08a1)
+
+Viimeisessa vaiheessa on ajatuksena, että tuo äsken hyödynnetty haavoittuvuus korjattiin - eli piti lisätä uusi käyttäjä, kirjautua uutena käyttäjänä ja sitten löytää Jerryn hash-arvo. Hiukan apua tehtävän vinkeistä hyödynnettiin tässäkin :)
+
+Ekana painoin "submit" nappulaa ja ZAPissa avasin siihen liittyvän POST hakupyynnön *manual request editorissa*. URL muokkasin tällaiseksi ```http://localhost:8888/WebGoat/access-control/users``` - eli halutaan päästä muokkaamaan sivuston "käyttäjiä". Content-type ```application/json```ksi, siinä formaatissa ovat käyttäjätiedot tallennettuna, ja payload ```{"username":"newUser2","password":"newUser12","admin": "true"}```. Viimeisin kohta tarkoittaa, että luodaan uusi käyttäjä nimellä *newUser2*, hänen salasanansa on *newUser12* ja hän on *admin*. Sitten vain "Send" nappulaa ja tuloksena on uusi käyttäjä:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/a506d8eb-ceb2-4431-b328-9e048d599530)
+
+Viimeisessa kohdassa piti löytää uuden käyttäjän hash-arvo. Vinkeissä sanottiin, että pitäisi kirjautua uutena käyttäjänä (äsken luotu) Painoin "Submit" tehtäväsivulla ja avasin ZAPissa siihen liittyvän POST hakupyynnön "manual request editorissa". Muutin sen GET hakupyynnöksi ja URLin loppuosan muutin näin ```.../access-control/users```. Content-type vaihdoin tälläkin kertaa ```application/json``` ja sitten "Send" -> 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/157ef158-64cd-495a-9c3c-1654d9842bfb)
+
 
 
 
