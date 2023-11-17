@@ -432,7 +432,7 @@ Joten kopioin tuon polun ```/admin/delete?username=carlos``` ja muutin (manual r
 
 <a href="https://portswigger.net/web-security/cross-site-scripting">Cross-site scripting (XSS)</a> on haavoittuvuus, jota hyödyntämällä hyökkääjä voi vaarantaa käyttäjän ja sovelluksen välistä kommunikaatiota. XSS haavoittuvuus antaa hyökkääjälle mahdollisuuden naamioitua uhriksi, suorittaa toisen käyttäjän komentoja/toimintoja sekä käyttämään kyseisen käyttäjän tietoja.
 
-XSS:ssä manipuloidaan haavoittuvaa verkkosivua siten, että se palauttaa käyttäjälle haitallista (malicious) JavaScriptiä. Kun haitallinen koodi suoritetaan käyttäjän selaimessa, hyökkääjä voi rikkoa/murtautua/vahingoittaa käyttäjän ja selaimen/ohjelman välisen kommunikaation täysin.
+XSS:ssä manipuloidaan haavoittuvaa verkkosivua siten, että se palauttaa käyttäjälle haitallista (malicious) JavaScriptiä. Kun haitallinen koodi suoritetaan käyttäjän selaimessa, hyökkääjä voi rikkoa/murtautua/vahingoittaa käyttäjän ja selaimen/sovelluksen välisen kommunikaation täysin.
 
 ### i) <a href="https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded">Reflected XSS into HTML context with nothing encoded</a>
 
@@ -450,6 +450,30 @@ Eli verkkokauppa ei käsitellyt syötettäni pelkkänä tekstinä, vaan ```<scri
 
 
 ### j) <a href="https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded">Strored XSS into HTML context with nothing encoded</a>
+
+***Stored XSS*** haavoittuvuus syntyy, kun selain vastaanottaa dataa epäluotettavalta lähteeltä ja sisällyttää sitä myöhemmissä HTTP vastauksissa (responses) vaarallisella tavalla. Stored XSS tunnetaan myös nimellä second-order XSS / persistent XSS.
+
+Avasin yhden blogipostauksen ja kokeiluna jätin sinne yhden "tavallisen" kommentin. Vastauksena sain "Thank you..." ja kommenttini näkyi blogipostauksen alla:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/437b8fa5-5d5f-4075-b9de-8be1189933a9)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/30803df6-ac57-479c-94c3-100454ac89ab)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/502e6ad7-27e8-4649-964a-fe439ef45c8c)
+
+Vaikuttaisi siltä, että sovellus/sivu ei käsittele dataa millään muulla tavalla kuin, että tulostaa sen ruudulle - eli tallentaa sen (sinne mihin ikinä tallentaakin käyttäjien kommentit ja näyttää sitten ruudulla). Joten ajattelin kokeilla kirjoittaa kommenttiin ```<script>```in, kuten kerrotaan myös <a href="https://portswigger.net/web-security/cross-site-scripting/stored">täällä</a>. Seuraavaksi siis kirjoitin tällaisen kommentin:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/0c6c915c-0cf5-4dcc-bb5d-2792eb1a7fa9)
+
+***Lab solved***:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/c19d93e3-86b0-4685-8435-ca462061bdbf)
+
+...josta todisteena, että kun menin takaisin blogiin, niin ruudulle tuli heti tämä:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/b7ed7ae1-f9c0-4f6f-b00e-3283527569b6)
+
+:)
 
 ## k) Asenna Webgoat 2023.4
 
