@@ -583,6 +583,7 @@ Viimeisessa kohdassa piti löytää uuden käyttäjän hash-arvo. Vinkeissä san
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/157ef158-64cd-495a-9c3c-1654d9842bfb)
 
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3b97d172-f684-470c-8031-f2e4580d1850)
 
 
 
