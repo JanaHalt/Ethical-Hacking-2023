@@ -525,7 +525,6 @@ Sitten vain klikkasin hiiren oikealla -> Generate Tokens. Haluttu määrä token
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/941a6dc9-1211-4861-8307-d231d2ef7c26)
 
 
-
   - Insecure Direct Object References (4)
 
 Tämän tyyppiset hyökkäykset tapahtuvat tehtäväannon mukaan usein sellaisten käyttäjien toimesta, jotka ovat autentikoituja, mutta heillä ei kuitenkaan ole oikeutta suorittaa sitä mitä he yrittävät. 
