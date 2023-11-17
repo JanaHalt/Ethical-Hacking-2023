@@ -525,7 +525,6 @@ Sitten vain klikkasin hiiren oikealla -> Generate Tokens. Haluttu määrä token
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/941a6dc9-1211-4861-8307-d231d2ef7c26)
 
 
-
   - Insecure Direct Object References (4)
 
 Tämän tyyppiset hyökkäykset tapahtuvat tehtäväannon mukaan usein sellaisten käyttäjien toimesta, jotka ovat autentikoituja, mutta heillä ei kuitenkaan ole oikeutta suorittaa sitä mitä he yrittävät. 
@@ -559,6 +558,19 @@ Tässä yritetään löytää sivuston lähdekoodiin piilotettuja ominaisuuksia.
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/13a7ade5-5f6c-4e26-bec1-25eb3918b0cc)
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/37725974-865b-4861-9aaf-067c3dc1592c)
+
+Seuraavassa vaiheessa piti löytää Jerry nimisen käyttäjän "hash" arvo. Tehtäväsivulla, painoin "submit" ja etsin ZAPista tähän liittyvän pyynnön, kuva alla:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/03b3ddca-158a-4732-9d5f-3cbc2b10a4db)
+
+Seuraavaksi avasin sen "manual request editorissa" ja muutin sen GET pyynnöksi ja lisäksi hyödynsin edellisessä vaiheessa löydetyt ```/access-control/users``` ja ```/access-control/config```. Muokkasin URLin loppuosan näin ```/WebGoat/access-control/users``` ja **content-type** parametrin arvoksi muutin ```application/json```. Myönnän, että vinkin content-type parametrin muuttamiseksi löysin tehtävän vinkeistä, mutta näin jälkeenpäin se on täysin järkeenkäyvä. Käyttäjäprofiilin tiedot ovat käsittääkseni usein tallennettuna json-formaatissa.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/ce77a5c5-ccd9-474f-b2ba-2c75867a653d)
+
+Tässä tulos: Jerryn hash-arvo on ```SVtOlaa+ER+w2eoIIVE5/77umvhcsh5V8UyDLUa1Itg=```.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3793f229-4e8d-49be-a009-8d2e6d97162a)
+
 
 
 
