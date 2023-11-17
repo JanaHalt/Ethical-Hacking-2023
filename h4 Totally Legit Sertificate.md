@@ -501,9 +501,16 @@ Cookiet ovat istuntokohtaisia. Joten jokaisella cookiella lienee jokin istunto I
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/8b770878-eca5-4890-8a24-c09c4f023fe1)
 
-Eli meidän kohdalla ```JSESSIONID:"zoDte3napacztrA-LEFgwqyI8b98dm6nX5tNYe8-"```. Painoin tehtäväsivulla ***Access*** nappia ja ZAPiin ilmestyi POST pyyntö, jonka URLissa luki mm. "HijackSession", joten arvelin että jotain tällaista pitäisi nyt etsiä. Avasin sen *Manual Request Editor*issa, painoin *Send* ja Response-välilehdelle saatiin näkyviin hijack_cookien arvo:
+Eli meidän kohdalla ```JSESSIONID:"zoDte3napacztrA-LEFgwqyI8b98dm6nX5tNYe8-"```. Painoin tehtäväsivulla ***Access*** nappia ja ZAPiin ilmestyi POST pyyntö, jonka URLissa luki mm. "HijackSession", joten arvelin että jotain tällaista pitäisi nyt etsiä. Avasin tuon POSTin *Manual Request Editor*issa, painoin *Send* ja Response-välilehdelle saatiin näkyviin hijack_cookien arvo:
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/1fe919a3-738f-4c00-8a5e-ff5d7d671a63)
+
+Painoin *Access* muutamaan kertaan ja tallensin ne arvot tekstieditoriin:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/40e01a38-502b-4f28-aa89-83de1fa709fc)
+
+Tehtävävinkkien mukaan ensimmäinen osa on "sequential number" ja toinen "unix epoch time". Ne cookies, jotka tulee näkyviin, ovat "minun" sessioita. Niiden tulisi mennä järjestyksessä, eli sequential number (SN) pitäisi kasvaa aina 1:lla. Silloin kun yksi numero jää välistä, eli SN kasvaa kahdella, se tarkoittaa, että joku muu käyttäjä on kirjautunut siinä välissä.
+
 
   - Insecure Direct Object References (4)
 
