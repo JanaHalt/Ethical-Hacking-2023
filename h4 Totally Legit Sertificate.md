@@ -448,8 +448,7 @@ Mietin asiaa enemmän ja ajattelin, että hetkinen... haavoittuvuuden nimi on **
 
 Eli verkkokauppa ei käsitellyt syötettäni pelkkänä tekstinä, vaan ```<script>``` tagin ansiosta skriptinä ja suoritti sen.
 
-
-### j) <a href="https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded">Strored XSS into HTML context with nothing encoded</a>
+### j) <a href="https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded">Stored XSS into HTML context with nothing encoded</a>
 
 ***Stored XSS*** haavoittuvuus syntyy, kun selain vastaanottaa dataa epäluotettavalta lähteeltä ja sisällyttää sitä myöhemmissä HTTP vastauksissa (responses) vaarallisella tavalla. Stored XSS tunnetaan myös nimellä second-order XSS / persistent XSS.
 
@@ -513,6 +512,9 @@ Tehtävävinkkien mukaan ensimmäinen osa on "sequential number" ja toinen "unix
 
 
   - Insecure Direct Object References (4)
+
+
+
 
   - Missing Function Level Access Control (3)
 
