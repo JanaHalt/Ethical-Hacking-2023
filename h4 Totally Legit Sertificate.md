@@ -554,4 +554,8 @@ https://portswigger.net/web-security/server-side-template-injection
 
 https://docs.djangoproject.com/en/4.2/
 
+https://portswigger.net/web-security/cross-site-scripting/cheat-sheet
 
+https://portswigger.net/web-security/cross-site-scripting/stored
+
+https://security.stackexchange.com/questions/119989/typical-search-box-xss-attack
