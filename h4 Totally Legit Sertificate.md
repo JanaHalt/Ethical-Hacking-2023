@@ -436,7 +436,18 @@ XSS:ssä manipuloidaan haavoittuvaa verkkosivua siten, että se palauttaa käytt
 
 ### i) <a href="https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded">Reflected XSS into HTML context with nothing encoded</a>
 
-Tässä tehtävässä on yksinkertainen XSS haavoittuvuus hakutoiminnossa. Tehtävä tulisi suorittaa tekemällä XSS hyökkäys, joka kutsuu ```alert```funktiota.
+Tässä tehtävässä on yksinkertainen XSS haavoittuvuus hakutoiminnossa. Tehtävä tulisi suorittaa tekemällä XSS hyökkäys, joka kutsuu ```alert```funktiota. 
+
+Koska tehtävänannossa sanottiin, että haavoittuvuus on hakutoiminnossa ja hyökkäys tehdään kutsumalla alert-funktiota, niin ajattelin yksinkertaisesti vain kirjoittaa hakukenttään ```alert()```. Tuolla tavallahan merkataan funktioita. Toteutin sen ***Manual Request Editorissa***, ZAP paussilla. Yritys epäonnistui -> ***lab not solved***. Seuraavaksi ajattelin laittaa ko. funktion syötteeksi jotain arvoa, kokeilin ```alert(2)``` (numeron valitsin ihan sattumalta). Sama tulos kuin edellä.
+
+Mietin asiaa enemmän ja ajattelin, että hetkinen... haavoittuvuuden nimi on ***cross-site SCRIPTING***. Joten siinähän on oltava skripti. Googlasin ***script and search bar vulnerability***. Heti eka hakutulos oli <a href="https://security.stackexchange.com/questions/119989/typical-search-box-xss-attack">Typical search box xss attack</a>. Kurkkasin mitä sieltä löytyy ja päätin kokeilla sieltä löydettyä ```<script>alert(1)</script>``` verkkokaupan hakukentässä. Tässä tulos:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/672b0cd1-2c90-49b9-89ce-140f6e2bfe84)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/df888a1a-0af3-41dc-8f29-02f851d05319)
+
+Eli verkkokauppa ei käsitellyt syötettäni pelkkänä tekstinä, vaan ```<script>``` tagin ansiosta skriptinä ja suoritti sen.
+
 
 ### j) <a href="https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded">Strored XSS into HTML context with nothing encoded</a>
 
