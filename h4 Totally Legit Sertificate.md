@@ -401,7 +401,7 @@ Siitä huolimatta, että hyödynsin tehtävän ratkaisuohjetta, niin koen, että
 
 ## Server-Side Request Forgery (SSRF)
 
-***SSRF*** on haavoittuvuus, jonka ansiosta hyökkääjä pystyy käskemään palvelimen puolella olevaa ohjelmaa lähettämään pyyntöjä muulle kuin tarkoituksenmukaiselle kohteelle.
+***SSRF*** on haavoittuvuus, jonka ansiosta hyökkääjä pystyy käskemään palvelimen puolella olevaa ohjelmaa lähettämään pyyntöjä muulle kuin tarkoituksenmukaiselle kohteelle. Järjestelmät eivät yleensä salli pääsyä admin sivulle ilman autentikointia. Hätätapauksia varten voi olla mahdollisuus päästä admin sivulle ilman tunnuksia, mikäli sinne mennään paikallisesti (localhost).
 
 ### h) <a href="https://portswigger.net/web-security/ssrf/lab-basic-ssrf-against-localhost">Basic SSRF against local server</a>
 
@@ -413,9 +413,19 @@ Kuten odotettu, ei päästä admin sivulle suoraan lisäämällä ```/admin``` U
 
 Adminilla on luultavasti pääsy katsomaan verkkokaupan saldoja yms. Joten menin yhden tuotteen sivulle ja painoin **check stock**. Sitten siirryin ZAPin puolelle tutkimaan siihen liittyvää POST pyyntöä. Ehkä en vain huomannut edellisissä harjoituksissa, mutta tällä kertaa ZAPissa oli myös APIiin liittyvä kohta. En ole mikään koodari, mutta eiköhän API on se välikappale käyttäjän (selaimen) ja itse ohjelman/tässä kaupan verkkosivun ja sen tietokannan, välissä. Joten arvo **stockApi** parametrissa viittanee siihen kohtaan tietokantaa, jossa sijaitsee tieto tarkasteltavan tuotteen varastosaldosta.
 
-Mikäli sivustossa on SSRF haavoittuvuus (ja tässä tapauksessa toki on), tämä voisi olla väylämme päästä admin sivulle ja sitä kautta poistaa käyttäjä Carlos.
+Mikäli sivustossa on SSRF haavoittuvuus (ja tässä tapauksessa toki on), tämä voisi olla väylämme päästä admin sivulle ja sitä kautta poistaa käyttäjä Carlos. Joten avasin kyseisen POST pyynnön **manual request editorissa**. Koska **localhost**ista voisi onnistua pääsy admin sivulle ilman tunnuksia, kokeilin sitä.
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e05c3e0b-3e99-48fc-9cd9-7e9a1ece2f13)
+
+Onnistuin ja sieltähän löytyi myös keino poistaa käyttäjä Carlos.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/77c13718-92ca-4b57-82db-fb7a047afac8)
+
+Joten kopioin tuon polun ```/admin/delete?username=carlos``` ja muutin (manual request editorissa) stockApi parametrin arvon tällaiseksi ```http://localhost/admin/delete?username=carlos``` ja painoin "Send".
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/b7e32373-ad8e-42d0-9573-9454a5d4a030)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/decc037d-40cf-4744-84c1-cd869c35dbc3)
 
 
 ## Cross Site Scripting (XSS)
