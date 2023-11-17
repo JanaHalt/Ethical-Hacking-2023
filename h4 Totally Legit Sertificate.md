@@ -508,7 +508,22 @@ Painoin *Access* muutamaan kertaan ja tallensin ne arvot tekstieditoriin:
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/40e01a38-502b-4f28-aa89-83de1fa709fc)
 
-Tehtävävinkkien mukaan ensimmäinen osa on "sequential number" ja toinen "unix epoch time". Ne cookies, jotka tulee näkyviin, ovat "minun" sessioita. Niiden tulisi mennä järjestyksessä, eli sequential number (SN) pitäisi kasvaa aina 1:lla. Silloin kun yksi numero jää välistä, eli SN kasvaa kahdella, se tarkoittaa, että joku muu käyttäjä on kirjautunut siinä välissä.
+Tehtävävinkkien mukaan ensimmäinen osa on "sequential number" ja toinen "unix epoch time". Ne cookies, jotka tulee näkyviin, ovat "minun" sessioita. Niiden tulisi tässä tehtävässä mennä käsittääkseni järjestyksessä, eli sequential number (SN) pitäisi kasvaa aina 1:lla. Silloin kun yksi numero jää välistä, eli SN kasvaa kahdella, se tarkoittaa, että joku muu käyttäjä on kirjautunut siinä välissä.
+
+En jotenkin meinannut päästä eteenpäin, joten etsin youtubesta jotain vinkkejä. Törmäsin yhteen <a href="https://www.youtube.com/watch?v=_MdvIWvh7rM">ratkaisuvideoon</a>. Tai no löytyi aika monta, mutta tuo yksi vaikutti fiksulta. Kaikissa niissä oli vain yksi ongelma. Niissä käytettiin burpsuitea. Joten en kovin hyvin osannut soveltaa, kun burpsuiten ominaisuudet ja valikot eivät ole välttämättä samannimisiä kuin ZAPissa. Löytyi <a href="https://www.zaproxy.org/docs/burp-to-zap-feature-map/">Burp to ZAP Feature Map</a>. Tuolla listalla oli myös yksi työkalu, jota käytettiin löytämässäni videossa, <a href="https://www.zaproxy.org/addons/">Token Generation and Analysis</a> - burpsuitessa se on *sequencer*.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/c6acaf78-73f6-456c-8788-c988a54810a8)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3f7307ae-a94d-45f5-b831-f19fa7c75f28)
+
+Latasin sen ja sitten ZAPissa File -> Load Add on.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/2ec4f49c-711d-4d9b-9e0d-04049f84b3a2)
+
+Sitten vain klikkasin hiiren oikealla -> Generate Tokens. Haluttu määrä tokeneja generoitiin ja tallensin ne ne kansioon ```~/.ZAP/sessions``` nimellä ```gen_tokens1```. Jotain tein ilmeisesti väärin, koska se tallensi vain analyysin, eikä tokeneja:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/941a6dc9-1211-4861-8307-d231d2ef7c26)
+
 
 
   - Insecure Direct Object References (4)
@@ -568,3 +583,7 @@ https://portswigger.net/web-security/cross-site-scripting/cheat-sheet
 https://portswigger.net/web-security/cross-site-scripting/stored
 
 https://security.stackexchange.com/questions/119989/typical-search-box-xss-attack
+
+https://www.youtube.com/watch?v=_MdvIWvh7rM
+
+https://www.zaproxy.org/docs/burp-to-zap-feature-map/
