@@ -528,7 +528,21 @@ Sitten vain klikkasin hiiren oikealla -> Generate Tokens. Haluttu määrä token
 
   - Insecure Direct Object References (4)
 
+Tämän tyyppiset hyökkäykset tapahtuvat tehtäväannon mukaan usein sellaisten käyttäjien toimesta, jotka ovat autentikoituja, mutta heillä ei kuitenkaan ole oikeutta suorittaa sitä mitä he yrittävät. 
 
+Nyt aloitetaan. Kirjaudutaan sisään -> tulos: **You are now logged in as tom. Please proceed.**
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/184906af-7811-4594-81da-e246556473a8)
+
+Selaimessa näkyy profiilissa *name*, *color*, *size*. ZAPissa (response) näkyy myös *role* ja *userId*.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/a4a3548f-c892-4ce7-b153-7cac01eafc23)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/590cd5e5-1207-414e-8e05-2e73710d9560)
+
+Samasta paikasta löytyi vastaus seuraavaankin vaiheeseen:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/21c99bf8-b1d5-437a-8023-c22958ee9462)
 
 
   - Missing Function Level Access Control (3)
