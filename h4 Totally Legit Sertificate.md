@@ -526,7 +526,6 @@ Sitten vain klikkasin hiiren oikealla -> Generate Tokens. Haluttu määrä token
 
 
 
-
   - Insecure Direct Object References (4)
 
 Tämän tyyppiset hyökkäykset tapahtuvat tehtäväannon mukaan usein sellaisten käyttäjien toimesta, jotka ovat autentikoituja, mutta heillä ei kuitenkaan ole oikeutta suorittaa sitä mitä he yrittävät. 
@@ -554,6 +553,14 @@ Seuraavan vaiheen kanssa tuli ongelmia. Tiesin, että pitää löytää toisen k
 Kokeilin uudelleenkäynnistää kaiken: ZAPin, WebGoatin, virtuaalikoneen,... Ei apua. Nyt on jo klo 22 (17.11.23). Yritän jatkaa tätä tehtävää huomenna.
 
   - Missing Function Level Access Control (3)
+
+Tässä yritetään löytää sivuston lähdekoodiin piilotettuja ominaisuuksia. Piti etsiä sellaisia, jotka voisivat olla mahdollisen hyökkääjän mielestä kiinnostavia. Avasin firefoxin developer tools painamalla **F12**. *Inspector* välilehdellä tutkin sivun lähdekoodia, kunnes löytyi jotakin kiinnostavaa:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/13a7ade5-5f6c-4e26-bec1-25eb3918b0cc)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/37725974-865b-4861-9aaf-067c3dc1592c)
+
+
 
   - Spoofing an Authentication Cookie (1)
 
