@@ -430,7 +430,13 @@ Joten kopioin tuon polun ```/admin/delete?username=carlos``` ja muutin (manual r
 
 ## Cross Site Scripting (XSS)
 
+<a href="https://portswigger.net/web-security/cross-site-scripting">Cross-site scripting (XSS)</a> on haavoittuvuus, jota hyödyntämällä hyökkääjä voi vaarantaa käyttäjän ja sovelluksen välistä kommunikaatiota. XSS haavoittuvuus antaa hyökkääjälle mahdollisuuden naamioitua uhriksi, suorittaa toisen käyttäjän komentoja/toimintoja sekä käyttämään kyseisen käyttäjän tietoja.
+
+XSS:ssä manipuloidaan haavoittuvaa verkkosivua siten, että se palauttaa käyttäjälle haitallista (malicious) JavaScriptiä. Kun haitallinen koodi suoritetaan käyttäjän selaimessa, hyökkääjä voi rikkoa/murtautua/vahingoittaa käyttäjän ja selaimen/ohjelman välisen kommunikaation täysin.
+
 ### i) <a href="https://portswigger.net/web-security/cross-site-scripting/reflected/lab-html-context-nothing-encoded">Reflected XSS into HTML context with nothing encoded</a>
+
+Tässä tehtävässä on yksinkertainen XSS haavoittuvuus hakutoiminnossa. Tehtävä tulisi suorittaa tekemällä XSS hyökkäys, joka kutsuu ```alert```funktiota.
 
 ### j) <a href="https://portswigger.net/web-security/cross-site-scripting/stored/lab-html-context-nothing-encoded">Strored XSS into HTML context with nothing encoded</a>
 
