@@ -401,7 +401,22 @@ Siitä huolimatta, että hyödynsin tehtävän ratkaisuohjetta, niin koen, että
 
 ## Server-Side Request Forgery (SSRF)
 
+***SSRF*** on haavoittuvuus, jonka ansiosta hyökkääjä pystyy käskemään palvelimen puolella olevaa ohjelmaa lähettämään pyyntöjä muulle kuin tarkoituksenmukaiselle kohteelle.
+
 ### h) <a href="https://portswigger.net/web-security/ssrf/lab-basic-ssrf-against-localhost">Basic SSRF against local server</a>
+
+Tavoitteena on päästä admin sivulle ja poistaa käyttäjä Carlos.
+
+Kuten odotettu, ei päästä admin sivulle suoraan lisäämällä ```/admin``` URLin perään:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/4ce5b237-a6d3-45e2-acd7-7dd9a83930eb)
+
+Adminilla on luultavasti pääsy katsomaan verkkokaupan saldoja yms. Joten menin yhden tuotteen sivulle ja painoin **check stock**. Sitten siirryin ZAPin puolelle tutkimaan siihen liittyvää POST pyyntöä. Ehkä en vain huomannut edellisissä harjoituksissa, mutta tällä kertaa ZAPissa oli myös APIiin liittyvä kohta. En ole mikään koodari, mutta eiköhän API on se välikappale käyttäjän (selaimen) ja itse ohjelman/tässä kaupan verkkosivun ja sen tietokannan, välissä. Joten arvo **stockApi** parametrissa viittanee siihen kohtaan tietokantaa, jossa sijaitsee tieto tarkasteltavan tuotteen varastosaldosta.
+
+Mikäli sivustossa on SSRF haavoittuvuus (ja tässä tapauksessa toki on), tämä voisi olla väylämme päästä admin sivulle ja sitä kautta poistaa käyttäjä Carlos.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e05c3e0b-3e99-48fc-9cd9-7e9a1ece2f13)
+
 
 ## Cross Site Scripting (XSS)
 
