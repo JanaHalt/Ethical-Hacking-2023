@@ -583,9 +583,17 @@ Viimeisessa kohdassa piti löytää uuden käyttäjän hash-arvo. Vinkeissä san
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/157ef158-64cd-495a-9c3c-1654d9842bfb)
 
+Uuden käyttäjän, eikä Jerryn hash-arvo eivät kelvanneet ratkaisuksi. Pitkän googlettelun jälkeen löysin <a href="https://github.com/WebGoat/WebGoat/issues/1424">tämän GitHub ketjun</a>. Siinä joku valitti, että tämän osatehtävän vinkit ovat osittain jokseenkin harhaanjohtavia. Ajattelin samaa, mutta epäilin, etten vain osaa. Ketjun viimeisessä kommentissa neuvottiin luomaan uusi käyttäjä samalla nimellä kuin oikeasti käyttää webgoatissa ja asettaa sille admin-parametrille arvoksi "true". Sitten piti olla mahdollista listata käyttäjät kuten aiemmassa osatehtävässä, PAITSI nyt tulisi käyttää GET hakupyynnön URLin lopussa ```/users``` sijaan ```/users-admin-fix```.
+
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3b97d172-f684-470c-8031-f2e4580d1850)
 
+Seurasin ohjetta ja muokkasin GET hakupyynnön sen mukaiseksi ja tulos oli...erilainen:
 
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/c47e7a0e-2193-40d3-992b-7d93ef5cc13e)
+
+Käyttäjällä Jerry oli tällä kertaa eri hash-arvo: ```d4T2ahJN4fWP83s9JdLISio7Auh4mWhFT1Q38S6OewM=```. Tämä sitten kelpasi ratkaisuksi myös webgoatille :)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3f117d48-3b2d-4270-afb6-459ca9a79318)
 
   - Spoofing an Authentication Cookie (1)
 
@@ -649,3 +657,5 @@ https://github.com/WebGoat/WebGoat/wiki/Main-Exploits#insecure-direct-object-ref
 https://thehackerish.com/idor-tutorial-hands-on-owasp-top-10-training/
 
 https://www.youtube.com/watch?v=K5BBP88kBjU
+
+https://github.com/WebGoat/WebGoat/issues/1424
