@@ -541,6 +541,8 @@ Selaimessa näkyy profiilissa *name*, *color*, *size*. ZAPissa (response) näkyy
 
 Samasta paikasta löytyi vastaus seuraavaankin vaiheeseen:
 
+```WebGoat/IDOR/profile/23423844```
+
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/21c99bf8-b1d5-437a-8023-c22958ee9462)
 
 Seuraavan vaiheen kanssa tuli ongelmia. Tiesin, että pitää löytää toisen käyttäjän ID ja toisessa vaiheessa muokata tämän käyttäjän profiilia. Mietin tätä melko pitkään ja etsin mahdollisia ratkaisuja netistä. Katsoin ratkaisuvideoita youtubesta, esimerkiksi <a href="https://www.youtube.com/watch?v=8fMFLqbd0-Y">tämä - Insecure Direct Object References - WebGoat</a>. Löysin jopa WebGoatin GitHubista ratkaisun, <a href="https://github.com/WebGoat/WebGoat/wiki/Main-Exploits#insecure-direct-object-reference-lesson-5-exercise">WebGoat - Main Exploits - IDOR lesson 5 exercise</a>. En saanut kuin nämä virheilmoitukset...:
