@@ -645,11 +645,19 @@ Sitten tuo arvo laitettiin hex-dekooderiin, mutta oikeanpuoleiseen tekstikenttä
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/f0381d85-55b1-423f-8e83-f1b33872dd71)
 
-
-
 ### n) (A7) Identity & Auth Failure (WebGoat 2023.4)
 
   - Authentic Bypasses
+
+Tehtävässä ollaan kuvitteellisesti resetoimassa salasanaa. Käytössä on kaksivaiheinen autentikointi, mutta meillä ei ole mahdollisuutta saada tesktari, joten valitaan vaihtoehtoinen tunnistautuminen - turvakysymykset. Ongelmana on, että ne turvakysymykset on tallennetu toiselle laitteelle kuin mistä ollaan kirjautumassa, emmekä kuitenkaan edes muista vastauksia niihin.
+
+Tehtäväsivulla syötin sanat "testi1" ja "testi2" vastauskenttiin. Painoin "Submit", jotta sain POST hakupyynnön ZAPiin. Avasin sen pyynnön "manual request editorissa" ja pysäytin ZAPin. Tässä nähdään parametrit, joihin haetaan lomakkeesta syötteitä ja niiden avulla pitäisi autentikoita käyttäjä:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/10c23ee8-5ce0-46f5-b9ed-560f2b690195)
+
+Noita parametreja varmaan pitää jotenkin muokata, mutta en ole varma miten, joten kurkkaan vinkkeihin. Siinä kerrotaan, että sivusto odottaa, että vastataan kahteen kysymykseen, mutta toteutuksessa on virhe. Yhtenä vinkkinä oli myös **secQuestion** parametrien uudelleennimeäminen. Kokeilen sitä. Muutam ko. parametrien nimiksi **secQuestionA** ja **secQuestionB** ja painan "Send". Tehtävä ratkaistu. En ole ihan täysin varma miten tämä onnistui. En saanut mielenrauhaa, joten oli pakko tutkia miksi. Tässä vaiheessa löysin Youtubesta <a href="https://www.youtube.com/watch?v=hrEB9L2oyic">videon</a>, jossa kerrotaan, että sivusto ei odota juuri *näitä parametreja*, vaan se odottaa mitä vaan parametreja, jotka sisältävät sanan "SEC". 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/ff5321af-e9a2-4f14-9ff2-1f29d020fdb6)
 
   - Insecure Login (1)
 
@@ -717,3 +725,5 @@ https://www.base64decode.org
 https://cryptii.com/pipes/hex-decoder
 
 https://string-functions.com/reverse.aspx
+
+https://www.youtube.com/watch?v=hrEB9L2oyic
