@@ -661,11 +661,56 @@ Noita parametreja varmaan pitää jotenkin muokata, mutta en ole varma miten, jo
 
   - Insecure Login (1)
 
+Tässä tehtävässä kaapataan toisen käyttäjän tunnuksia.
+
+Tehtäväsivulla painoin ohjeiden mukaisesti "Log in" ja ZAPista sitten etsin tähän kirjautumisyritykseen liittyvän POST hakupyynnön. Sieltähän ne käyttäjätunnukset heti löytyivät:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/73761d96-3553-4fa5-b5c4-559a5791039f)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/bb1563b0-6b0f-4482-a9b4-85d8a694843d)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/9ea23a33-5dc2-43a4-81d3-98bca7ed1f9f)
+
+Koska tunnukset liikkuivat selkeänä tekstinä, eikä kryptattuna, niin niitä oli helppo löytää.
+
 ### o) (A10) Server-Side Request Forgery (WebGoat 2023.4)
 
+***Server-Side Request Forgery (SSRF)*** haavoittuvuutta hyödyntämällä päästä lukemaan ja/tai muokkaamaan sellaisia palvelimen resursseja, joihin hänellä ei pitäisi olla pääsyä. Hyökkääjä voi lähettää tai muokata URLia, jota sitten palvelimella pyörivä ohjelma lukee tai lähettää dataa vastauksena. Sekin on mahdollista, että hyökkääjä voi näin päästä lukemaan palvelimen konfiguraatioon liittyviä tiedostoja, päästä käsiksi palvelimella olevaan tietokantaan, lähettää POST hakupyyntöjä sisäisiin palveluihin, joiden ei pitäisi olla näkyvillä ulkopuolisille.
+
   - Server-Side Request Forgery (2)
+    
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/0771e743-56e1-4f21-896e-b3d80c4b023f)
+
+Luulen, että "Steal the Cheese" napin painaminen kutsuu funktion, joka avaa URLin joka osoittaa/hakee Tomin kuvaa. Muokkasin URLia ```url=images%2Ftom.png``` -> ```url=images%2Fjerry.png```.
+
+Seuraava osatehtävä alla. Uskon, että vaihtamalla kuvan alaosassa olevaa URLia ```url=images%2Fcat.png```sta ```url=http://ifconfig.pro```ksi tehtävä ratkeaa:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/81e9b8f4-65e1-4fff-ad7c-25e409f36fb6)
+
+...ja niin se olikin :)  Sama periaate kuin Tomin ja Jerryn kuvan kanssa.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/ff275d7c-f592-4f77-acfe-400ac164f71e)
+
 
 ### p) Client side (WebGoat 2023.4)
+
+  - Bypass front-end restrictions (2)
+
+Eka osatehtävä - Field Restrictions. Tarkoituksena on palvelimelle lähetettävää POST hakupyyntöä siten, että se ohittaa kaiken neljän kysymyksen/kentän vaatimuksia. Painoin "Submit" ja avasin siihen liittyvää POST hakupyyntöä "manual request editorissa": 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/5ae39318-de67-4e0c-bb98-e4197119fd36)
+
+Seuraavaksi muokkaan parametrien *select*, *radio*, *checkbox*, *shortInput*, *readOnlyInput* arvot pelkäksi ```option```ksi. Eli lähetetään palvelimelle POST hakupyyntöä muokatuilla parametriarvoilla ja ohitetaan sillä millaisia vastauksia se käyttäjältä odottaa. Tällaista haavoittuvuutta voinee ehkäistä sillä, että käyttäjän syöte jollain lailla validoidaan ennen kuin hakupyyntö lähtee palvelimelle/ennen kuin palvelin vastaa siihen.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/a8875a78-bd07-46d7-86b8-f5d7939569d4)
+
+Toisessa osatehtävässä pitäisi lähettää palvelimelle pyyntöä, jossa syöte yhdessäkään kentässä ei täsmää regexiin niiden yläpuolella. 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/4559b819-8e8a-496e-90e4-63bf5926de20)
+
+Muutin syötteet "manual request editorissa" tällaisiksi ```field1=abc1&field2=123p&field3=abc!+123?+ABC-&field4=seven123&field5=01101abc&field6=90210##-1111&field7=30a1-6b04-4c882&error=0```. Eli jokaisessa kirjoitin jotakin, mikä poikkesi määrityksistä.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/7246c1fe-642e-4f1d-913b-2e8b850f2e04)
 
 ### Vapaaehtoiset:
 
