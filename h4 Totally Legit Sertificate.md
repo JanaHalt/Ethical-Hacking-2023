@@ -597,6 +597,56 @@ Käyttäjällä Jerry oli tällä kertaa eri hash-arvo: ```d4T2ahJN4fWP83s9JdLIS
 
   - Spoofing an Authentication Cookie (1)
 
+Tässä tehtävässä pitäisi pystyä arvaamaan cookies:n luontialgorytmi ja ohittamaan autenkikaatio kirjautumalla sisään eri käyttäjänä.
+
+Tehtävänannossa on kahden käyttäjän tunnukset:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/48c028cd-f77b-4113-8954-f1178600f8e7)
+
+Kirjauduin ensimmäisenä (webgoat) ja uusi cookie käyttäjälle webgoat luotiin: ```spoof_auth=NDc3NzcyNDQ2YTc2NzY2ZDQ5NTI3NDYxNmY2NzYyNjU3Nw=```.
+
+Painoin *Delete cookie*.
+
+Sitten sama toisena käyttäjänä (admin): ```spoof_auth=NDc3NzcyNDQ2YTc2NzY2ZDQ5NTI2ZTY5NmQ2NDYx```.
+
+Painoin *Delete cookie*.
+
+Spoofaamalla cookie piti kirjautua käyttäjänä "Tom". Laitoin kirjautumislomakkeeseen pelkkä Tom, ilman mitään salasanaa. Toki, tuloksena oli ***Login failed***.
+
+Uusi yritys.
+
+Kirjauduin webgoat-käyttäjänä ja avasin siihen liittyvän POST hakupyynnön ZAPissa. Pysäytin ZAPin ja painoin "Send", jolloin tulos oli tämä:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/a1f15393-8244-4029-9950-996c83abcfe3)
+
+Eli webgoat-käyttäjän spoof_auth on ```spoof_auth=NDc3NzcyNDQ2YTc2NzY2ZDQ5NTI2ZTY5NmQ2NDYx```. 
+
+Edelleen "manual request editorissa", vaihdoin käyttäjätunnukset admin-tunnuksiksi ja painoin "Send". Tuloksena saatiin adminin spoof_auth ```NDc3NzcyNDQ2YTc2NzY2ZDQ5NTI2ZTY5NmQ2NDYx```. 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/da5ca9a9-6d9b-4876-80e4-0bdb151322ed)
+
+Ymmärsin kyllä, että niitä on luotu jollain salausmenetelmällä, mutta en tiennyt millä -> löysin tämän <a href="https://www.youtube.com/watch?v=-n4OmhUN3vA">videon</a>, jossa sanottiin, että salausmenetelmä oli ***BASE64***. En ole ihan varma, mistä sen tunnistaa. Joten sivulla <a href="https://www.base64decode.org">Base64decode</a> laitoin adminin spoof_auth:n ekaan tekstikenttään ja painoin *decode*. Tuloksena ```477772446a76766d49526e696d6461```.
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/72948dd2-44b7-4150-b2b1-0e220923c435)
+
+Videossa neuvottiin, että kun niitä numeroita jakaa 2 numeron pareiksi, niin nehän ovat hex-numeroita: ```47 77 72 44 6a 76 76 6d 49 52 6e 69 6d 64 61```.  Joten seuraavaksi käytettiin <a href="https://cryptii.com/pipes/hex-decoder">hex-dekooderiin</a>:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/01fadd91-7778-412c-8f2c-5532743d9431)
+
+Tuloksesta ```GwrDjvvmIRnimda``` voi huomata, että rimpsun lopussa lukee "nimda" -> "admin". ja loput jotain satunnaisia numeroita. Koko rimpsu sitten laitettiin <a href="https://string-functions.com/reverse.aspx">string reverseriin</a>. Tuloksena ```adminRImvvjDrwG```:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/c4776aef-3383-4e84-91aa-918b35748572)
+
+```adminRImvvjDrwG```:n vaihdoin ```TomRImvvjDrwG```:ksi, laitoin string reverseriin ja tuloksena sain ```GwrDjvvmIRmoT```. 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/75477117-2b04-42a5-ab8b-193c53a6019e)
+
+Sitten tuo arvo laitettiin hex-dekooderiin, mutta oikeanpuoleiseen tekstikenttään, jolloin vasemmalle tuli sen hex-arvo ```47 77 72 44 6a 76 76 6d 49 52 6d 6f 54```. Tämä sitten laitetiin (ilman tyhjiä välejä) <a href="https://www.base64encode.org">base64encodeen</a> ja tulos oli ```NDc3NzcyNDQ2YTc2NzY2ZDQ5NTI2ZDZmNTQ=```. 
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/f0381d85-55b1-423f-8e83-f1b33872dd71)
+
+
+
 ### n) (A7) Identity & Auth Failure (WebGoat 2023.4)
 
   - Authentic Bypasses
@@ -659,3 +709,11 @@ https://thehackerish.com/idor-tutorial-hands-on-owasp-top-10-training/
 https://www.youtube.com/watch?v=K5BBP88kBjU
 
 https://github.com/WebGoat/WebGoat/issues/1424
+
+https://www.youtube.com/watch?v=-n4OmhUN3vA
+
+https://www.base64decode.org
+
+https://cryptii.com/pipes/hex-decoder
+
+https://string-functions.com/reverse.aspx
