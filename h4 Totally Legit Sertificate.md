@@ -275,7 +275,7 @@ Tässä tehtävässä yritetään päästä käsiksi toisen käyttäjän chat-lo
 
 Saadakseni tiedon, mikä on tiedostopolku/URL, mistä chat log löytyy, piti jutella sivuston kanssa sieltä löytyvän live chat-ominaisuuden kautta ja ladata transskripti. Sitten etsin ZAPista löytää POST pyyntö, joka viittasi siihen, että halusin ladata chatin transskriptin ja sen jälkeen tullut GET pyyntö, jonka vastauksena oli ko. transkripti/tekstitiedosto.
 
-Seuraavaksi klikkasin hiiren oikealla tuota GET pyyntöää (kuvan alalaidassa GET pyyntö, jonka ID on 11) ja valitsin *Open/Resend with Request Editor*. Toisessa kuvassa nähdään, että sen GET pyynnön vastauksena oli chatin transkripti. Niinpä niin, siinä lukee *filename="15.txt"*, kesti hetken, että tajusin homman jujun :D - mutta sentään huomasin, että sivusto tallentaa ne chat-transkriptiot nimenä nouseva numerointi.
+Seuraavaksi klikkasin hiiren oikealla tuota GET pyyntöää (kuvan alalaidassa GET pyyntö, jonka ID on 11) ja valitsin *Open/Resend with Request Editor*. Toisessa kuvassa nähdään, että sen GET pyynnön vastauksena oli chatin transkripti. Niinpä niin, siinä lukee *filename="15.txt"*, kesti hetken, että tajusin homman jujun :D - mutta sentään huomasin, että sivusto tallentaa ne chat-transkriptiot siten, että niiden nimenä on nouseva numerointi.
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/21b2be02-effe-47ef-8ddf-3acd424a13ab)
 
