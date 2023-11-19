@@ -524,6 +524,8 @@ Sitten vain klikkasin hiiren oikealla -> Generate Tokens. Haluttu määrä token
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/941a6dc9-1211-4861-8307-d231d2ef7c26)
 
+Ymmärsin, että minun olisi pitänyt löytää hijack_cookien arvon oikea loppuosa. Loppuosa on aikaleima unix epoch time muodossa. Mahdollisia vaihtoehtoja on näin ollen paljon ja niiden manuaalinen läpikäynti lähes mahdotonta. Ohjevideoissa tähän tarkoitukseen käytettiin burpsuiten sequenceria, enkä osannut tehdä vastaavaa ZAPissa. Oli tarkoitus palata tähän sen jälkeen kun olisin saanut muut tehtävät tehtyä, mutta aikaa ei jäänyt. Palaan tähän kuitenkin myöhemmin ja päivitän ratkaisun, mikäli sen vain onnistun löytämään :) 
+
 
   - Insecure Direct Object References (4)
 
@@ -554,7 +556,6 @@ Seuraavan vaiheen kanssa tuli ongelmia. Tiesin, että pitää löytää toisen k
 Kokeilin uudelleenkäynnistää kaiken: ZAPin, WebGoatin, virtuaalikoneen,... Ei apua. Kokeilin tehdä saman GET hakupyynnön muokkauksen myös developer toolseissa, mutta sama virhe:
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/02672516-3f44-4b7a-8584-64e3ebb81423)
-
 
   - Missing Function Level Access Control (3)
 
