@@ -687,7 +687,7 @@ Koska tunnukset liikkuivat selkeänä tekstinä, eikä kryptattuna, niin niitä 
     
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/0771e743-56e1-4f21-896e-b3d80c4b023f)
 
-Luulen, että "Steal the Cheese" napin painaminen kutsuu funktion, joka avaa URLin joka osoittaa/hakee Tomin kuvaa. Muokkasin URLia ```url=images%2Ftom.png``` -> ```url=images%2Fjerry.png```.
+Luulen, että "Steal the Cheese" napin painaminen kutsuu funktion, joka avaa URLin joka osoittaa/hakee Tomin kuvaa. Muokkasin URLia ```url=images%2Ftom.png``` -> ```url=images%2Fjerry.png```. -> Success.
 
 Seuraava osatehtävä alla. Uskon, että vaihtamalla kuvan alaosassa olevaa URLia ```url=images%2Fcat.png```sta ```url=http://ifconfig.pro```ksi tehtävä ratkeaa:
 
