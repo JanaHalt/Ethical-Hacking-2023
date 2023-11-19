@@ -545,13 +545,16 @@ Samasta paikasta löytyi vastaus seuraavaankin vaiheeseen:
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/21c99bf8-b1d5-437a-8023-c22958ee9462)
 
-Seuraavan vaiheen kanssa tuli ongelmia. Tiesin, että pitää löytää toisen käyttäjän ID ja toisessa vaiheessa muokata tämän käyttäjän profiilia. Mietin tätä melko pitkään ja etsin mahdollisia ratkaisuja netistä. Katsoin ratkaisuvideoita youtubesta, esimerkiksi <a href="https://www.youtube.com/watch?v=8fMFLqbd0-Y">tämä - Insecure Direct Object References - WebGoat</a>. Löysin jopa WebGoatin GitHubista ratkaisun, <a href="https://github.com/WebGoat/WebGoat/wiki/Main-Exploits#insecure-direct-object-reference-lesson-5-exercise">WebGoat - Main Exploits - IDOR lesson 5 exercise</a>. En saanut kuin nämä virheilmoitukset...:
+Seuraavan vaiheen kanssa tuli ongelmia. Tiesin, että pitää löytää toisen käyttäjän ID ja toisessa vaiheessa muokata tämän käyttäjän profiilia. Mietin tätä melko pitkään ja etsin mahdollisia ratkaisuja netistä. Katsoin ratkaisuvideoita youtubesta, esimerkiksi <a href="https://www.youtube.com/watch?v=8fMFLqbd0-Y">tämä - IDOR - WebGoat</a> tai tämä <a href="https://www.youtube.com/watch?v=B2xw7EB7hJg">toinen</a>. Löysin jopa WebGoatin GitHubista ratkaisun, <a href="https://github.com/WebGoat/WebGoat/wiki/Main-Exploits#insecure-direct-object-reference-lesson-5-exercise">WebGoat - Main Exploits - IDOR lesson 5 exercise</a>. En saanut kuin alhaalla näkyvät ilmoitukset. Kokeilin myös vaihtaa content-type "application/json":ksi (ei kuvassa), mutta sekään ei auttanut:
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/e01cdcb2-0793-4cb0-af3e-dfd8958423b1)
 
 ![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/dec32cc6-bd71-41ac-b4b6-32c48d5e8315)
 
-Kokeilin uudelleenkäynnistää kaiken: ZAPin, WebGoatin, virtuaalikoneen,... Ei apua. Nyt on jo klo 22 (17.11.23). Yritän jatkaa tätä tehtävää huomenna.
+Kokeilin uudelleenkäynnistää kaiken: ZAPin, WebGoatin, virtuaalikoneen,... Ei apua. Kokeilin tehdä saman GET hakupyynnön muokkauksen myös developer toolseissa, mutta sama virhe:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/02672516-3f44-4b7a-8584-64e3ebb81423)
+
 
   - Missing Function Level Access Control (3)
 
