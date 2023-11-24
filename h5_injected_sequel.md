@@ -383,9 +383,25 @@ Nyt voidaan käyttää löydetyt tunnukset kirjautumiseen:
 
 #### j) <a href="https://portswigger.net/web-security/sql-injection/union-attacks/lab-retrieve-multiple-values-in-single-column">SQL injection UNION attack, retrieving multiple values in a single column</a>
 
-SQL cheat sheetissa kerrotaan, että yhdistämällä kahden sarakkeen arvot voidaan palauttaa 
+SQL cheat sheetissa kerrotaan, että yhdistämällä kahden tai useamman sarakkeen arvot voidaan saada niiden tiedot silloinkin, kun hakupyyntö saa palauttaa vain yhden sarakkeen. Oraclessa siihen voi käyttää pyyntöä, jolla on seuraavanlainen rakenne:
 
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/ba6f24c5-0fd8-41cb-ab3b-d6383f7376b7)
 
+Aloitin klikkaamalla kategoriaa *Accessories* ja ZAPissa siihen liittyvää GET hakupyyntöä. Tehtävänannossa sanotaan, että taulukossa users on kaksi saraketta. Varmistetaan vielä, onko molemmissa tekstityyppinen data.
+
+Pyyntö ```'UNION SELECT 'a', NULL--``` tuotti **Internal Server Error**in.
+
+Pyyntö ```'UNION SELECT NULL,'a'--``` sen sijaan **200 OK**, joten lähdetään muokkaamaan tätä cheat sheetissä olleen hakupyynnön mukaiseksi:
+
+Eli URLin perään ```'UNION SELECT NULL,username||'~'||password FROM users--```. Tuloksena **200 OK**, laitetaanpa URL nettiselaimeen:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/3b332e7d-cce0-4b4f-9836-3e47f501f071)
+
+Siinähän ne käyttäjätunnukset ja salasanat ovat :) Kirjaudutaan vielä administrator-tunnuksilla:
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/2bb6090b-a9aa-4a98-bfd4-791f331caf12)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/174c9dbc-1771-4159-a246-117d1576dda6)
 
 ### Vapaaehtoinen: Mitmproxy
 
