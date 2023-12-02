@@ -254,7 +254,11 @@ Testasin reverse shellin toimivuutta komennolla ```Get-LocalUser```, jonka tarko
 - Email-kohtaan pitää täyttää joku osoite, jotta se toimii. Voit laittaa tuohon oman osoitteen tai example.com.invalid-osoitteen, sillä osoite ei tule näkyviin.
 
 - Hyväksyn kommentit käsin, ne tulevat siis näkyviin viiveellä.
-- 
+
+Linkki raporttiini lisätty kurssisivun kommentiksi :)
+
+![image](https://github.com/JanaHalt/Ethical-Hacking-2023/assets/78509164/ad14ef45-ab44-415a-92da-26b4083d140b)
+
 
 #### c) Attaaack! <a href="https://attack.mitre.org/">MITRE Attack Enterprise Matrix</a>
 
