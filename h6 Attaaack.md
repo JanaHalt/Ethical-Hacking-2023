@@ -123,7 +123,7 @@ Silmäile, poimi muutama esimerkki. Koko kehikko on laaja, eikä sitä tarvitse 
     
     - procedure example: (id) S0373 (name) Astaroth - collects information from the clipboard by using the ```OpenClipboard()``` and ```GetClipboardData()```  libraries.
 
-##### a) The OS pwns you.
+#### a) The OS pwns you.
 
 Asenna Windows virtuaalikoneeseen samaan verkkoon hyökkäyskoneen (esim. Kali, Debian) kanssa. Kokeile, että saat koneen irrotettua Internetistä
 
@@ -193,7 +193,7 @@ Otin Ja Windows kone ei pääse nettiin. Adapter 2 on Host-only verkon adapteri,
 
 ![](assets/2023-12-01-12-16-32-image.png)
 
-##### b) Trustme.lnk.
+#### b) Trustme.lnk.
 
 *Kokeile PhishSticksin revshell vihamielistä tiedostoa, joka avaa käänteisen shellin hyökkääjän koneelle. Selitä, mitä tapahtuu ja miksi. Testaa, että pysyt antamaan kohdekoneelle komentoja reverse shellin kautta.* 
 
@@ -241,7 +241,7 @@ Testasin reverse shellin toimivuutta komennolla ```Get-LocalUser```, jonka tarko
 
 ![](assets/2023-12-02-00-21-56-image.png)
 
-##### d) PageRank. Laita linkki raporttiisi <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#comments">kurssisivun kommentiksi</a>.
+#### d) PageRank. Laita linkki raporttiisi <a href="https://terokarvinen.com/2023/eettinen-hakkerointi-2023/#comments">kurssisivun kommentiksi</a>.
 
 - Kannattaa mainita URL sekä leipätekstissä ("Comment") että kotisivun osoitteessa ("Homepage"), jotta sitä on helppo klikata.
 
@@ -254,8 +254,9 @@ Testasin reverse shellin toimivuutta komennolla ```Get-LocalUser```, jonka tarko
 - Email-kohtaan pitää täyttää joku osoite, jotta se toimii. Voit laittaa tuohon oman osoitteen tai example.com.invalid-osoitteen, sillä osoite ei tule näkyviin.
 
 - Hyväksyn kommentit käsin, ne tulevat siis näkyviin viiveellä.
+- 
 
-##### c) Attaaack! <a href="https://attack.mitre.org/">MITRE Attack Enterprise Matrix</a>
+#### c) Attaaack! <a href="https://attack.mitre.org/">MITRE Attack Enterprise Matrix</a>
 
 Demonstroi viisi tekniikkaa viidestä eri taktiikasta..
 
@@ -290,10 +291,9 @@ Tässä osuudessa hyödynnän virtuaalikoneet, jotka minulla on jo ennestään a
   En saanut version (OS; mutta tiedossa toki on, että se on Fedora), mutta sain muita tietoja. Kaikki skannatut portit ovat ignored-tilassa. 846 porttia ovat *unfiltered*, mikä tarkoittaa, että ne ovat *accessible*, mutta nmap ei pysty toteamaan, onko ne auki vai kiinni. 147 porttia ovat *filtered* tilassa. Se tarkoittaa, että nmap ei pysty toteamaan, ovatko portit auki, koska jokin estää sen (palomuuri tms), eikä se ole saanut näistä porteistä mitään vastausta. 7 muuta porttia on myös *filtered* tilassa, mutta ne on lisäksi *admin-prohibited*. Tämä tarkoittaa, että nmap on lähettänyt näille porteille "jotakin" ja saanut vastaukseksi ICMP 'Admin-prohibited' vastauksen - eli jokin aktiivisesti blokkaa sitä (palomuuri, tms). Skannaus sai selville kohteen verkkokortin MAC osoitteen, tässä tapauksessa se on toki VirtualBoxin virtuaaliverkkokortti.
 
 
-
 En keksinyt, miten demonstroisin 4 seuraavaa tekniikkaa, joten päädyin siihen, että edes kuvailen ne tänne alle:
 
-###### Initial Access
+##### Initial Access
 
 - Tekniikka id T1078 Valid Accounts
   
@@ -303,7 +303,7 @@ En keksinyt, miten demonstroisin 4 seuraavaa tekniikkaa, joten päädyin siihen,
     
     Kuten ylempänä. Lisäksi: Paikalliset tilit ovat tilejä, jotka organisaatio on määrittänyt käyttäjien, etätuen, palveluiden tai yksittäisen järjestelmän tai palvelun hallintaan. 
 
-###### Persistence
+##### Persistence
 
 - Tekniikka id T1098 Account Manipulation
   
@@ -313,7 +313,7 @@ En keksinyt, miten demonstroisin 4 seuraavaa tekniikkaa, joten päädyin siihen,
     
     Hyökkääjät voivat rekisteröidä hallitsemalleen kohdejärjestelmän tilille laitteen, jota he voivat sitten hyödyntää esimerkiksi monivaiheisen tunnistautumisjärjestelmän huijaamiseen
 
-###### Privilege Escalation
+##### Privilege Escalation
 
 - Tekniikka id T1053 Scheduled Task/Job
   
@@ -325,7 +325,7 @@ En keksinyt, miten demonstroisin 4 seuraavaa tekniikkaa, joten päädyin siihen,
     
     Hyökkääjät voivat ylempänä kuvailtuun toimintaan cron-apuohjelmaa. Crontab-tiedosto sisältää cron-merkintöjen aikataulun ja määritetyt suoritusajat. Kaikki crontab-tiedostot tallennetaan käyttöjärjestelmäkohtaisiin tiedostopolkuihin. Hyökkääjät voivat hyödyntää tätä toiminnallisuutta haitallisten ohjelmien suorittamiseen järjestelmän käynnistyksen yhteydessä tai määritetyn aikataulun mukaan.
 
-###### Impact
+##### Impact
 
 - Tekniikka id T1561 Disk Wipe
   
@@ -335,19 +335,19 @@ En keksinyt, miten demonstroisin 4 seuraavaa tekniikkaa, joten päädyin siihen,
     
     Hyökkääjät voivat poistaa tallennusresurssien sisällön ja siten häiritä/keskeyttää järjestelmän ja verkkoresurssien saatavuutta/käytettävyyttä.
 
-##### d) Vapaaehtoinen:
+#### d) Vapaaehtoinen:
 
 Total attak! Demonstroi yksi tekniikka jokaisesta MITRE Attack -taktiikasta. (Noista aiemmin tehdystä viidestä ei tarvitse tehdä uutta demonstraatiota.) <a href="https://attack.mitre.org/">MITRE Attack Enterprise Matrix</a> 
 
-##### e) Vapaaehtoinen:
+#### e) Vapaaehtoinen:
 
 Kokeile jokin toinen hyökkäystekniikka PhishSticks-projektista.
 
-##### f) Vapaaehtoinen:
+#### f) Vapaaehtoinen:
 
 Tee oma RAT tai malware ja testaa sitä. Miten tunnistaisit oman haittaohjelmasi ja estäisit sen toiminnan? (Kotitehtävissä ei tehdä matoja tai muita itsestään leviäviä ohjelmia. Katso turvallisuusvinkit alta).
 
-##### Lähteet:
+#### Lähteet:
 
 https://attack.mitre.org/
 
